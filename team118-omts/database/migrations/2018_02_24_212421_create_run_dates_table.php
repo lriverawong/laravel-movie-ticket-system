@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShowTimeTable extends Migration
+class CreateRunDatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateShowTimeTable extends Migration
      */
     public function up()
     {
-        Schema::create('show_time', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('run_dates', function (Blueprint $table) {
             $table->integer('movie_id')->unsigned();
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
-            $table->integer('theatre_id')->unsigned();
-            $table->foreign('theatre_id')->references('id')->on('theatres')->onDelete('cascade');
             $table->integer('theatre_complex_id')->unsigned();
             $table->foreign('theatre_complex_id')->references('id')->on('theatre_complexes')->onDelete('cascade');
-            $table->dateTime('showing_start_time');
-            $table->unique(['movie_id', 'theatre_id', 'theatre_complex_id', 'showing_start_time'], 'showing_id');
-            $table->unsignedInteger('num_seats_avail');
+            $table->primary(['movie_id', 'theatre_complex_id'], 'movie_theatre_complex_id')->onDelete('cascade');
+            $table->date('run_start_date');
+            $table->date('run_end_date');
             $table->timestamps();
         });
     }
@@ -35,6 +32,6 @@ class CreateShowTimeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('show_time');
+        Schema::dropIfExists('run_dates');
     }
 }

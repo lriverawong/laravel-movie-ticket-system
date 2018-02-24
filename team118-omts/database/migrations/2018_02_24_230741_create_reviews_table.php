@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRunDateTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateRunDateTable extends Migration
      */
     public function up()
     {
-        Schema::create('run_dates', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('movie_id')->unsigned();
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
-            $table->integer('theatre_complex_id')->unsigned();
-            $table->foreign('theatre_complex_id')->references('id')->on('theatre_complexes')->onDelete('cascade');
-            $table->primary(['movie_id', 'theatre_complex_id'], 'movie_theatre_complex_id')->onDelete('cascade');
-            $table->date('run_start_date');
-            $table->date('run_end_date');
+            $table->unique(['user_id', 'movie_id']);
+            $table->string('review');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateRunDateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('run_dates');
+        Schema::dropIfExists('reviews');
     }
 }
