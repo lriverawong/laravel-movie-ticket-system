@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -29,6 +29,6 @@ class User extends Authenticatable
 
     // relationship for UserAddress (has-many)
     public function user_address() {
-        return $this->hasOne('App\UserAddress');
+        return $this->hasOne('App\Models\UserAddress');
     }
 }
