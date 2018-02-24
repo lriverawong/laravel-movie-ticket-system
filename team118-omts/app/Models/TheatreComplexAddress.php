@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TheatreComplexAddress extends Model
 {
+    protected $table = 'theatre_complex_addresses';
+
     /**
      * Model relationships
      */
