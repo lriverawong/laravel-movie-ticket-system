@@ -1,9 +1,38 @@
 # Laravel Docker Setup
-Create a basic app with:
 
-    composer create-project laravel/laravel laravel-blog
+# Clone the repo and getting it working
+First clone the repo in a directory
 
-# Laravel Blog
+    https://github.com/lriverawong/laravel-movie-ticket-system
+
+Then copy over both .env files from the team into laradock/ and team118-omts/
+
+    cp .env laradock/.env
+    cp .env team118-omts/.env
+
+Then start the containers
+
+    docker-compose up -d nginx mysql phpadmin
+
+Then enter the main container
+
+    cd laradock/
+    docker-compose exec --user=laradock workspace bash
+
+Then install dependencies
+
+    composer install
+
+Then generate your keys
+
+    php artisan key:generate
+
+Optionally (run your migrations for your DB)
+
+    php artisan migrate
+
+
+# Laravel Blog Notes
 Create project
 
     composer create-project laravel/laravel laravel-blog
