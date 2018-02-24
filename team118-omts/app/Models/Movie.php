@@ -11,4 +11,8 @@ class Movie extends Model
     public $timestamps = true;
 
     // Setting up relations
+    public function actors() {
+        return $this->hasMany('App\Models\Actor');
+    }
+
 }
