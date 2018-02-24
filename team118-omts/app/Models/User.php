@@ -27,8 +27,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // relationship for UserAddress (has-many)
+    /**
+     * Model relationships
+     */
+
+    // has-many user_addresses
     public function user_address() {
         return $this->hasOne('App\Models\UserAddress');
     }
+
+    // The roles that belong to the user
+    public function roles() {
+        return $this->belongsToMany('App\Models\Role');
+    }
+
 }

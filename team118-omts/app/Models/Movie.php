@@ -10,9 +10,16 @@ class Movie extends Model
     
     public $timestamps = true;
 
-    // Setting up relations
+    /**
+     * Model Relationships 
+     */
+
+    // movie has-many actors
     public function actors() {
         return $this->hasMany('App\Models\Actor');
     }
+
+    // movie has-many playtimes
+    
 
 }
