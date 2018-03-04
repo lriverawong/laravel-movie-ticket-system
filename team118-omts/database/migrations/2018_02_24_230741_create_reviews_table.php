@@ -19,7 +19,7 @@ class CreateReviewsTable extends Migration
             $table->integer('movie_id')->unsigned();
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
             $table->primary(['user_id', 'movie_id']);
-            $table->string('review');
+            $table->text('review');
             $table->timestamps();
         });
     }

@@ -7,3 +7,4 @@ Team 118 - Quentin Petraroia, Luis Rivera-Wong, Braedan Robinson
 
 3. Only a registered user can leave a movie review 
 
+4. We assume that movie plot synopsis and movie reviews will be longer than 255 characters; hence the TEXT data type.

@@ -18,7 +18,7 @@ class CreateMoviesTable extends Migration
             $table->string('title');
             $table->integer('running_time');
             $table->integer('rating');
-            $table->string('plot_synopsis');
+            $table->text('plot_synopsis');
             //$table->string('list_of_actors');
             //$table->string('director');
             // $table->string('production_company');

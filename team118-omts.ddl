@@ -51,7 +51,7 @@ CREATE TABLE `movies` (
   `title` varchar(255) NOT NULL,
   `running_time` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
-  `plot_synopsis` varchar(255) NOT NULL,
+  `plot_synopsis` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 );
@@ -177,7 +177,7 @@ CREATE TABLE `reservations` (
 CREATE TABLE `reviews` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `movie_id` int(10) UNSIGNED NOT NULL,
-  `review` varchar(255) NOT NULL,
+  `review` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`,`movie_id`),
@@ -206,3 +206,5 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2018_02_24_212529_create_show_times_table', 1),
 (16, '2018_02_24_225510_create_reservations_table', 1),
 (17, '2018_02_24_230741_create_reviews_table', 1);
+
+INSERT INTO `users` VALUES
