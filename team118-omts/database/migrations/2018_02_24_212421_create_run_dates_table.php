@@ -21,7 +21,7 @@ class CreateRunDatesTable extends Migration
             $table->primary(['movie_id', 'theatre_complex_id'], 'movie_theatre_complex_id')->onDelete('cascade');
             $table->date('run_start_date');
             $table->date('run_end_date');
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

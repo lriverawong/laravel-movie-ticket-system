@@ -12,11 +12,6 @@ class TheatreComplex extends Model
      * Model relationships
      */
 
-     // theatre_complex has-one theatre_complex_address
-     public function theatre_complex_address() {
-         return $this->hasOne('App\Models\TheatreComplexAddress');
-     }
-
      // theatre_complex has-many theatres
      public function theatres(){
          return $this->hasMany('App\Models\Theatre');

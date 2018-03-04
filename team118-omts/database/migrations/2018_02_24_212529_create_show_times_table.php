@@ -24,7 +24,7 @@ class CreateShowTimesTable extends Migration
             $table->dateTime('showing_start_time');
             $table->unique(['movie_id', 'theatre_id', 'theatre_complex_id', 'showing_start_time'], 'showing_id');
             $table->unsignedInteger('num_seats_avail');
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

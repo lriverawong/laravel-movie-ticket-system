@@ -21,7 +21,7 @@ class CreateMoviesTable extends Migration
             $table->string('plot_synopsis');
             //$table->string('list_of_actors');
             //$table->string('director');
-            $table->string('production_company');
+            // $table->string('production_company');
             //$table->string('name_of_supplier');
 
             $table->timestamps();

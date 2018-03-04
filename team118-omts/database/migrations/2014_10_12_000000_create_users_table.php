@@ -22,6 +22,13 @@ class CreateUsersTable extends Migration
             $table->string('phone_num');
             $table->string('credit_card_num');
             $table->string('credit_card_exp');
+            $table->string('apt_num');
+            $table->string('street_num');
+            $table->string('street_name');
+            $table->string('city');
+            $table->string('province');
+            $table->string('country');
+            $table->string('postal_code');
             // $table->string('user_priv');
             $table->rememberToken();
             $table->timestamps();

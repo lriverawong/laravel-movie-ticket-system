@@ -20,7 +20,7 @@ class CreateReservationsTable extends Migration
             $table->integer('showing_id')->unsigned();
             $table->foreign('showing_id')->references('id')->on('show_times');
             $table->integer('number_of_tickets')->unsigned();
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

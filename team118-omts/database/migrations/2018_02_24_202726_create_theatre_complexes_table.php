@@ -16,9 +16,14 @@ class CreateTheatreComplexesTable extends Migration
         Schema::create('theatre_complexes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            // $table->string('address');
             $table->string('phone_num');
-            $table->timestamps();
+            $table->string('street_num');
+            $table->string('street_name');
+            $table->string('city');
+            $table->string('province');
+            $table->string('country');
+            $table->string('postal_code');
+            // $table->timestamps();
         });
     }
 

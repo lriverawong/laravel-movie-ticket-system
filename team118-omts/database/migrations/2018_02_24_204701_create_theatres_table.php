@@ -21,7 +21,7 @@ class CreateTheatresTable extends Migration
             $table->foreign('theatre_complex_id')
                   ->references('id')->on('theatre_complexes')
                   ->onDelete('cascade');
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

@@ -10,9 +10,4 @@ class Supplier extends Model
 
     public $timestamps = true;
 
-    // Set up relations
-    public function supplier_address() {
-        return $this->hasOne('App\Modles\SupplierAddress');
-    }
-
 }
