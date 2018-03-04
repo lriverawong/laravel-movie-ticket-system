@@ -5,19 +5,55 @@
 CREATE DATABASE IF NOT EXISTS `team118-omts`; 
 USE `team118-omts`;
 
-CREATE TABLE `actors` (
+CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `actors_movies` (
-  `actor_id` int(10) UNSIGNED NOT NULL,
-  `movie_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`actor_id`,`movie_id`),
-  FOREIGN KEY (`actor_id`) REFERENCES `actors` (`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `phone_num` varchar(255) NOT NULL,
+  `credit_card_num` varchar(255) NOT NULL,
+  `credit_card_exp` varchar(255) NOT NULL,
+  `apt_num` varchar(255) NOT NULL,
+  `street_num` varchar(255) NOT NULL,
+  `street_name` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `province` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `postal_code` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+);
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+);
+
+CREATE TABLE `production_companies` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `movies` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `running_time` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `plot_synopsis` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 );
 
 CREATE TABLE `directors` (
@@ -35,29 +71,43 @@ CREATE TABLE `directors_movies` (
   FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE
 );
 
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `movies` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `running_time` int(11) NOT NULL,
-  `rating` int(11) NOT NULL,
-  `plot_synopsis` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-);
-
 CREATE TABLE `movies_production_companies` (
   `movie_id` int(10) UNSIGNED NOT NULL,
   `production_company_id` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`movie_id`,`production_company_id`),
   FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE,
   FOREIGN KEY (`production_company_id`) REFERENCES `production_companies` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `actors` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `actors_movies` (
+  `actor_id` int(10) UNSIGNED NOT NULL,
+  `movie_id` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`actor_id`,`movie_id`),
+  FOREIGN KEY (`actor_id`) REFERENCES `actors` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `suppliers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `phone_num` varchar(255) NOT NULL,
+  `contact_first_name` varchar(255) NOT NULL,
+  `contact_last_name` varchar(255) NOT NULL,
+  `apt_num` varchar(255) NOT NULL,
+  `street_num` varchar(255) NOT NULL,
+  `street_name` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `province` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `postal_code` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `movies_suppliers` (
@@ -68,37 +118,26 @@ CREATE TABLE `movies_suppliers` (
   FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE
 );
 
-CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-);
-
-CREATE TABLE `production_companies` (
+CREATE TABLE `theatre_complexes` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
+  `phone_num` varchar(255) NOT NULL,
+  `street_num` varchar(255) NOT NULL,
+  `street_name` varchar(255) NOT NULL,
+  `city` varchar(255) NOT NULL,
+  `province` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `postal_code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `reservations` (
+CREATE TABLE `theatres` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `showing_id` int(10) UNSIGNED NOT NULL,
-  `number_of_tickets` int(10) UNSIGNED NOT NULL,
+  `max_num_seats` int(11) NOT NULL,
+  `screen_size` int(11) NOT NULL,
+  `theatre_complex_id` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`showing_id`) REFERENCES `show_times` (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-);
-
-CREATE TABLE `reviews` (
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `movie_id` int(10) UNSIGNED NOT NULL,
-  `review` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`user_id`,`movie_id`),
-  FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+  FOREIGN KEY (`theatre_complex_id`) REFERENCES `theatre_complexes` (`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE `run_dates` (
@@ -125,64 +164,25 @@ CREATE TABLE `show_times` (
   FOREIGN KEY (`theatre_id`) REFERENCES `theatres` (`id`) ON DELETE CASCADE
 );
 
-CREATE TABLE `suppliers` (
+CREATE TABLE `reservations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `phone_num` varchar(255) NOT NULL,
-  `contact_first_name` varchar(255) NOT NULL,
-  `contact_last_name` varchar(255) NOT NULL,
-  `apt_num` varchar(255) NOT NULL,
-  `street_num` varchar(255) NOT NULL,
-  `street_name` varchar(255) NOT NULL,
-  `city` varchar(255) NOT NULL,
-  `province` varchar(255) NOT NULL,
-  `country` varchar(255) NOT NULL,
-  `postal_code` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `theatres` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `max_num_seats` int(11) NOT NULL,
-  `screen_size` int(11) NOT NULL,
-  `theatre_complex_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `showing_id` int(10) UNSIGNED NOT NULL,
+  `number_of_tickets` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`theatre_complex_id`) REFERENCES `theatre_complexes` (`id`) ON DELETE CASCADE
+  FOREIGN KEY (`showing_id`) REFERENCES `show_times` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 );
 
-CREATE TABLE `theatre_complexes` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `phone_num` varchar(255) NOT NULL,
-  `street_num` varchar(255) NOT NULL,
-  `street_name` varchar(255) NOT NULL,
-  `city` varchar(255) NOT NULL,
-  `province` varchar(255) NOT NULL,
-  `country` varchar(255) NOT NULL,
-  `postal_code` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `phone_num` varchar(255) NOT NULL,
-  `credit_card_num` varchar(255) NOT NULL,
-  `credit_card_exp` varchar(255) NOT NULL,
-  `apt_num` varchar(255) NOT NULL,
-  `street_num` varchar(255) NOT NULL,
-  `street_name` varchar(255) NOT NULL,
-  `city` varchar(255) NOT NULL,
-  `province` varchar(255) NOT NULL,
-  `country` varchar(255) NOT NULL,
-  `postal_code` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+CREATE TABLE `reviews` (
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `movie_id` int(10) UNSIGNED NOT NULL,
+  `review` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
+  PRIMARY KEY (`user_id`,`movie_id`),
+  FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 );
 
 -- === 
