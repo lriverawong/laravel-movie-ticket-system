@@ -14,7 +14,8 @@ CREATE TABLE `migrations` (
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone_num` varchar(255) NOT NULL,
@@ -53,7 +54,8 @@ CREATE TABLE `movies` (
   `rating` int(11) NOT NULL,
   `plot_synopsis` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `directors` (
@@ -207,4 +209,80 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2018_02_24_225510_create_reservations_table', 1),
 (17, '2018_02_24_230741_create_reviews_table', 1);
 
-INSERT INTO `users` VALUES
+-- Users
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`, `remember_token`, `created_at`, `updated_at`) VALUES 
+('1', 'John', 'Smith', 'johnsmith@gmail.com', '12345678', '5555555555', '1234567890123456', '0421', '43', '644', 'Johnson St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S1', NULL, '2018-03-03 05:23:18', '2018-03-03 17:41:50'),
+('2', 'Jack', 'Jones', 'jackjonesh@gmail.com', '12345678', '5555551234', '9999999999999999', '0522', '', '633', 'Princess St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S2', NULL, '2018-03-04 05:23:18', '2018-03-04 17:41:50');
+
+-- Production Companies
+INSERT INTO `production_companies` (`id`, `name`) VALUES ('1', 'MGM');
+
+-- Movies
+INSERT INTO `movies` (`id`, `title`, `running_time`, `rating`, `plot_synopsis`, `created_at`, `updated_at`) VALUES
+(1, 'Mission Impossible', '120', '10', 'Tom Cruise is on a mission', '2013-03-03 05:23:18', '2018-03-03 17:41:50'),
+(2, 'Mission Impossible 2', '220', '1', 'Tom Cruise is back on a mission', '2015-06-23 06:03:18', '2016-02-03 12:22:50'),
+(3, 'Finding Nemo', '100', '9', 'A dad fish looses his son and must find him', '2008-03-23 21:02:02', '2018-01-01 02:03:02');
+
+-- Directors
+INSERT INTO `directors` (`id`, `first_name`, `last_name`) VALUES 
+('6', 'Jason', 'Bourne'),
+('7', 'John', 'Wick');
+
+-- Directors-Movies
+INSERT INTO `directors_movies` (`director_id`, `movie_id`) VALUES 
+('6', '3'),
+('7', '1');
+
+-- Movies-Production-Companies
+INSERT INTO `movies_production_companies` (`movie_id`, `production_company_id`) VALUES
+('3', '1'),
+('1', '1');
+
+-- Actors
+INSERT INTO `actors` (`id`, `first_name`, `last_name`) VALUES
+('3', 'Dory', 'Fish'),
+('6', 'Stacy', 'Jones');
+
+-- Actors-Movies
+INSERT INTO `actors_movies` (`actor_id`, `movie_id`) VALUES 
+('3', '1'),
+('3', '3'),
+('6', '2'),
+('6', '1');
+
+-- Suppliers
+INSERT INTO `suppliers` (`id`, `name`, `phone_num`, `contact_first_name`, `contact_last_name`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) VALUES 
+('20', 'Some Supplier', '1234567788', 'Mike', 'Will Make Money', '', '55', 'Some Street', 'Some City Name', 'Quebec', 'Canada', 'H8G1J0'), 
+('60', 'BestSupplier', '7894561122', 'Micheal', 'Li', '89', '88', 'JayZ Drive', 'Ottawa', 'Ontario', 'Canada', 'K9F1H6');
+
+-- Theatre Complexes
+INSERT INTO `theatre_complexes` (`id`, `name`, `phone_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) VALUES 
+(1, 'KelownaScreens', '222222222', '123', 'main street', 'Kelowna', 'BC', 'Canada', 'V1B4Z1'),
+(2, 'KingstonScreens', '33333333', '543', 'cherry street', 'Kingston', 'ON', 'Canada', 'K4X8H2'),
+(3, 'VancouverScreens', '44444444', '723', 'bloop street', 'Vancouver', 'BC', 'Canada', 'M2R7Z9'),
+(4, 'TorontoScreens', '55555555', '742', 'bleep street', 'Toronto', 'ON', 'Canada', 'M9K8J4');
+
+-- Theatres
+INSERT INTO `theatres` (`id`, `max_num_seats`, `screen_size`, `theatre_complex_id`) VALUES 
+('55', '200', '20', '1'),
+('90', '150', '15', '2');
+
+-- Run Dates
+INSERT INTO `run_dates` (`movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES 
+('3', '2', '2018-03-16', '2018-03-22'),
+('2', '4', '2018-03-01', '2018-03-03');
+
+-- Show Times
+INSERT INTO `show_times` (`id`, `movie_id`, `theatre_id`, `theatre_complex_id`, `showing_start_time`, `num_seats_avail`) VALUES
+('20', '2', '90', '2', '2018-03-01 19:30:00', '10'),
+('23', '3', '55', '1', '2018-03-16 07:30:00', '50');
+
+-- Reservations
+INSERT INTO `reservations` (`id`, `user_id`, `showing_id`, `number_of_tickets`) VALUES 
+('30', '1', '23', '3'),
+('99', '1', '20', '6');
+
+-- Reviews
+INSERT INTO `reviews` (`user_id`, `movie_id`, `review`, `created_at`, `updated_at`) VALUES
+('1', '3', 'sad movie...', '2018-03-17 00:00:00', '2018-03-18 00:00:00'),
+('1', '1', 'bang bang bang pow', '2018-03-02 00:00:00', '2018-03-02 00:00:00');
