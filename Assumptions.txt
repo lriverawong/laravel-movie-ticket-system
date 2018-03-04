@@ -1,0 +1,9 @@
+List of Assumptions for the final CISC332 Project
+Team 118 - Quentin Petraroia, Luis Rivera-Wong, Braedan Robinson
+
+1. There will be ONE address per user/theatre complex/supplier 
+
+2. There will be ONE phone number per user/theatre complex/supplier
+
+3. Only a registered user can leave a movie review 
+
