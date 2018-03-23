@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class TheatreComplex extends Model
 {
     protected $table = 'theatre_complexes';
-
     /**
      * Model relationships
      */

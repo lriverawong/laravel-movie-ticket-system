@@ -23,6 +23,7 @@ class CreateTheatreComplexesTable extends Migration
             $table->string('province');
             $table->string('country');
             $table->string('postal_code');
+            // $table->integer('num_theatres');
             // $table->timestamps();
         });
     }
