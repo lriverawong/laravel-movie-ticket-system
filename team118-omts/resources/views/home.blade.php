@@ -16,6 +16,10 @@
 
                     You are logged in!
                 </div>
+
+                <div>
+                    HOME.BLADE.PHP
+                </div>
             </div>
         </div>
     </div>

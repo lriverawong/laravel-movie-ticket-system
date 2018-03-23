@@ -76,7 +76,9 @@
                     @endauth
                 </div>
             @endif
-
+            <div>
+                WELCOME.BLADE.PHP
+            </div>
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
