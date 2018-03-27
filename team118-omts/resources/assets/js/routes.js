@@ -24,8 +24,30 @@ export default new VueRouter({
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: Vue.component('Home', require( './pages/Home.vue' ))
+            name: 'layout',
+            component: Vue.component( 'Layout', require( './pages/Layout.vue' ) ),
+            children: [
+                {
+                    path: 'home',
+                    name: 'home',
+                    component: Vue.component( 'Home', require( './pages/Home.vue' ) )
+                },
+                {
+                    path: 'complexes',
+                    name: 'complexes',
+                    component: Vue.component( 'Complexes', require( './pages/Complexes.vue' ) ),
+                },
+                {
+                    path: 'complexes/new',
+                    name: 'newcomplex',
+                    component: Vue.component( 'NewComplex', require( './pages/NewComplex.vue' ) )
+                },
+                {
+                    path: 'complexes/:id',
+                    name: 'complex',
+                    component: Vue.component( 'Complex', require( './pages/Complex.vue' ) )
+                }
+            ]
         }
     ]
 });
