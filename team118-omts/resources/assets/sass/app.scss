@@ -1,14 +1,29 @@
+@charset "UTF-8";
 
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
-// Variables
-@import "variables";
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+// .navbar-laravel {
+//   background-color: #fff;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// }
+
+/* ==========================================================================
+  	Builds our style structure
+   		https://sass-guidelin.es/#the-7-1-pattern
+   ========================================================================== */
+/**
+ * Table of Contents:
+ *
+ *  1. Abstracts
+ *  2. Components
+ *  3. Layouts
+ */
+
+/**
+ * Chapter 1: Abstracts
+ */
+@import 'abstracts/variables';

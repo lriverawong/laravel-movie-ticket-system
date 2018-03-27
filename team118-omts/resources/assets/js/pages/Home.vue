@@ -1,4 +1,5 @@
 <style>
+    @import '~@/abstracts/_variables.scss';
 </style>
 
 <template>
@@ -39,6 +40,19 @@
             complexes(){
                 return this.$store.getters.getComplexes;
             },
+            /*
+            Gets the authenticated user.
+            */
+            user(){
+                return this.$store.getters.getUser;
+            },
+
+            /*
+            Gets the user's load status.
+            */
+            userLoadStatus(){
+                return this.$store.getters.getUserLoadStatus();
+            }
         }
     }
 </script>

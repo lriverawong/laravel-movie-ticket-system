@@ -1,5 +1,5 @@
 <style lang="scss">
-
+  @import '~@/abstracts/_variables.scss';
   nav.top-navigation{
     background-color: $white;
     height: 50px;
@@ -112,7 +112,38 @@
 </template>
 
 <script>
+  import { EventBus } from '../../event-bus.js';
 
   export default {
+    /*
+      Defines the computed properties on the component.
+    */
+    computed: {
+      /*
+        Retrieves the User Load Status from Vuex
+      */
+      userLoadStatus(){
+        return this.$store.getters.getUserLoadStatus();
+      },
+
+      /*
+        Retrieves the User from Vuex
+      */
+      user(){
+        return this.$store.getters.getUser;
+      }
+    },
+
+    methods: {
+      login(){
+        EventBus.$emit('prompt-login');
+      },
+
+      logout(){
+        this.$store.dispatch('logoutUser');
+
+        window.location = '/logout';
+      }
+    }
   }
 </script>
