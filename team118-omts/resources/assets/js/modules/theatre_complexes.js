@@ -34,7 +34,7 @@ export const theatre_complexes = {
         /*
         Loads the complexes from the API
         */
-        load_theatre_complexes( { commit } ) {
+        loadComplexes( { commit } ) {
             commit( 'setComplexesLoadStatus', 1 );
 
             TheatreComplexAPI.getComplexes()
@@ -47,7 +47,7 @@ export const theatre_complexes = {
                 commit( 'setComplexesLoadStatus', 3 );
                 });
         },
-        load_theatre_complex( { commit } ) {
+        loadComplex( { commit } ) {
             commit( 'setComplexLoadStatus', 1 );
             CafeAPI.getCafe( data.id )
                 .then( function( response ){

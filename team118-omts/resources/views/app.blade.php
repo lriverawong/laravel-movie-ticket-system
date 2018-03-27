@@ -20,8 +20,10 @@
 
         <div id="app">
             <router-view></router-view>
+            <hr>
             <div>
                 APP.BLADE.PHP
+                <p>After the router-view</p>
             </div>
         </div>
 

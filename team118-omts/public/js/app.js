@@ -50327,10 +50327,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         console.log('Home mounted.');
+    },
+    created: function created() {
+        console.log('Home created.');
+        this.$store.dispatch('loadComplexes');
+    },
+
+    /*
+    Defines the computed properties on the component.
+    */
+    computed: {
+        /*
+        Gets the complexes load status
+        */
+        complexesLoadStatus: function complexesLoadStatus() {
+            return this.$store.getters.getComplexesLoadStatus;
+        },
+
+
+        /*
+        Gets the complexes
+        */
+        complexes: function complexes() {
+            return this.$store.getters.getComplexes;
+        }
     }
 });
 
@@ -50342,7 +50372,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Inside Home.vue\n")])
+  return _c("div", { attrs: { id: "home" } }, [
+    _c("p", [_vm._v("Inside Home.vue")]),
+    _vm._v(" "),
+    _c(
+      "span",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.complexesLoadStatus == 1,
+            expression: "complexesLoadStatus == 1"
+          }
+        ]
+      },
+      [_vm._v("Loading")]
+    ),
+    _vm._v(" "),
+    _c(
+      "span",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.complexesLoadStatus == 2,
+            expression: "complexesLoadStatus == 2"
+          }
+        ]
+      },
+      [_vm._v("Cafes loaded successfully!")]
+    ),
+    _vm._v(" "),
+    _c(
+      "span",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.complexesLoadStatus == 3,
+            expression: "complexesLoadStatus == 3"
+          }
+        ]
+      },
+      [_vm._v("Cafes loaded unsuccessfully!")]
+    ),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.complexes, function(complex) {
+        return _c("li", [_vm._v(_vm._s(complex.name))])
+      })
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52572,7 +52656,7 @@ var theatre_complexes = {
         /*
         Loads the complexes from the API
         */
-        load_theatre_complexes: function load_theatre_complexes(_ref) {
+        loadComplexes: function loadComplexes(_ref) {
             var commit = _ref.commit;
 
             commit('setComplexesLoadStatus', 1);
@@ -52585,7 +52669,7 @@ var theatre_complexes = {
                 commit('setComplexesLoadStatus', 3);
             });
         },
-        load_theatre_complex: function load_theatre_complex(_ref2) {
+        loadComplex: function loadComplex(_ref2) {
             var commit = _ref2.commit;
 
             commit('setComplexLoadStatus', 1);
