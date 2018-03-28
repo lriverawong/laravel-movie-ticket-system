@@ -12,9 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
 });
 
 Auth::routes();
 
+# for rendering the base dashboard after login
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/showtimes', function() {
+    return view('showtimes');
+});
