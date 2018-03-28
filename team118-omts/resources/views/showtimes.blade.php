@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div id="showtimes">
-        <h1>SHOWTIMES.BLADE.PHP</h1>
+        <showtimes></showtimes>
     </div>
 </div>
 @endsection
