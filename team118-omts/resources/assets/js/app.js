@@ -16,7 +16,29 @@ window.Vue = require('vue');
  */
 
 Vue.component('showtimes', require('./components/Showtimes.vue'));
+Vue.component('register', require('./components/Register.vue'));
 
 const app = new Vue({
     el: '#showtimes'
+});
+
+const app2 = new Vue({
+    el: '#register',
+    data: {
+        name: '',
+        lName: '',
+        email: '',
+        password: '',
+        passwordConfirm: '',
+        phoneNumber: '',
+        aptNumber: '',
+        streetNumber: '',
+        streetName: '',
+        city: '',
+        country: '',
+        postalCode: '',
+    },
+    methods: {
+
+    }
 });
