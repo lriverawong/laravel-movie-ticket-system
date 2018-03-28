@@ -23,3 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/showtimes', function() {
     return view('showtimes');
 });
+
+Route::get('/chat', function() {
+    return view('chat');
+});

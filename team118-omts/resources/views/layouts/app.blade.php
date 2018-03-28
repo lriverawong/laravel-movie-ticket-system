@@ -28,6 +28,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a class="nav-link" href="/showtimes">Showtimes</a></li>
+                        <li><a class="nav-link" href="/chat">Chat</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

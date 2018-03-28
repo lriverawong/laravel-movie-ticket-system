@@ -16,7 +16,33 @@ window.Vue = require('vue');
  */
 
 Vue.component('showtimes', require('./components/Showtimes.vue'));
+Vue.component('chat-message', require('./components/ChatMessage.vue'));
+Vue.component('chat-log', require('./components/ChatLog.vue'));
+Vue.component('chat-composer', require('./components/ChatComposer.vue'));
 
 const app = new Vue({
     el: '#showtimes'
+});
+
+const chat_app = new Vue({
+    el: '#chat_room',
+    data: {
+        messages: [
+            {
+                message: 'Hey!',
+                user: "John Doe"
+            },
+            {
+                message: 'Hello!',
+                user: "Jane Doe"
+            }
+        ]
+    },
+    methods: {
+        addMessage(message) {
+            // Add to existing messages
+            this.messages.push(message);
+            // Persist to the database etc
+        }
+    }
 });
