@@ -27,3 +27,6 @@ Route::get('/showtimes', function() {
 Route::get('/chat', function() {
     return view('chat');
 });
+
+Route::get('theatre_complexes/create', 'TheatreComplexController@create');
+Route::post('theatre_complexes', 'TheatreComplexController@store');
