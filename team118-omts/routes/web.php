@@ -39,3 +39,6 @@ Route::post('directors', 'DirectorController@store');
 
 Route::get('suppliers/create', 'SupplierController@create');
 Route::post('suppliers', 'SupplierController@store');
+
+Route::get('movies/create', 'MovieController@create');
+Route::post('movies', 'MovieController@store');

@@ -322,3 +322,21 @@ const supplier_form_app = new Vue({
         }
     }
 });
+
+
+const movie_form_app = new Vue({
+    el: '#movie-form',
+    data: {
+        form: new Form({
+            title: '',
+            running_time: 0,
+            rating: 0,
+            plot_synopsis: '',
+        })
+    },
+    methods: {
+        onSubmit() {
+            this.form.post('/movies')
+        }
+    }
+});

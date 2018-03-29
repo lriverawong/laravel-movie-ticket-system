@@ -14610,14 +14610,21 @@ var theatre_app = new Vue({
     }
 });
 
-<<<<<<< HEAD
 var director_app = new Vue({
     el: '#director-form',
     data: {
         form: new Form({
             first_name: '',
             last_name: ''
-=======
+        })
+    },
+    methods: {
+        onSubmit: function onSubmit() {
+            this.form.post('/directors');
+        }
+    }
+});
+
 var supplier_form_app = new Vue({
     el: '#supplier-form',
     data: {
@@ -14633,16 +14640,28 @@ var supplier_form_app = new Vue({
             province: '',
             country: '',
             postal_code: ''
->>>>>>> 4cef62bc715a2f44c3af7cabcba5f5a03b0bb0ae
         })
     },
     methods: {
         onSubmit: function onSubmit() {
-<<<<<<< HEAD
-            this.form.post('/directors');
-=======
             this.form.post('/suppliers');
->>>>>>> 4cef62bc715a2f44c3af7cabcba5f5a03b0bb0ae
+        }
+    }
+});
+
+var movie_form_app = new Vue({
+    el: '#movie-form',
+    data: {
+        form: new Form({
+            title: '',
+            running_time: 0,
+            rating: 0,
+            plot_synopsis: ''
+        })
+    },
+    methods: {
+        onSubmit: function onSubmit() {
+            this.form.post('/movies');
         }
     }
 });
