@@ -42,7 +42,7 @@ class SupplierController extends Controller
         Supplier::forceCreate([
             'name' => request('name'),
             'phone_num' => request('phone_num'),
-            'contact_first_name' => request('contact_last_name'),
+            'contact_first_name' => request('contact_first_name'),
             'contact_last_name' => request('contact_last_name'),
             'apt_num' => request('apt_num'),
             'street_num' => request('street_num'),
