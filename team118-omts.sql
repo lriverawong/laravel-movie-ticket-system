@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Mar 04, 2018 at 09:51 PM
--- Server version: 8.0.3-rc-log
+-- Generation Time: Mar 29, 2018 at 02:42 AM
+-- Server version: 5.7.21
 -- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -34,14 +34,6 @@ CREATE TABLE `actors` (
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `actors`
---
-
-INSERT INTO `actors` (`id`, `first_name`, `last_name`) VALUES
-(3, 'Dory', 'Fish'),
-(6, 'Stacy', 'Jones');
-
 -- --------------------------------------------------------
 
 --
@@ -52,16 +44,6 @@ CREATE TABLE `actors_movies` (
   `actor_id` int(10) UNSIGNED NOT NULL,
   `movie_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `actors_movies`
---
-
-INSERT INTO `actors_movies` (`actor_id`, `movie_id`) VALUES
-(3, 1),
-(6, 1),
-(6, 2),
-(3, 3);
 
 -- --------------------------------------------------------
 
@@ -75,14 +57,6 @@ CREATE TABLE `directors` (
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `directors`
---
-
-INSERT INTO `directors` (`id`, `first_name`, `last_name`) VALUES
-(6, 'Jason', 'Bourne'),
-(7, 'John', 'Wick');
-
 -- --------------------------------------------------------
 
 --
@@ -93,14 +67,6 @@ CREATE TABLE `directors_movies` (
   `director_id` int(10) UNSIGNED NOT NULL,
   `movie_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `directors_movies`
---
-
-INSERT INTO `directors_movies` (`director_id`, `movie_id`) VALUES
-(7, 1),
-(6, 3);
 
 -- --------------------------------------------------------
 
@@ -153,15 +119,6 @@ CREATE TABLE `movies` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `movies`
---
-
-INSERT INTO `movies` (`id`, `title`, `running_time`, `rating`, `plot_synopsis`, `created_at`, `updated_at`) VALUES
-(1, 'Mission Impossible', 120, 10, 'Tom Cruise is on a mission', '2013-03-03 05:23:18', '2018-03-03 17:41:50'),
-(2, 'Mission Impossible 2', 220, 1, 'Tom Cruise is back on a mission', '2015-06-23 06:03:18', '2016-02-03 12:22:50'),
-(3, 'Finding Nemo', 100, 9, 'A dad fish looses his son and must find him', '2008-03-23 21:02:02', '2018-01-01 02:03:02');
-
 -- --------------------------------------------------------
 
 --
@@ -172,14 +129,6 @@ CREATE TABLE `movies_production_companies` (
   `movie_id` int(10) UNSIGNED NOT NULL,
   `production_company_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `movies_production_companies`
---
-
-INSERT INTO `movies_production_companies` (`movie_id`, `production_company_id`) VALUES
-(1, 1),
-(3, 1);
 
 -- --------------------------------------------------------
 
@@ -215,13 +164,6 @@ CREATE TABLE `production_companies` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `production_companies`
---
-
-INSERT INTO `production_companies` (`id`, `name`) VALUES
-(1, 'MGM');
-
 -- --------------------------------------------------------
 
 --
@@ -234,14 +176,6 @@ CREATE TABLE `reservations` (
   `showing_id` int(10) UNSIGNED NOT NULL,
   `number_of_tickets` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `reservations`
---
-
-INSERT INTO `reservations` (`id`, `user_id`, `showing_id`, `number_of_tickets`) VALUES
-(30, 1, 23, 3),
-(99, 1, 20, 6);
 
 -- --------------------------------------------------------
 
@@ -257,14 +191,6 @@ CREATE TABLE `reviews` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `reviews`
---
-
-INSERT INTO `reviews` (`user_id`, `movie_id`, `review`, `created_at`, `updated_at`) VALUES
-(1, 1, 'bang bang bang pow', '2018-03-02 00:00:00', '2018-03-02 00:00:00'),
-(1, 3, 'sad movie...', '2018-03-17 00:00:00', '2018-03-18 00:00:00');
-
 -- --------------------------------------------------------
 
 --
@@ -277,14 +203,6 @@ CREATE TABLE `run_dates` (
   `run_start_date` date NOT NULL,
   `run_end_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `run_dates`
---
-
-INSERT INTO `run_dates` (`movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES
-(2, 4, '2018-03-01', '2018-03-03'),
-(3, 2, '2018-03-16', '2018-03-22');
 
 -- --------------------------------------------------------
 
@@ -300,14 +218,6 @@ CREATE TABLE `show_times` (
   `showing_start_time` datetime NOT NULL,
   `num_seats_avail` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `show_times`
---
-
-INSERT INTO `show_times` (`id`, `movie_id`, `theatre_id`, `theatre_complex_id`, `showing_start_time`, `num_seats_avail`) VALUES
-(20, 2, 90, 2, '2018-03-01 19:30:00', 10),
-(23, 3, 55, 1, '2018-03-16 07:30:00', 50);
 
 -- --------------------------------------------------------
 
@@ -330,14 +240,6 @@ CREATE TABLE `suppliers` (
   `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `suppliers`
---
-
-INSERT INTO `suppliers` (`id`, `name`, `phone_num`, `contact_first_name`, `contact_last_name`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) VALUES
-(20, 'Some Supplier', '1234567788', 'Mike', 'Will Make Money', '', '55', 'Some Street', 'Some City Name', 'Quebec', 'Canada', 'H8G1J0'),
-(60, 'BestSupplier', '7894561122', 'Micheal', 'Li', '89', '88', 'JayZ Drive', 'Ottawa', 'Ontario', 'Canada', 'K9F1H6');
-
 -- --------------------------------------------------------
 
 --
@@ -346,18 +248,11 @@ INSERT INTO `suppliers` (`id`, `name`, `phone_num`, `contact_first_name`, `conta
 
 CREATE TABLE `theatres` (
   `id` int(10) UNSIGNED NOT NULL,
+  `theatre_num` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `max_num_seats` int(11) NOT NULL,
   `screen_size` int(11) NOT NULL,
   `theatre_complex_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `theatres`
---
-
-INSERT INTO `theatres` (`id`, `max_num_seats`, `screen_size`, `theatre_complex_id`) VALUES
-(55, 200, 20, 1),
-(90, 150, 15, 2);
 
 -- --------------------------------------------------------
 
@@ -376,16 +271,6 @@ CREATE TABLE `theatre_complexes` (
   `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `theatre_complexes`
---
-
-INSERT INTO `theatre_complexes` (`id`, `name`, `phone_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) VALUES
-(1, 'KelownaScreens', '222222222', '123', 'main street', 'Kelowna', 'BC', 'Canada', 'V1B4Z1'),
-(2, 'KingstonScreens', '33333333', '543', 'cherry street', 'Kingston', 'ON', 'Canada', 'K4X8H2'),
-(3, 'VancouverScreens', '44444444', '723', 'bloop street', 'Vancouver', 'BC', 'Canada', 'M2R7Z9'),
-(4, 'TorontoScreens', '55555555', '742', 'bleep street', 'Toronto', 'ON', 'Canada', 'M9K8J4');
 
 -- --------------------------------------------------------
 
@@ -413,13 +298,6 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'John', 'Smith', 'johnsmith@gmail.com', '12345678', '5555555555', '1234567890123456', '0421', '43', '644', 'Johnson St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S1', NULL, '2018-03-03 05:23:18', '2018-03-03 17:41:50');
 
 --
 -- Indexes for dumped tables
@@ -554,13 +432,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `actors`
 --
 ALTER TABLE `actors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `directors`
 --
 ALTER TABLE `directors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -572,49 +450,49 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `production_companies`
 --
 ALTER TABLE `production_companies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `show_times`
 --
 ALTER TABLE `show_times`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `theatres`
 --
 ALTER TABLE `theatres`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `theatre_complexes`
 --
 ALTER TABLE `theatre_complexes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

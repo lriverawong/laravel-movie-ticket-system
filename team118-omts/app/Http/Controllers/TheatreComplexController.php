@@ -13,7 +13,7 @@ class TheatreComplexController extends Controller
     {   
         // if we have any projects we render them
         return view('theatre_complex.create', [
-            'theatre_complexes' => TheatreComplex::all() 
+            'theatre_complexes' => TheatreComplex::all()
         ]);
     }
 

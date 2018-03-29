@@ -16,7 +16,8 @@ class TheatreController extends Controller
         // if we have any projects we render them
         return view('theatre.create', [
             'theatre' => Theatre::all(),
-            'theatre_complexes' => TheatreComplex::pluck('name', 'id')
+            // 'theatre_complexes' => TheatreComplex::all()->pluck('name', 'id')
+            'theatre_complexes' => TheatreComplex::all()
         ]);
     }
 
@@ -35,10 +36,10 @@ class TheatreController extends Controller
         
         // otherwise we will create the object and save it to the database
         Theatre::forceCreate([
-            "theatre_num" => 'required', 
-            "max_num_seats" => 'required',
-            "screen_size" => 'required',
-            "theatre_complex_id" => 'required',
+            'theatre_num' => request('theatre_num'),
+            'max_num_seats' => request('max_num_seats'),
+            'screen_size' => request('screen_size'),
+            'theatre_complex_id' => request('theatre_complex_id'),
         ]); 
 
         return ['message' => 'Theatre Created!'];

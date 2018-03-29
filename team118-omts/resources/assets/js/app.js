@@ -139,7 +139,10 @@ class Form {
         for (let property in this.originalData) {
             data[property] = this[property];
         }
-
+        console.log(data);
+        for(i in data) {
+            console.log(typeof(data[i]))
+        }
         return data;
     }
 
@@ -268,8 +271,8 @@ const theatre_app = new Vue({
     data: {
         form: new Form({
             theatre_num: '',
-            max_num_seats: '',
-            screen_size: '',
+            max_num_seats: 0,
+            screen_size: 0,
             theatre_complex_id: ''
         })
     },

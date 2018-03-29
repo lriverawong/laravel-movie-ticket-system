@@ -135,6 +135,7 @@ CREATE TABLE `theatre_complexes` (
 
 CREATE TABLE `theatres` (
   `id` int(10) UNSIGNED NOT NULL,
+  `theatre_num` varchar(255) NOT NULL,
   `max_num_seats` int(11) NOT NULL,
   `screen_size` int(11) NOT NULL,
   `theatre_complex_id` int(10) UNSIGNED NOT NULL,
@@ -263,9 +264,9 @@ INSERT INTO `theatre_complexes` (`id`, `name`, `phone_num`, `street_num`, `stree
 (4, 'TorontoScreens', '55555555', '742', 'bleep street', 'Toronto', 'ON', 'Canada', 'M9K8J4');
 
 -- Theatres
-INSERT INTO `theatres` (`id`, `max_num_seats`, `screen_size`, `theatre_complex_id`) VALUES 
-('55', '200', '20', '1'),
-('90', '150', '15', '2');
+INSERT INTO `theatres` (`id`, `theatre_num`, `max_num_seats`, `screen_size`, `theatre_complex_id`) VALUES 
+('55', '1', '200', '20', '1'),
+('90', '2','150', '15', '2');
 
 -- Run Dates
 INSERT INTO `run_dates` (`movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES 
