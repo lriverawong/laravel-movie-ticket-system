@@ -323,24 +323,6 @@ const supplier_form_app = new Vue({
     }
 });
 
-
-const movie_form_app = new Vue({
-    el: '#movie-form',
-    data: {
-        form: new Form({
-            title: '',
-            running_time: 0,
-            rating: 0,
-            plot_synopsis: '',
-        })
-    },
-    methods: {
-        onSubmit() {
-            this.form.post('/movies')
-        }
-    }
-});
-
 const production_company_app = new Vue({
     el: '#production-company-form',
     data: {
@@ -355,3 +337,22 @@ const production_company_app = new Vue({
     }
 });
 
+const movie_form_app = new Vue({
+    el: '#movie-form',
+    data: {
+        form: new Form({
+            title: '',
+            running_time: 0,
+            rating: 0,
+            plot_synopsis: '',
+            director_id: 0,
+            prod_comp_id: 0,
+            supplier_id: 0,
+        })
+    },
+    methods: {
+        onSubmit() {
+            this.form.post('/movies')
+        }
+    }
+});

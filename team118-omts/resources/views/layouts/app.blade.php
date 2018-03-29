@@ -34,7 +34,8 @@
                         <li><a class="nav-link" href="/theatres/create">Theatre-Create</a></li>
                         <li><a class="nav-link" href="/suppliers/create">Supplier-Create</a></li>
                         <li><a class="nav-link" href="/directors/create">Director-Create</a></li>
-                        <li><a class="nav-link" href="/movies/create">Director-Create</a></li>
+                        <li><a class="nav-link" href="/production_companies/create">ProdComp-Create</a></li>
+                        <li><a class="nav-link" href="/movies/create">Movie-Create</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

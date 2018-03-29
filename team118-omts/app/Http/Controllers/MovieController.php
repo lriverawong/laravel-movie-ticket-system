@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Models\Director;
+use App\Models\ProductionCompany;
+use App\Models\Supplier;
 
 
 class MovieController extends Controller
@@ -15,6 +18,9 @@ class MovieController extends Controller
         // if we have any projects we render them
         return view('movie.create', [
             'movies' => Movie::all(),
+            'directors' => Director::all(),
+            'production_companies' => ProductionCompany::all(),
+            'suppliers' => Supplier::all(),
         ]);
     }
 
@@ -29,6 +35,9 @@ class MovieController extends Controller
             "running_time" => 'required',
             "rating" => 'required',
             "plot_synopsis" => 'required',
+            "director_id" => 'required',
+            "prod_comp_id" => 'required',
+            "supplier_id" => 'required',
         ]); 
         
         // otherwise we will create the object and save it to the database
@@ -37,6 +46,9 @@ class MovieController extends Controller
             'running_time' => request('running_time'),
             'rating' => request('rating'),
             'plot_synopsis' => request('plot_synopsis'),
+            'director_id' => request('plot_synopsis'),
+            'prod_comp_id' => request('plot_synopsis'),
+            'supplier_id' => request('plot_synopsis'),
         ]); 
 
         return ['message' => 'Movie Created!'];

@@ -36,11 +36,11 @@
                     </div>
 
                 <div class="form-group">
-                        <select v-model="form.theatre_complex_id">
-                            @foreach ($theatre_complexes as $theatre_complex)
-                                <option value="{{ $theatre_complex->id }}">{{ $theatre_complex->name }}</option>
-                            @endforeach
-                        </select>
+                    <select v-model="form.theatre_complex_id">
+                        @foreach ($theatre_complexes as $theatre_complex)
+                            <option value="{{ $theatre_complex->id }}">{{ $theatre_complex->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             
                 <div class="form-group">

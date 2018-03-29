@@ -1,10 +1,10 @@
-@if (count($suppliers))
-	<h1 class="">Suppliers</h1>
+@if (count($movies))
+	<h1 class="">Movies</h1>
 
 	<ul>
-		@foreach ($suppliers as $supplier)
+		@foreach ($movies as $movie)
 			<li>
-				<a href="#">{{ $supplier->name }}</a>
+				<a href="#">{{ $movie->title }}</a>
 			</li>
 		@endforeach
 	</ul>
