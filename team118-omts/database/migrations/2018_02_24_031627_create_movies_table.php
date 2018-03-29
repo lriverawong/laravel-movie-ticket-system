@@ -24,7 +24,7 @@ class CreateMoviesTable extends Migration
             // $table->string('production_company');
             //$table->string('name_of_supplier');
 
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

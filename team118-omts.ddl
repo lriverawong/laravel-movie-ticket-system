@@ -219,10 +219,10 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `phon
 INSERT INTO `production_companies` (`id`, `name`) VALUES ('1', 'MGM');
 
 -- Movies
-INSERT INTO `movies` (`id`, `title`, `running_time`, `rating`, `plot_synopsis`, `created_at`, `updated_at`) VALUES
-(1, 'Mission Impossible', '120', '10', 'Tom Cruise is on a mission', '2013-03-03 05:23:18', '2018-03-03 17:41:50'),
-(2, 'Mission Impossible 2', '220', '1', 'Tom Cruise is back on a mission', '2015-06-23 06:03:18', '2016-02-03 12:22:50'),
-(3, 'Finding Nemo', '100', '9', 'A dad fish looses his son and must find him', '2008-03-23 21:02:02', '2018-01-01 02:03:02');
+INSERT INTO `movies` (`id`, `title`, `running_time`, `rating`, `plot_synopsis`) VALUES
+(1, 'Mission Impossible', '120', '10', 'Tom Cruise is on a mission'),
+(2, 'Mission Impossible 2', '220', '1', 'Tom Cruise is back on a mission'),
+(3, 'Finding Nemo', '100', '9', 'A dad fish looses his son and must find him');
 
 -- Directors
 INSERT INTO `directors` (`id`, `first_name`, `last_name`) VALUES 
