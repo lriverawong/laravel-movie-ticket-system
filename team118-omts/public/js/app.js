@@ -14610,6 +14610,30 @@ var theatre_app = new Vue({
     }
 });
 
+var supplier_form_app = new Vue({
+    el: '#supplier-form',
+    data: {
+        form: new Form({
+            name: '',
+            phone_num: '',
+            contact_first_name: '',
+            contact_last_name: '',
+            apt_num: '',
+            street_num: '',
+            street_name: '',
+            city: '',
+            province: '',
+            country: '',
+            postal_code: ''
+        })
+    },
+    methods: {
+        onSubmit: function onSubmit() {
+            this.form.post('/suppliers');
+        }
+    }
+});
+
 /***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
