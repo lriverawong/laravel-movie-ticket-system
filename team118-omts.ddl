@@ -53,8 +53,9 @@ CREATE TABLE `movies` (
   `running_time` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
   `plot_synopsis` text NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `director_id` int(10) UNSIGNED NOT NULL,
+  `prod_comp_id` int(10) UNSIGNED NOT NULL,
+  `supplier_id` int(10) UNSIGNED NOT NULL
   PRIMARY KEY (`id`)
 );
 
@@ -63,22 +64,6 @@ CREATE TABLE `directors` (
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `directors_movies` (
-  `director_id` int(10) UNSIGNED NOT NULL,
-  `movie_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`director_id`,`movie_id`),
-  FOREIGN KEY (`director_id`) REFERENCES `directors` (`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE
-);
-
-CREATE TABLE `movies_production_companies` (
-  `movie_id` int(10) UNSIGNED NOT NULL,
-  `production_company_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`movie_id`,`production_company_id`),
-  FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`production_company_id`) REFERENCES `production_companies` (`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE `actors` (
@@ -110,14 +95,6 @@ CREATE TABLE `suppliers` (
   `country` varchar(255) NOT NULL,
   `postal_code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `movies_suppliers` (
-  `movie_id` int(10) UNSIGNED NOT NULL,
-  `supplier_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`movie_id`,`supplier_id`),
-  FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE `theatre_complexes` (
@@ -218,26 +195,21 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `phon
 -- Production Companies
 INSERT INTO `production_companies` (`id`, `name`) VALUES ('1', 'MGM');
 
--- Movies
-INSERT INTO `movies` (`id`, `title`, `running_time`, `rating`, `plot_synopsis`) VALUES
-(1, 'Mission Impossible', '120', '10', 'Tom Cruise is on a mission'),
-(2, 'Mission Impossible 2', '220', '1', 'Tom Cruise is back on a mission'),
-(3, 'Finding Nemo', '100', '9', 'A dad fish looses his son and must find him');
+-- Suppliers
+INSERT INTO `suppliers` (`id`, `name`, `phone_num`, `contact_first_name`, `contact_last_name`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) VALUES 
+('20', 'Some Supplier', '1234567788', 'Mike', 'Will Make Money', '', '55', 'Some Street', 'Some City Name', 'Quebec', 'Canada', 'H8G1J0'), 
+('60', 'BestSupplier', '7894561122', 'Micheal', 'Li', '89', '88', 'JayZ Drive', 'Ottawa', 'Ontario', 'Canada', 'K9F1H6');
 
 -- Directors
 INSERT INTO `directors` (`id`, `first_name`, `last_name`) VALUES 
 ('6', 'Jason', 'Bourne'),
 ('7', 'John', 'Wick');
 
--- Directors-Movies
-INSERT INTO `directors_movies` (`director_id`, `movie_id`) VALUES 
-('6', '3'),
-('7', '1');
-
--- Movies-Production-Companies
-INSERT INTO `movies_production_companies` (`movie_id`, `production_company_id`) VALUES
-('3', '1'),
-('1', '1');
+-- Movies
+INSERT INTO `movies` (`id`, `title`, `running_time`, `rating`, `plot_synopsis`, `director_id`, `prod_comp_id`, `supplier_id`) VALUES
+(1, 'Mission Impossible', '120', '10', 'Tom Cruise is on a mission', '6', '1', '20'),
+(2, 'Mission Impossible 2', '220', '1', 'Tom Cruise is back on a mission', '7', '1', '60'),
+(3, 'Finding Nemo', '100', '9', 'A dad fish looses his son and must find him', '6', '1', '20');
 
 -- Actors
 INSERT INTO `actors` (`id`, `first_name`, `last_name`) VALUES
@@ -251,10 +223,6 @@ INSERT INTO `actors_movies` (`actor_id`, `movie_id`) VALUES
 ('6', '2'),
 ('6', '1');
 
--- Suppliers
-INSERT INTO `suppliers` (`id`, `name`, `phone_num`, `contact_first_name`, `contact_last_name`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) VALUES 
-('20', 'Some Supplier', '1234567788', 'Mike', 'Will Make Money', '', '55', 'Some Street', 'Some City Name', 'Quebec', 'Canada', 'H8G1J0'), 
-('60', 'BestSupplier', '7894561122', 'Micheal', 'Li', '89', '88', 'JayZ Drive', 'Ottawa', 'Ontario', 'Canada', 'K9F1H6');
 
 -- Theatre Complexes
 INSERT INTO `theatre_complexes` (`id`, `name`, `phone_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) VALUES 
