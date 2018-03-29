@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Model
+class Director extends Model
 {
-    protected $table = 'suppliers';
+    protected $table = 'directors';
 
     public $timestamps = false;
 
-    // relationships
+    //TODO: Relationships
 
 }

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Model
+class ProductionCompany extends Model
 {
-    protected $table = 'suppliers';
+    protected $table = 'production_companies';
 
     public $timestamps = false;
 

@@ -8,6 +8,8 @@ class TheatreComplex extends Model
 {
     protected $table = 'theatre_complexes';
 
+    public $timestamps = false;
+
     /**
      * Model relationships
      */

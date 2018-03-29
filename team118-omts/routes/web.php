@@ -12,9 +12,36 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
 });
 
 Auth::routes();
 
+# for rendering the base dashboard after login
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/showtimes', function() {
+    return view('showtimes');
+});
+
+Route::get('/chat', function() {
+    return view('chat');
+});
+
+Route::get('theatre_complexes/create', 'TheatreComplexController@create');
+Route::post('theatre_complexes', 'TheatreComplexController@store');
+
+Route::get('theatres/create', 'TheatreController@create');
+Route::post('theatres', 'TheatreController@store');
+
+Route::get('directors/create', 'DirectorController@create');
+Route::post('directors', 'DirectorController@store');
+
+Route::get('suppliers/create', 'SupplierController@create');
+Route::post('suppliers', 'SupplierController@store');
+
+Route::get('movies/create', 'MovieController@create');
+Route::post('movies', 'MovieController@store');
+
+Route::get('production_companies/create', 'ProductionCompanyController@create');
+Route::post('production_companies', 'ProductionCompanyController@store');

@@ -8,7 +8,7 @@ class Movie extends Model
 {
     protected $table = 'movies';
     
-    public $timestamps = true;
+    public $timestamps = false;
 
     /**
      * Model Relationships 

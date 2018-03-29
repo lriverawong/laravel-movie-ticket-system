@@ -220,6 +220,8 @@ services:
         context: ./mysql
         args:
           - MYSQL_VERSION=${MYSQL_VERSION}
+      # for linux file permissions
+      user: "${MYSQL_USER_PERM}:${MYSQL_GROUP_PERM}"
       environment:
         - MYSQL_DATABASE=${MYSQL_DATABASE}
         - MYSQL_USER=${MYSQL_USER}
