@@ -53,8 +53,9 @@ CREATE TABLE `movies` (
   `running_time` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
   `plot_synopsis` text NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `director_id` int(10) UNSIGNED NOT NULL,
+  `prod_comp_id` int(10) UNSIGNED NOT NULL,
+  `supplier_id` int(10) UNSIGNED NOT NULL
   PRIMARY KEY (`id`)
 );
 
@@ -63,22 +64,6 @@ CREATE TABLE `directors` (
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `directors_movies` (
-  `director_id` int(10) UNSIGNED NOT NULL,
-  `movie_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`director_id`,`movie_id`),
-  FOREIGN KEY (`director_id`) REFERENCES `directors` (`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE
-);
-
-CREATE TABLE `movies_production_companies` (
-  `movie_id` int(10) UNSIGNED NOT NULL,
-  `production_company_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`movie_id`,`production_company_id`),
-  FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`production_company_id`) REFERENCES `production_companies` (`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE `actors` (
@@ -110,14 +95,6 @@ CREATE TABLE `suppliers` (
   `country` varchar(255) NOT NULL,
   `postal_code` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `movies_suppliers` (
-  `movie_id` int(10) UNSIGNED NOT NULL,
-  `supplier_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`movie_id`,`supplier_id`),
-  FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE `theatre_complexes` (
