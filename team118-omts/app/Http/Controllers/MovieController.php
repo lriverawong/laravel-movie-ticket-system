@@ -46,9 +46,9 @@ class MovieController extends Controller
             'running_time' => request('running_time'),
             'rating' => request('rating'),
             'plot_synopsis' => request('plot_synopsis'),
-            'director_id' => request('plot_synopsis'),
-            'prod_comp_id' => request('plot_synopsis'),
-            'supplier_id' => request('plot_synopsis'),
+            'director_id' => request('director_id'),
+            'prod_comp_id' => request('prod_comp_id'),
+            'supplier_id' => request('supplier_id'),
         ]); 
 
         return ['message' => 'Movie Created!'];
