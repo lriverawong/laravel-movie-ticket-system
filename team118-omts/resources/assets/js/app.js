@@ -282,3 +282,19 @@ const theatre_app = new Vue({
         }
     }
 });
+
+
+const director_app = new Vue({
+    el: '#director-form',
+    data: {
+        form: new Form({
+            first_name: '',
+            last_name: ''
+        })
+    },
+    methods: {
+        onSubmit() {
+            this.form.post('/directors')
+        }
+    }
+});

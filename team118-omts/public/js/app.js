@@ -14610,6 +14610,21 @@ var theatre_app = new Vue({
     }
 });
 
+var director_app = new Vue({
+    el: '#director-form',
+    data: {
+        form: new Form({
+            first_name: '',
+            last_name: ''
+        })
+    },
+    methods: {
+        onSubmit: function onSubmit() {
+            this.form.post('/directors');
+        }
+    }
+});
+
 /***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
