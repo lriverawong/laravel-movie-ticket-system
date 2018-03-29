@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             // $table->string('address');
             $table->string('phone_num');
-            $table->string('credit_card_num');
-            $table->string('credit_card_exp');
+            $table->string('credit_card_num')->default("");
+            $table->string('credit_card_exp')->default("");
             $table->string('apt_num');
             $table->string('street_num');
             $table->string('street_name');
