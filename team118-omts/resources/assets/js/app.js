@@ -298,3 +298,27 @@ const director_app = new Vue({
         }
     }
 });
+
+const supplier_form_app = new Vue({
+    el: '#supplier-form',
+    data: {
+        form: new Form({
+            name: '',
+            phone_num: '',
+            contact_first_name: '',
+            contact_last_name: '',
+            apt_num: '',
+            street_num: '',
+            street_name: '',
+            city: '',
+            province: '',
+            country: '',
+            postal_code: ''
+        })
+    },
+    methods: {
+        onSubmit() {
+            this.form.post('/suppliers')
+        }
+    }
+});

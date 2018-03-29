@@ -35,12 +35,7 @@
                         <span class="form-text has-danger" v-if="form.errors.has('screen_size')" v-text="form.errors.get('screen_size')"></span>
                     </div>
 
-                {{--  <div class="form-group">
-                    {!! Form::select('theatre_complex_id', $theatre_complexes, old('theatre_complex_id'), 
-                    ['class' => 'form-control', 'id' => 'id']) !!}
-                </div>  --}}
                 <div class="form-group">
-                        {{--  {!! Form::select('theatre_complex_id', $theatre_complexes, null) !!}  --}}
                         <select v-model="form.theatre_complex_id">
                             @foreach ($theatre_complexes as $theatre_complex)
                                 <option value="{{ $theatre_complex->id }}">{{ $theatre_complex->name }}</option>

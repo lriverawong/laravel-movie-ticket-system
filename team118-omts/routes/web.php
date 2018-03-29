@@ -34,8 +34,8 @@ Route::post('theatre_complexes', 'TheatreComplexController@store');
 Route::get('theatres/create', 'TheatreController@create');
 Route::post('theatres', 'TheatreController@store');
 
-
-
-
 Route::get('directors/create', 'DirectorController@create');
 Route::post('directors', 'DirectorController@store');
+
+Route::get('suppliers/create', 'SupplierController@create');
+Route::post('suppliers', 'SupplierController@store');

@@ -14610,17 +14610,39 @@ var theatre_app = new Vue({
     }
 });
 
+<<<<<<< HEAD
 var director_app = new Vue({
     el: '#director-form',
     data: {
         form: new Form({
             first_name: '',
             last_name: ''
+=======
+var supplier_form_app = new Vue({
+    el: '#supplier-form',
+    data: {
+        form: new Form({
+            name: '',
+            phone_num: '',
+            contact_first_name: '',
+            contact_last_name: '',
+            apt_num: '',
+            street_num: '',
+            street_name: '',
+            city: '',
+            province: '',
+            country: '',
+            postal_code: ''
+>>>>>>> 4cef62bc715a2f44c3af7cabcba5f5a03b0bb0ae
         })
     },
     methods: {
         onSubmit: function onSubmit() {
+<<<<<<< HEAD
             this.form.post('/directors');
+=======
+            this.form.post('/suppliers');
+>>>>>>> 4cef62bc715a2f44c3af7cabcba5f5a03b0bb0ae
         }
     }
 });

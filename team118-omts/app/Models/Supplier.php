@@ -8,6 +8,8 @@ class Supplier extends Model
 {
     protected $table = 'suppliers';
 
-    public $timestamps = true;
+    public $timestamps = false;
+
+    // relationships
 
 }

@@ -32,6 +32,8 @@
                         <li><a class="nav-link" href="/chat">Chat</a></li>
                         <li><a class="nav-link" href="/theatre_complexes/create">Complex-Create</a></li>
                         <li><a class="nav-link" href="/theatres/create">Theatre-Create</a></li>
+                        <li><a class="nav-link" href="/suppliers/create">Supplier-Create</a></li>
+                        <li><a class="nav-link" href="/directors/create">Director-Create</a></li>
                         
                     </ul>
 
