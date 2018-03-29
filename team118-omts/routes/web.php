@@ -39,3 +39,6 @@ Route::post('directors', 'DirectorController@store');
 
 Route::get('suppliers/create', 'SupplierController@create');
 Route::post('suppliers', 'SupplierController@store');
+
+Route::get('production_companies/create', 'ProductionCompanyController@create');
+Route::post('production_companies', 'ProductionCompanyController@store');

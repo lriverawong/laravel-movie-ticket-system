@@ -322,3 +322,18 @@ const supplier_form_app = new Vue({
         }
     }
 });
+
+
+const production_company_app = new Vue({
+    el: '#production-company-form',
+    data: {
+        form: new Form({
+            name: ''
+        })
+    },
+    methods: {
+        onSubmit() {
+            this.form.post('/production_companies')
+        }
+    }
+});
