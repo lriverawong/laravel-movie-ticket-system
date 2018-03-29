@@ -169,28 +169,26 @@ CREATE TABLE `reviews` (
 -- Insert database values; migrations and sample data.
 -- ===
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2018_02_24_031625_create_production_companies_table', 1),
-(4, '2018_02_24_031627_create_movies_table', 1),
-(5, '2018_02_24_031628_create_directors_table', 1),
-(6, '2018_02_24_031629_create_directors_movies', 1),
-(7, '2018_02_24_031630_create_movies_production_companies_table', 1),
-(8, '2018_02_24_183737_create_actors_table', 1),
-(9, '2018_02_24_183738_create_actors_movies_table', 1),
-(10, '2018_02_24_184631_create_suppliers_table', 1),
-(11, '2018_02_24_190220_create_movies_suppliers_table', 1),
-(12, '2018_02_24_202726_create_theatre_complexes_table', 1),
-(13, '2018_02_24_204701_create_theatres_table', 1),
-(14, '2018_02_24_212421_create_run_dates_table', 1),
-(15, '2018_02_24_212529_create_show_times_table', 1),
-(16, '2018_02_24_225510_create_reservations_table', 1),
-(17, '2018_02_24_230741_create_reviews_table', 1);
+(31, '2014_10_12_000000_create_users_table', 1),
+(32, '2014_10_12_100000_create_password_resets_table', 1),
+(33, '2018_02_24_031625_create_production_companies_table', 1),
+(34, '2018_02_24_031627_create_movies_table', 1),
+(35, '2018_02_24_031628_create_directors_table', 1),
+(36, '2018_02_24_183737_create_actors_table', 1),
+(37, '2018_02_24_183738_create_actors_movies_table', 1),
+(38, '2018_02_24_184631_create_suppliers_table', 1),
+(39, '2018_02_24_202726_create_theatre_complexes_table', 1),
+(40, '2018_02_24_204701_create_theatres_table', 1),
+(41, '2018_02_24_212421_create_run_dates_table', 1),
+(42, '2018_02_24_212529_create_show_times_table', 1),
+(43, '2018_02_24_225510_create_reservations_table', 1),
+(44, '2018_02_24_230741_create_reviews_table', 1),
+(45, '2018_03_29_170630_add_foreign_keys_to_movies', 1);
 
 -- Users
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`, `remember_token`, `created_at`, `updated_at`) VALUES 
-('1', 'John', 'Smith', 'johnsmith@gmail.com', '12345678', '5555555555', '1234567890123456', '0421', '43', '644', 'Johnson St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S1', NULL, '2018-03-03 05:23:18', '2018-03-03 17:41:50'),
-('2', 'Jack', 'Jones', 'jackjonesh@gmail.com', '12345678', '5555551234', '9999999999999999', '0522', '', '633', 'Princess St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S2', NULL, '2018-03-04 05:23:18', '2018-03-04 17:41:50');
+INSERT INTO `users` (`id`, `role`, `first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`,`remember_token`, `created_at`, `updated_at`) VALUES 
+('1', '1', 'John', 'Smith', 'johnsmith@gmail.com', '12345678', '5555555555', '1234567890123456', '0421', '43', '644', 'Johnson St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S1', NULL, '2018-03-03 05:23:18', '2018-03-03 17:41:50'),
+('2', '0', 'Jack', 'Jones', 'jackjonesh@gmail.com', '12345678', '5555551234', '9999999999999999', '0522', '', '633', 'Princess St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S2', NULL, '2018-03-04 05:23:18', '2018-03-04 17:41:50');
 
 -- Production Companies
 INSERT INTO `production_companies` (`id`, `name`) VALUES ('1', 'MGM');

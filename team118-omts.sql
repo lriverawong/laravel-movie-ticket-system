@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Mar 29, 2018 at 06:58 PM
+-- Generation Time: Mar 29, 2018 at 10:58 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.9
 
@@ -100,21 +100,21 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2018_02_24_031625_create_production_companies_table', 1),
-(4, '2018_02_24_031627_create_movies_table', 1),
-(5, '2018_02_24_031628_create_directors_table', 1),
-(6, '2018_02_24_183737_create_actors_table', 1),
-(7, '2018_02_24_183738_create_actors_movies_table', 1),
-(8, '2018_02_24_184631_create_suppliers_table', 1),
-(9, '2018_02_24_202726_create_theatre_complexes_table', 1),
-(10, '2018_02_24_204701_create_theatres_table', 1),
-(11, '2018_02_24_212421_create_run_dates_table', 1),
-(12, '2018_02_24_212529_create_show_times_table', 1),
-(13, '2018_02_24_225510_create_reservations_table', 1),
-(14, '2018_02_24_230741_create_reviews_table', 1),
-(15, '2018_03_29_170630_add_foreign_keys_to_movies', 1);
+(31, '2014_10_12_000000_create_users_table', 1),
+(32, '2014_10_12_100000_create_password_resets_table', 1),
+(33, '2018_02_24_031625_create_production_companies_table', 1),
+(34, '2018_02_24_031627_create_movies_table', 1),
+(35, '2018_02_24_031628_create_directors_table', 1),
+(36, '2018_02_24_183737_create_actors_table', 1),
+(37, '2018_02_24_183738_create_actors_movies_table', 1),
+(38, '2018_02_24_184631_create_suppliers_table', 1),
+(39, '2018_02_24_202726_create_theatre_complexes_table', 1),
+(40, '2018_02_24_204701_create_theatres_table', 1),
+(41, '2018_02_24_212421_create_run_dates_table', 1),
+(42, '2018_02_24_212529_create_show_times_table', 1),
+(43, '2018_02_24_225510_create_reservations_table', 1),
+(44, '2018_02_24_230741_create_reviews_table', 1),
+(45, '2018_03_29_170630_add_foreign_keys_to_movies', 1);
 
 -- --------------------------------------------------------
 
@@ -140,9 +140,7 @@ CREATE TABLE `movies` (
 INSERT INTO `movies` (`id`, `title`, `running_time`, `rating`, `plot_synopsis`, `director_id`, `prod_comp_id`, `supplier_id`) VALUES
 (1, 'Mission Impossible', 120, 10, 'Tom Cruise is on a mission', 6, 1, 20),
 (2, 'Mission Impossible 2', 220, 1, 'Tom Cruise is back on a mission', 7, 1, 60),
-(3, 'Finding Nemo', 100, 9, 'A dad fish looses his son and must find him', 6, 1, 20),
-(4, 'jhjhj', 4, 3, 'asadsdsadsad', 7, 1, 60),
-(5, 'asdfdsafa', 5, 5, 'sdfasfdsafd', 6, 1, 20);
+(3, 'Finding Nemo', 100, 9, 'A dad fish looses his son and must find him', 6, 1, 20);
 
 -- --------------------------------------------------------
 
@@ -348,13 +346,14 @@ INSERT INTO `theatre_complexes` (`id`, `name`, `phone_num`, `street_num`, `stree
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
+  `role` int(11) NOT NULL DEFAULT '1',
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone_num` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `credit_card_num` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `credit_card_exp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `credit_card_num` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `credit_card_exp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `apt_num` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `street_num` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `street_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -371,9 +370,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'John', 'Smith', 'johnsmith@gmail.com', '12345678', '5555555555', '1234567890123456', '0421', '43', '644', 'Johnson St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S1', NULL, '2018-03-03 05:23:18', '2018-03-03 17:41:50'),
-(2, 'Jack', 'Jones', 'jackjonesh@gmail.com', '12345678', '5555551234', '9999999999999999', '0522', '', '633', 'Princess St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S2', NULL, '2018-03-04 05:23:18', '2018-03-04 17:41:50');
+INSERT INTO `users` (`id`, `role`, `first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 1, 'John', 'Smith', 'johnsmith@gmail.com', '12345678', '5555555555', '1234567890123456', '0421', '43', '644', 'Johnson St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S1', NULL, '2018-03-03 05:23:18', '2018-03-03 17:41:50'),
+(2, 0, 'Jack', 'Jones', 'jackjonesh@gmail.com', '12345678', '5555551234', '9999999999999999', '0522', '', '633', 'Princess St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S2', NULL, '2018-03-04 05:23:18', '2018-03-04 17:41:50');
 
 --
 -- Indexes for dumped tables
@@ -502,13 +501,13 @@ ALTER TABLE `directors`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `production_companies`
