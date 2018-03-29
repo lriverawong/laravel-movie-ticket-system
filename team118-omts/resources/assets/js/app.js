@@ -262,3 +262,20 @@ const theatre_complex_app = new Vue({
         }
     }
 });
+
+const theatre_app = new Vue({
+    el: '#theatre-form',
+    data: {
+        form: new Form({
+            theatre_num: '',
+            max_num_seats: '',
+            screen_size: '',
+            theatre_complex_id: ''
+        })
+    },
+    methods: {
+        onSubmit() {
+            this.form.post('/theatres')
+        }
+    }
+});

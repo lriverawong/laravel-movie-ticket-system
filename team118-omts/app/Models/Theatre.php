@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Theatre extends Model
 {
     protected $table = 'theatres';
+    public $timestamps = false;
 
     /**
      * Model Relationships

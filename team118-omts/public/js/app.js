@@ -14273,7 +14273,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(64);
+module.exports = __webpack_require__(61);
 
 
 /***/ }),
@@ -14584,6 +14584,23 @@ var theatre_complex_app = new Vue({
             this.form.post('/theatre_complexes').then(function (response) {
                 return alert('Wahoo!');
             });
+        }
+    }
+});
+
+var theatre_app = new Vue({
+    el: '#theatre-form',
+    data: {
+        form: new Form({
+            theatre_num: '',
+            max_num_seats: '',
+            screen_size: '',
+            theatre_complex_id: ''
+        })
+    },
+    methods: {
+        onSubmit: function onSubmit() {
+            this.form.post('/theatres');
         }
     }
 });
@@ -48398,10 +48415,7 @@ if (false) {
 }
 
 /***/ }),
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */
+/* 61 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

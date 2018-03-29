@@ -30,6 +30,9 @@
                     <ul class="navbar-nav mr-auto">
                         <li><a class="nav-link" href="/showtimes">Showtimes</a></li>
                         <li><a class="nav-link" href="/chat">Chat</a></li>
+                        <li><a class="nav-link" href="/theatre_complexes/create">Complex-Create</a></li>
+                        <li><a class="nav-link" href="/theatres/create">Theatre-Create</a></li>
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
