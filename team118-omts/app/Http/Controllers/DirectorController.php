@@ -23,7 +23,7 @@ class DirectorController extends Controller
     {   
         // if we have any projects we render them
         return view('director.create', [
-            'directors' => Director::all()
+            // 'directors' => Director::all()
         ]);
     }
 
@@ -64,6 +64,6 @@ class DirectorController extends Controller
             'last_name' => request('last_name'),
         ]); 
 
-        return ['message' => 'Director is Created!'];
+        return redirect('directors');
     }
 }

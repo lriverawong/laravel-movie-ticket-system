@@ -48,3 +48,5 @@ Route::post('production_companies', 'ProductionCompanyController@store');
 
 
 Route::resource('directors', 'DirectorController')->middleware('is_admin');
+
+
