@@ -43,5 +43,5 @@ Route::post('suppliers', 'SupplierController@store');
 Route::get('movies/create', 'MovieController@create');
 Route::post('movies', 'MovieController@store');
 
-Route::get('production_companies/create', 'ProductionCompanyController@create');
+Route::get('production_companies/create', 'ProductionCompanyController@create')->middleware('is_admin');
 Route::post('production_companies', 'ProductionCompanyController@store');

@@ -10,13 +10,19 @@ class User extends Authenticatable
     use Notifiable;
     // use HasApiTokens, Notifiable;
 
+    const ADMIN_TYPE = 0;
+    const DEFAULT_TYPE = 1;
+    public function isAdmin()    {        
+        return $this->role === self::ADMIN_TYPE;    
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password','phone_num', 'street_num', 'apt_num', 'street_num', 'street_name', 'city', 'province', 'country', 'postal_code', 'credit_card_num', 'credit_card_expiry'
+        'role', 'first_name', 'last_name', 'email', 'password','phone_num', 'street_num', 'apt_num', 'street_num', 'street_name', 'city', 'province', 'country', 'postal_code', 'credit_card_num', 'credit_card_expiry'
     ];
 
     /**
