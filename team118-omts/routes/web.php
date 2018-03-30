@@ -34,8 +34,8 @@ Route::post('theatre_complexes', 'TheatreComplexController@store');
 Route::get('theatres/create', 'TheatreController@create');
 Route::post('theatres', 'TheatreController@store');
 
-Route::get('directors/create', 'DirectorController@create');
-Route::post('directors', 'DirectorController@store');
+// Route::get('directors/create', 'DirectorController@create');
+// Route::post('directors', 'DirectorController@store');
 
 Route::get('suppliers/create', 'SupplierController@create');
 Route::post('suppliers', 'SupplierController@store');
@@ -45,3 +45,6 @@ Route::post('movies', 'MovieController@store');
 
 Route::get('production_companies/create', 'ProductionCompanyController@create')->middleware('is_admin');
 Route::post('production_companies', 'ProductionCompanyController@store');
+
+
+Route::resource('directors', 'DirectorController')->middleware('is_admin');

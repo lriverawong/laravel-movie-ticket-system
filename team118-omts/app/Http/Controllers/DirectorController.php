@@ -3,18 +3,48 @@
 namespace App\Http\Controllers;
 
 use App\Models\Director;
+use Illuminate\Http\Request;
 
 class DirectorController extends Controller
 {
+
+    public function index() {
+        return view('director.index', [
+            'directors' => Director::all()
+        ]);
+    }
+
+
     /**
      * Show the page to create a new project.
      */
+
     public function create()
     {   
         // if we have any projects we render them
         return view('director.create', [
             'directors' => Director::all()
         ]);
+    }
+
+    public function edit($id) {
+        return view('director.edit', [
+            'director' => Director::findOrFail($id),
+        ]);
+    }
+
+    public function destroy($id) {
+        $director = Director::findOrFail($id);
+        $director->delete();
+        return redirect('directors');
+    }
+
+    public function update(Request $request, $id) {
+        $director = Director::findOrFail($id);
+        $director->first_name=$request->get('first_name');
+        $director->last_name=$request->get('last_name');
+        $director->save();
+        return redirect('directors');
     }
 
     /**

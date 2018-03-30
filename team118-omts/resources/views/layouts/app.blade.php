@@ -72,9 +72,9 @@
             @yield('content')
             
         </main>
-        <div>
+        {{--  <div>
             @include('basehome')
-        </div>    
+        </div>      --}}
     </div>
 
     <!-- Scripts -->
