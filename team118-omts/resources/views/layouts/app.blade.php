@@ -30,12 +30,6 @@
                     <ul class="navbar-nav mr-auto">
                         <li><a class="nav-link" href="/showtimes">Showtimes</a></li>
                         <li><a class="nav-link" href="/chat">Chat</a></li>
-                        <li><a class="nav-link" href="/theatre_complexes/create">Complex-Create</a></li>
-                        <li><a class="nav-link" href="/theatres/create">Theatre-Create</a></li>
-                        <li><a class="nav-link" href="/suppliers/create">Supplier-Create</a></li>
-                        <li><a class="nav-link" href="/directors/create">Director-Create</a></li>
-                        <li><a class="nav-link" href="/production_companies/create">ProdComp-Create</a></li>
-                        <li><a class="nav-link" href="/movies/create">Movie-Create</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -70,7 +64,6 @@
 
         <main class="py-4">
             @yield('content')
-            
         </main>
         {{--  <div>
             @include('basehome')

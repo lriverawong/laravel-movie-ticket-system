@@ -53,3 +53,19 @@ Route::resource('directors', 'DirectorController')->middleware('is_admin');
 Route::resource('users', 'UserController')->only([
     'index', 'show', 'edit', 'update', 'destroy'
     ]);
+
+Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], function () {
+    Route::get('/', 'AdminController@home')->middleware('is_admin')->name('admin-home');
+    Route::resource('users', 'UsersManagementController', [
+        'only' => [
+            'index', 'show', 'edit', 'update', 'destroy'
+        ],
+        'names' => [
+            'index' => 'admin.users',
+            'show' => 'admin.users.show',
+            'edit' => 'admin.users.edit',
+            'update' => 'admin.users.update',
+            'destroy' => 'admin.users.destroy'
+        ]
+    ]);
+});

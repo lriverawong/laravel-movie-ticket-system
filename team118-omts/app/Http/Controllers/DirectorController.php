@@ -21,7 +21,6 @@ class DirectorController extends Controller
 
     public function create()
     {   
-        // if we have any projects we render them
         return view('director.create', [
             // 'directors' => Director::all()
         ]);
