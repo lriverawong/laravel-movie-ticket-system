@@ -18,7 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 # for rendering the base dashboard after login
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'UserController@index')->name('home');
 
 Route::get('/showtimes', function() {
     return view('showtimes');
@@ -49,4 +50,6 @@ Route::post('production_companies', 'ProductionCompanyController@store');
 
 Route::resource('directors', 'DirectorController')->middleware('is_admin');
 
-
+Route::resource('users', 'UserController')->only([
+    'index', 'show', 'edit', 'update', 'destroy'
+    ]);
