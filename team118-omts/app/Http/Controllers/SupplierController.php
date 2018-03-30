@@ -3,19 +3,58 @@
 namespace App\Http\Controllers;
 
 use App\Models\Supplier;
+use Illuminate\Http\Request;
 
 
 class SupplierController extends Controller
 {
-    /**
+
+    public function index()
+    {   
+        return view('supplier.index', [
+            'suppliers' => Supplier::all()
+        ]);
+    }
+
+     /**
      * Show the page to create a new project.
      */
+
     public function create()
     {   
         // if we have any projects we render them
         return view('supplier.create', [
-            'suppliers' => Supplier::all(),
+           // 'suppliers' => Supplier::all(),
         ]);
+    }
+
+    public function edit($id) {
+        return view('supplier.edit', [
+            'supplier' => Supplier::findOrFail($id),
+        ]);
+    }
+
+    public function destroy($id) {
+        $supplier = Supplier::findOrFail($id);
+        $supplier->delete();
+        return redirect('suppliers');
+    }
+
+    public function update(Request $request, $id) {
+        $supplier = Supplier::findOrFail($id);
+        $supplier->name=$request->get('name');
+        $supplier->phone_num=$request->get('phone_num');
+        $supplier->contact_first_name=$request->get('contact_first_name');
+        $supplier->contact_last_name=$request->get('contact_last_name');
+        $supplier->apt_num=$request->get('apt_num');
+        $supplier->street_num=$request->get('street_num');
+        $supplier->street_name=$request->get('street_name');
+        $supplier->city=$request->get('city');
+        $supplier->province=$request->get('province');
+        $supplier->country=$request->get('country');
+        $supplier->postal_code=$request->get('postal_code');
+        $supplier->save();
+        return redirect('suppliers');
     }
 
     /**
@@ -53,6 +92,7 @@ class SupplierController extends Controller
             'postal_code' => request('postal_code'),
         ]); 
 
-        return ['message' => 'Supplier Created!'];
+        return redirect('suppliers');
+        //return ['message' => 'Supplier Created!'];
     }
 }
