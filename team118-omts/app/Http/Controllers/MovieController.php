@@ -6,10 +6,19 @@ use App\Models\Movie;
 use App\Models\Director;
 use App\Models\ProductionCompany;
 use App\Models\Supplier;
+use Illuminate\Http\Request;
 
 
 class MovieController extends Controller
 {
+
+    public function index()
+    {   
+        // if we have any projects we render them
+        return view('movie.index', [
+            'movies' => Movie::all()
+        ]);
+    }
     /**
      * Show the page to create a new project.
      */
@@ -22,6 +31,31 @@ class MovieController extends Controller
             'production_companies' => ProductionCompany::all(),
             'suppliers' => Supplier::all(),
         ]);
+    }
+
+    public function edit($id) {
+        return view('movie.edit', [
+            'movie' => Movie::findOrFail($id),
+        ]);
+    }
+
+    public function destroy($id) {
+        $movie = Movie::findOrFail($id);
+        $movie->delete();
+        return redirect('movies');
+    }
+
+    public function update(Request $request, $id) {
+        $movie = Movie::findOrFail($id);
+        $movie->title=$request->get('title');
+        $movie->running_time=$request->get('running_time');
+        $movie->rating=$request->get('rating');
+        $movie->plot_synopsis=$request->get('plot_synopsis');
+        $movie->director_id=$request->get('director_id');
+        $movie->prod_comp_id=$request->get('prod_comp_id');
+        $movie->supplier_id=$request->get('supplier_id');
+        $movie->save();
+        return redirect('movies');
     }
 
     /**
@@ -51,6 +85,7 @@ class MovieController extends Controller
             'supplier_id' => request('supplier_id'),
         ]); 
 
-        return ['message' => 'Movie Created!'];
+        return redirect('movies');
+        //return ['message' => 'Movie Created!'];
     }
 }

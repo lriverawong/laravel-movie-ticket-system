@@ -4,10 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Theatre;
 use App\Models\TheatreComplex;
+use Illuminate\Http\Request;
 
 
 class TheatreController extends Controller
 {
+
+
+    public function index()
+    {   
+        // if we have any projects we render them
+        return view('theatre.index', [
+            'theatres' => Theatre::all()
+        ]);
+    }
+
     /**
      * Show the page to create a new project.
      */
@@ -15,10 +26,32 @@ class TheatreController extends Controller
     {   
         // if we have any projects we render them
         return view('theatre.create', [
-            'theatre' => Theatre::all(),
+            //'theatre' => Theatre::all(),
             // 'theatre_complexes' => TheatreComplex::all()->pluck('name', 'id')
             'theatre_complexes' => TheatreComplex::all()
         ]);
+    }
+
+    public function edit($id) {
+        return view('theatre.edit', [
+            'theatre' => Theatre::findOrFail($id),
+        ]);
+    }
+
+    public function destroy($id) {
+        $theatre = Theatre::findOrFail($id);
+        $theatre->delete();
+        return redirect('theatres');
+    }
+    
+    public function update(Request $request, $id) {
+        $theatre = Theatre::findOrFail($id);
+        $theatre->theatre_num=$request->get('theatre_num');
+        $theatre->max_num_seats=$request->get('max_num_seats');
+        $theatre->screen_size=$request->get('screen_size');
+        $theatre->theatre_complex_id=$request->get('theatre_complex_id');
+        $theatre->save();
+        return redirect('theatres');
     }
 
     /**
@@ -42,6 +75,7 @@ class TheatreController extends Controller
             'theatre_complex_id' => request('theatre_complex_id'),
         ]); 
 
-        return ['message' => 'Theatre Created!'];
+        return redirect('theatres');
+        //return ['message' => 'Theatre Created!'];
     }
 }

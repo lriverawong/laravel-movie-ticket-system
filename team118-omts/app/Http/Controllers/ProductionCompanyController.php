@@ -3,19 +3,50 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductionCompany;
+use Illuminate\Http\Request;
 
 class ProductionCompanyController extends Controller
 {
+
+    public function index()
+    {   
+        // if we have any projects we render them
+        return view('production_company.index', [
+            'production_companies' => ProductionCompany::all()
+        ]);
+    }
+
     /**
      * Show the page to create a new project.
-     */
+     */     
     public function create()
     {   
         // if we have any projects we render them
         return view('production_company.create', [
-            'production_companies' => ProductionCompany::all()
+            //'production_companies' => ProductionCompany::all()
         ]);
     }
+
+    public function edit($id) {
+        return view('production_company.edit', [
+            'production_company' => ProductionCompany::findOrFail($id),
+        ]);
+    }
+
+    public function destroy($id) {
+        $production_company = ProductionCompany::findOrFail($id);
+        $production_company->delete();
+        return redirect('production_companies');
+    }
+
+    public function update(Request $request, $id) {
+        $production_company = ProductionCompany::findOrFail($id);
+        $production_company->name=$request->get('name');
+        $production_company->save();
+        return redirect('production_companies');
+    }
+
+
 
     /**
      * Store a new project in the database.
@@ -32,6 +63,7 @@ class ProductionCompanyController extends Controller
             'name' => request('name'),
         ]); 
 
-        return ['message' => 'Production Company is Created!'];
+        return redirect('production_companies');
+        //return ['message' => 'Production Company is Created!'];
     }
 }

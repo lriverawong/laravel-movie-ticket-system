@@ -35,6 +35,26 @@ class TheatreComplexController extends Controller
         ]);
     }
 
+    public function destroy($id) {
+        $theatre_complex = TheatreComplex::findOrFail($id);
+        $theatre_complex->delete();
+        return redirect('theatre_complexes');
+    }
+
+    public function update(Request $request, $id) {
+        $theatre_complex = TheatreComplex::findOrFail($id);
+        $theatre_complex->name=$request->get('name');
+        $theatre_complex->phone_num=$request->get('phone_num');
+        $theatre_complex->street_num=$request->get('street_num');
+        $theatre_complex->street_name=$request->get('street_name');
+        $theatre_complex->city=$request->get('city');
+        $theatre_complex->province=$request->get('province');
+        $theatre_complex->country=$request->get('country');
+        $theatre_complex->postal_code=$request->get('postal_code');
+        $theatre_complex->save();
+        return redirect('theatre_complexes');
+    }
+
     /**
      * Store a new project in the database.
      */
@@ -64,6 +84,7 @@ class TheatreComplexController extends Controller
             'postal_code' => request('postal_code'),
         ]); 
 
-        return ['message' => 'Theatre Complex Created!'];
+        return redirect('theatre_complexes');
+        //return ['message' => 'Theatre Complex Created!'];
     }
 }
