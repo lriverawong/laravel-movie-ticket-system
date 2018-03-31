@@ -3,17 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\TheatreComplex;
+use Illuminate\Http\Request;
 
 class TheatreComplexController extends Controller
 {
+
+    public function index()
+    {   
+        // if we have any projects we render them
+        return view('theatre_complex.index', [
+            'theatre_complexes' => TheatreComplex::all()
+        ]);
+    }
+
     /**
      * Show the page to create a new project.
      */
+
+
     public function create()
     {   
         // if we have any projects we render them
         return view('theatre_complex.create', [
-            'theatre_complexes' => TheatreComplex::all()
+            //'theatre_complexes' => TheatreComplex::all()
+        ]);
+    }
+
+    public function edit($id) {
+        return view('theatre_complex.edit', [
+            'theatre_complex' => TheatreComplex::findOrFail($id),
         ]);
     }
 

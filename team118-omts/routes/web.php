@@ -29,8 +29,8 @@ Route::get('/chat', function() {
     return view('chat');
 });
 
-Route::get('theatre_complexes/create', 'TheatreComplexController@create');
-Route::post('theatre_complexes', 'TheatreComplexController@store');
+// Route::get('theatre_complexes/create', 'TheatreComplexController@create');
+// Route::post('theatre_complexes', 'TheatreComplexController@store');
 
 Route::get('theatres/create', 'TheatreController@create');
 Route::post('theatres', 'TheatreController@store');
@@ -51,6 +51,8 @@ Route::post('production_companies', 'ProductionCompanyController@store');
 Route::resource('directors', 'DirectorController')->middleware('is_admin');
 
 Route::resource('suppliers', 'SupplierController')->middleware('is_admin');
+
+Route::resource('theatre_complexes', 'TheatreComplexController')->middleware('is_admin');
 
 Route::resource('users', 'UserController')->only([
     'index', 'show', 'edit', 'update', 'destroy'
