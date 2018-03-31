@@ -12,7 +12,10 @@
                     </ul>
                 </div>
             @endif
-            <form method="POST" action="{{URL('admin.users.store')}}">
+            <div>
+                {{route('admin.users.store')}}
+            </div>
+            <form method="POST" action="/admin/users">
                 @csrf
                 <div class="form-group row">
                     <label for="first_name" class="col-md-4 col-form-label text-md-right">First Name</label>
@@ -96,7 +99,7 @@
                     <label for="apt_num" class="col-md-4 col-form-label text-md-right">Apartment Number</label>
 
                     <div class="col-md-6">
-                        <input id="apt_num" type="text" class="form-control{{ $errors->has('apt_num') ? ' is-invalid' : '' }}" name="apt_num" value="{{ old('apt_num') }}" required autofocus>
+                        <input id="apt_num" type="text" class="form-control{{ $errors->has('apt_num') ? ' is-invalid' : '' }}" name="apt_num" value="{{ old('apt_num') }}" autofocus>
 
                         @if ($errors->has('apt_num'))
                             <span class="invalid-feedback">
@@ -191,19 +194,20 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="role" class="col-md-4 col-form-label text-md-right">Role</label>
+                    <label for="role_id" class="col-md-4 col-form-label text-md-right">Role ID:</label>
 
                     <div class="col-md-6">
                         {{--  <input id="postal_code" type="text" class="form-control{{ $errors->has('postal_code') ? ' is-invalid' : '' }}" name="postal_code" value="{{ old('postal_code') }}" required autofocus>  --}}
-                        <select>
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">{{ $role->title }}</option>
-                                @endforeach
+                        <select name="role_id">
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->title }}</option>
+                            @endforeach
                         </select>
+                        {{-- {!! Form::select('role_id', $roles, null, ['class' => 'form-control']) !!} --}}
                         
-                        @if ($errors->has('postal_code'))
+                        @if ($errors->has('role_id'))
                         <span class="invalid-feedback">
-                            <strong>{{ $errors->first('postal_code') }}</strong>
+                            <strong>{{ $errors->first('role_id') }}</strong>
                         </span>
                         @endif
                     </div>

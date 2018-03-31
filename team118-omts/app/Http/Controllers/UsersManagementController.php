@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Role;
+use Illuminate\Support\Facades\Validator;
+// use Carbon\Carbon;
+
 
 class UsersManagementController extends Controller
 {
@@ -40,7 +44,54 @@ class UsersManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),
+            [
+                'first_name'            => '',
+                'last_name'             => '',
+                'email'                 => 'required|email|max:255|unique:users',
+                'password'              => 'required|min:6|max:20|confirmed',
+                'password_confirmation' => 'required|same:password',
+                'phone_num' => 'required',
+                'credit_card_num' => '',
+                'credit_card_exp' => '',
+                'apt_num' => '',
+                'street_num' => 'required',
+                'street_name' => 'required',
+                'city' => 'required',
+                'province' => 'required',
+                'country' => 'required',
+                'postal_code' => 'required',
+                'role_id'             => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $user = User::create([
+            'role_id'             => $request->input('role_id'),
+            'first_name'       => $request->input('first_name'),
+            'last_name'        => $request->input('last_name'),
+            'email'            => $request->input('email'),
+            'password'         => bcrypt($request->input('password')),
+            'phone_num'            => $request->input('phone_num'),
+            'credit_card_num'            => '',
+            'credit_card_exp'            => '',
+            'apt_num'            => $request->input('apt_num'),
+            'street_num'            => $request->input('street_num'),
+            'street_name'            => $request->input('street_name'),
+            'city'            => $request->input('city'),
+            'province'            => $request->input('province'),
+            'country'            => $request->input('country'),
+            'postal_code'            => $request->input('postal_code'),
+            // 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            // 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        $user->save();
+
+        return redirect('/admin/users')->with('success', 'User created successfully');
+
     }
 
     /**
