@@ -46,8 +46,8 @@ class UsersManagementController extends Controller
     {
         $validator = Validator::make($request->all(),
             [
-                'first_name'            => '',
-                'last_name'             => '',
+                'first_name'            => 'required',
+                'last_name'             => 'required',
                 'email'                 => 'required|email|max:255|unique:users',
                 'password'              => 'required|min:6|max:20|confirmed',
                 'password_confirmation' => 'required|same:password',
@@ -95,17 +95,6 @@ class UsersManagementController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -113,7 +102,10 @@ class UsersManagementController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.users.edit', [
+            'user' => User::findOrFail($id),
+            'roles' => Role::all()
+        ]);
     }
 
     /**
@@ -125,7 +117,43 @@ class UsersManagementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $validator = Validator::make($request->all(),
+            [
+                'first_name'            => 'required',
+                'last_name'             => 'required',
+                'email'                 => 'required|email|max:255|unique:users,email,'.$user->id,
+                'phone_num' => 'required',
+                'apt_num' => '',
+                'street_num' => 'required',
+                'street_name' => 'required',
+                'city' => 'required',
+                'province' => 'required',
+                'country' => 'required',
+                'postal_code' => 'required',
+                'role_id'             => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->email = $request->input('email');
+        $user->phone_num = $request->input('phone_num');
+        $user->apt_num = $request->input('apt_num');
+        $user->street_num = $request->input('street_num');
+        $user->street_name = $request->input('street_name');
+        $user->city = $request->input('city');
+        $user->province = $request->input('province');
+        $user->country = $request->input('country');
+        $user->postal_code = $request->input('postal_code');
+        $user->role_id = $request->input('role_id');
+        
+        $user->save();
+
+        return redirect('/admin/users')->with('success', 'User updated successfully');
     }
 
     /**
@@ -136,6 +164,8 @@ class UsersManagementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('/admin')->with('success','User has been  deleted');
     }
 }
