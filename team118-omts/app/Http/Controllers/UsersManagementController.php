@@ -28,6 +28,7 @@ class UsersManagementController extends Controller
     public function create()
     {
         return view('admin.users.create', [
+            'roles' => Role::all()
         ]);
     }
 

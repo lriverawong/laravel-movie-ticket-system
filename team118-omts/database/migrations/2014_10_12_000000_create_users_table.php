@@ -17,12 +17,11 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             // 0 = admin
             // 1 = regular user
-            $table->integer('role')->default(1);
+            $table->integer('role_id')->default(1);
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password');
-            // $table->string('address');
             $table->string('phone_num');
             $table->string('credit_card_num')->default("");
             $table->string('credit_card_exp')->default("");
@@ -33,9 +32,9 @@ class CreateUsersTable extends Migration
             $table->string('province');
             $table->string('country');
             $table->string('postal_code');
-            // $table->string('user_priv');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 

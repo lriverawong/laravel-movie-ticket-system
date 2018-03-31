@@ -62,10 +62,12 @@ Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], functi
     Route::get('/', 'AdminController@home')->middleware('is_admin')->name('admin-home');
     Route::resource('users', 'UsersManagementController', [
         'only' => [
-            'index', 'show', 'edit', 'update', 'destroy'
+            'index', 'create', 'store','show', 'edit', 'update', 'destroy'
         ],
         'names' => [
             'index' => 'admin.users',
+            'create' => 'admin.users.create',
+            'store' => 'admin.users.store',
             'show' => 'admin.users.show',
             'edit' => 'admin.users.edit',
             'update' => 'admin.users.update',
