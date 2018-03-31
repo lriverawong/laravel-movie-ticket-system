@@ -28,7 +28,7 @@
                 @foreach($users as $user)
                     <tr>
                         <td>{{$user->id}}</td>
-                        <td>{{$user->role}}</td>
+                        <td>{{$user->role_id}}</td>
                         <td>{{$user->first_name}}</td>
                         <td>{{$user->last_name}}</td>
                         <td>{{$user->email}}</td>
@@ -41,7 +41,7 @@
                             <form action="{{action('UsersManagementController@destroy', $user->id)}}" method="post">
                             @csrf
                             <input name="_method" type="hidden" value="DELETE">
-                            <button class="btn btn-danger" type="submit">Delete</button>
+                            <button class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit">Delete</button>
                             </form>
                         </td>
                     </tr>

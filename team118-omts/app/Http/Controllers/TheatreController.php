@@ -6,6 +6,7 @@ use App\Models\Theatre;
 use App\Models\TheatreComplex;
 use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 
 class TheatreController extends Controller
 {
