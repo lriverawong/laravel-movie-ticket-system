@@ -41,29 +41,65 @@
                     <span class="form-text has-danger"></span>
                 </div>
 
-                <div class="form-group">
-                    <label for="director_id" class="label">Movie Director Id:</label>
-                                        
-                    <input type="text" id="director_id" name="director_id" class="form-control" value="{{$movie->director_id}}">
+                <div class="col-md-6 form-group">
+                    <label for="director_id" class="label">Movie Director:</label>
+                    <select name="director_id">
+                        @foreach ($directors as $director)
+                            @if ($director->id === $movie->director_id )
+                                <option value="{{ $director->id }}" selected>{{ $director->first_name }} {{ $director->last_name }}</option>
+                            @else
+                                <option value="{{ $director->id }}">{{ $director->first_name }} {{ $director->last_name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
                     
-                    <span class="form-text has-danger"></span>
+                    @if ($errors->has('director_id'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('director_id') }}</strong>
+                    </span>
+                    @endif
                 </div>
 
-                <div class="form-group">
-                    <label for="prod_company_id" class="label">Movie Production Company Id:</label>
-                                            
-                    <input type="text" id="prod_company_id" name="prod_company_id" class="form-control" value="{{$movie->prod_company_id}}">
-                        
-                    <span class="form-text has-danger"></span>
+                <div class="col-md-6 form-group">
+                    <label for="supplier_id" class="label">Movie Supplier:</label>
+                    <select name="supplier_id">
+                        @foreach ($suppliers as $supplier)
+                            @if ($supplier->id === $movie->supplier_id )
+                                <option value="{{ $supplier->id }}" selected>{{ $supplier->name }}</option>
+                            @else
+                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    
+                    @if ($errors->has('supplier_id'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('supplier_id') }}</strong>
+                    </span>
+                    @endif
                 </div>
 
-                <div class="form-group">
-                    <label for="supplier_id" class="label">Movie Supplier Id:</label>
-                                            
-                    <input type="text" id="supplier_id" name="supplier_id" class="form-control" value="{{$movie->supplier_id}}">
-                        
-                    <span class="form-text has-danger"></span>
+
+
+                <div class="col-md-6 form-group">
+                    <label for="prod_comp_id" class="label">Movie Production Company:</label>
+                    <select name="prod_comp_id">
+                        @foreach ($production_companies as $prod_comp)
+                            @if ($prod_comp->id === $movie->prod_comp_id )
+                                <option value="{{ $prod_comp->id }}" selected>{{ $prod_comp->name }}</option>
+                            @else
+                                <option value="{{ $prod_comp->id }}">{{ $prod_comp->name }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                    
+                    @if ($errors->has('prod_comp_id'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('prod_comp_id') }}</strong>
+                    </span>
+                    @endif
                 </div>
+
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="form-group col-md-4" style="margin-top:60px">

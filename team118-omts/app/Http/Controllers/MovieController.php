@@ -36,6 +36,9 @@ class MovieController extends Controller
     public function edit($id) {
         return view('movie.edit', [
             'movie' => Movie::findOrFail($id),
+            'directors' => Director::all(),
+            'production_companies' => ProductionCompany::all(),
+            'suppliers' => Supplier::all(),
         ]);
     }
 
