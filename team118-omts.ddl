@@ -185,10 +185,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (44, '2018_02_24_230741_create_reviews_table', 1),
 (45, '2018_03_29_170630_add_foreign_keys_to_movies', 1);
 
+-- Roles
+INSERT INTO `roles` (`id`, `title`) VALUES ('1', 'admin'), ('2', 'user');
+
 -- Users
-INSERT INTO `users` (`id`, `role`, `first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`,`remember_token`, `created_at`, `updated_at`) VALUES 
+INSERT INTO `users` (`id`, `role_id`, `first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`,`remember_token`, `created_at`, `updated_at`) VALUES 
 ('1', '1', 'John', 'Smith', 'johnsmith@gmail.com', '12345678', '5555555555', '1234567890123456', '0421', '43', '644', 'Johnson St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S1', NULL, '2018-03-03 05:23:18', '2018-03-03 17:41:50'),
-('2', '0', 'Jack', 'Jones', 'jackjonesh@gmail.com', '12345678', '5555551234', '9999999999999999', '0522', '', '633', 'Princess St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S2', NULL, '2018-03-04 05:23:18', '2018-03-04 17:41:50');
+('2', '2', 'Jack', 'Jones', 'jackjonesh@gmail.com', '12345678', '5555551234', '9999999999999999', '0522', '', '633', 'Princess St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S2', NULL, '2018-03-04 05:23:18', '2018-03-04 17:41:50');
 
 -- Production Companies
 INSERT INTO `production_companies` (`id`, `name`) VALUES ('1', 'MGM');

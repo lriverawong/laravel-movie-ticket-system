@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Mar 29, 2018 at 10:58 PM
+-- Generation Time: Mar 31, 2018 at 12:38 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.9
 
@@ -100,21 +100,22 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(31, '2014_10_12_000000_create_users_table', 1),
-(32, '2014_10_12_100000_create_password_resets_table', 1),
-(33, '2018_02_24_031625_create_production_companies_table', 1),
-(34, '2018_02_24_031627_create_movies_table', 1),
-(35, '2018_02_24_031628_create_directors_table', 1),
-(36, '2018_02_24_183737_create_actors_table', 1),
-(37, '2018_02_24_183738_create_actors_movies_table', 1),
-(38, '2018_02_24_184631_create_suppliers_table', 1),
-(39, '2018_02_24_202726_create_theatre_complexes_table', 1),
-(40, '2018_02_24_204701_create_theatres_table', 1),
-(41, '2018_02_24_212421_create_run_dates_table', 1),
-(42, '2018_02_24_212529_create_show_times_table', 1),
-(43, '2018_02_24_225510_create_reservations_table', 1),
-(44, '2018_02_24_230741_create_reviews_table', 1),
-(45, '2018_03_29_170630_add_foreign_keys_to_movies', 1);
+(1, '2014_10_11_000000_create_roles_table', 1),
+(2, '2014_10_12_000000_create_users_table', 1),
+(3, '2014_10_12_100000_create_password_resets_table', 1),
+(4, '2018_02_24_031625_create_production_companies_table', 1),
+(5, '2018_02_24_031627_create_movies_table', 1),
+(6, '2018_02_24_031628_create_directors_table', 1),
+(7, '2018_02_24_183737_create_actors_table', 1),
+(8, '2018_02_24_183738_create_actors_movies_table', 1),
+(9, '2018_02_24_184631_create_suppliers_table', 1),
+(10, '2018_02_24_202726_create_theatre_complexes_table', 1),
+(11, '2018_02_24_204701_create_theatres_table', 1),
+(12, '2018_02_24_212421_create_run_dates_table', 1),
+(13, '2018_02_24_212529_create_show_times_table', 1),
+(14, '2018_02_24_225510_create_reservations_table', 1),
+(15, '2018_02_24_230741_create_reviews_table', 1),
+(16, '2018_03_29_170630_add_foreign_keys_to_movies', 1);
 
 -- --------------------------------------------------------
 
@@ -214,6 +215,25 @@ CREATE TABLE `reviews` (
 INSERT INTO `reviews` (`user_id`, `movie_id`, `review`, `created_at`, `updated_at`) VALUES
 (1, 1, 'bang bang bang pow', '2018-03-02 00:00:00', '2018-03-02 00:00:00'),
 (1, 3, 'sad movie...', '2018-03-17 00:00:00', '2018-03-18 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `title`) VALUES
+(1, 'admin'),
+(2, 'user');
 
 -- --------------------------------------------------------
 
@@ -346,7 +366,7 @@ INSERT INTO `theatre_complexes` (`id`, `name`, `phone_num`, `street_num`, `stree
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `role` int(11) NOT NULL DEFAULT '1',
+  `role_id` int(10) UNSIGNED NOT NULL DEFAULT '2',
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -370,9 +390,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role`, `first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`, `remember_token`, `created_at`, `updated_at`) VALUES
+INSERT INTO `users` (`id`, `role_id`, `first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 1, 'John', 'Smith', 'johnsmith@gmail.com', '12345678', '5555555555', '1234567890123456', '0421', '43', '644', 'Johnson St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S1', NULL, '2018-03-03 05:23:18', '2018-03-03 17:41:50'),
-(2, 0, 'Jack', 'Jones', 'jackjonesh@gmail.com', '12345678', '5555551234', '9999999999999999', '0522', '', '633', 'Princess St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S2', NULL, '2018-03-04 05:23:18', '2018-03-04 17:41:50');
+(2, 2, 'Jack', 'Jones', 'jackjonesh@gmail.com', '12345678', '5555551234', '9999999999999999', '0522', '', '633', 'Princess St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S2', NULL, '2018-03-04 05:23:18', '2018-03-04 17:41:50');
 
 --
 -- Indexes for dumped tables
@@ -440,6 +460,12 @@ ALTER TABLE `reviews`
   ADD KEY `reviews_movie_id_foreign` (`movie_id`);
 
 --
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `run_dates`
 --
 ALTER TABLE `run_dates`
@@ -479,7 +505,8 @@ ALTER TABLE `theatre_complexes`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD KEY `users_role_id_foreign` (`role_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -501,7 +528,7 @@ ALTER TABLE `directors`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `movies`
@@ -520,6 +547,12 @@ ALTER TABLE `production_companies`
 --
 ALTER TABLE `reservations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `show_times`
@@ -604,6 +637,12 @@ ALTER TABLE `show_times`
 --
 ALTER TABLE `theatres`
   ADD CONSTRAINT `theatres_theatre_complex_id_foreign` FOREIGN KEY (`theatre_complex_id`) REFERENCES `theatre_complexes` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             // 0 = admin
             // 1 = regular user
-            $table->integer('role_id')->default(1);
+            $table->integer('role_id')->unsigned()->default(2);
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();

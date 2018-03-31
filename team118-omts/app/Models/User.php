@@ -10,8 +10,8 @@ class User extends Authenticatable
     use Notifiable;
     // use HasApiTokens, Notifiable;
 
-    const ADMIN_TYPE = 0;
-    const DEFAULT_TYPE = 1;
+    const ADMIN_TYPE = 1;
+    const DEFAULT_TYPE = 2;
     public function isAdmin()    {        
         return $this->role_id === self::ADMIN_TYPE;    
     }
