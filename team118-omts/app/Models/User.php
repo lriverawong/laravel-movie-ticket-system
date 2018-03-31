@@ -13,7 +13,7 @@ class User extends Authenticatable
     const ADMIN_TYPE = 0;
     const DEFAULT_TYPE = 1;
     public function isAdmin()    {        
-        return $this->role === self::ADMIN_TYPE;    
+        return $this->role_id === self::ADMIN_TYPE;    
     }
 
     /**

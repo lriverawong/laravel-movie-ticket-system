@@ -9,6 +9,7 @@
             <p>{{ \Session::get('success') }}</p>
             </div><br />
         @endif
+        <a class="btn btn-primary float-right" href="{{route('admin.users.create')}}">Creat a new user</a>
         <table class="table table-striped">
             <thead>
                 <tr>
