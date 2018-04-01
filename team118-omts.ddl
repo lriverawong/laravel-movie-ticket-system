@@ -238,14 +238,14 @@ INSERT INTO `theatres` (`id`, `theatre_num`, `max_num_seats`, `screen_size`, `th
 ('90', '2','150', '15', '2');
 
 -- Run Dates
-INSERT INTO `run_dates` (`movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES 
-('3', '2', '2018-03-16', '2018-03-22'),
-('2', '4', '2018-03-01', '2018-03-03');
+INSERT INTO `run_dates` (`id`, `movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES 
+('1', '3', '2', '2018-03-01', '2018-03-16'),
+('2', '2', '4', '2018-03-16', '2018-03-22');
 
 -- Show Times
-INSERT INTO `show_times` (`id`, `movie_id`, `theatre_id`, `theatre_complex_id`, `showing_start_time`, `num_seats_avail`) VALUES
-('20', '2', '90', '2', '2018-03-01 19:30:00', '10'),
-('23', '3', '55', '1', '2018-03-16 07:30:00', '50');
+INSERT INTO `show_times` (`id`, `theatre_id`, `showing_start_time`, `num_seats_avail`, `run_date_id`) VALUES
+('1', '55', '2018-03-07 19:30:00', '10', '1'),
+('2', '90', '2018-03-17 13:30:00', '50', '2');
 
 -- Reservations
 INSERT INTO `reservations` (`id`, `user_id`, `showing_id`, `number_of_tickets`) VALUES 

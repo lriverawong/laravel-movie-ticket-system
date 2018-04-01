@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Mar 31, 2018 at 12:38 AM
+-- Generation Time: Apr 01, 2018 at 05:20 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.9
 
@@ -129,9 +129,9 @@ CREATE TABLE `movies` (
   `running_time` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
   `plot_synopsis` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `director_id` int(10) UNSIGNED NOT NULL,
-  `prod_comp_id` int(10) UNSIGNED NOT NULL,
-  `supplier_id` int(10) UNSIGNED NOT NULL
+  `director_id` int(10) UNSIGNED DEFAULT NULL,
+  `prod_comp_id` int(10) UNSIGNED DEFAULT NULL,
+  `supplier_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -181,8 +181,8 @@ INSERT INTO `production_companies` (`id`, `name`) VALUES
 
 CREATE TABLE `reservations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `showing_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
+  `showing_id` int(10) UNSIGNED DEFAULT NULL,
   `number_of_tickets` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -191,8 +191,8 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`id`, `user_id`, `showing_id`, `number_of_tickets`) VALUES
-(30, 1, 23, 3),
-(99, 1, 20, 6);
+(30, 1, 1, 3),
+(99, 1, 2, 6);
 
 -- --------------------------------------------------------
 
@@ -242,6 +242,7 @@ INSERT INTO `roles` (`id`, `title`) VALUES
 --
 
 CREATE TABLE `run_dates` (
+  `id` int(10) UNSIGNED NOT NULL,
   `movie_id` int(10) UNSIGNED NOT NULL,
   `theatre_complex_id` int(10) UNSIGNED NOT NULL,
   `run_start_date` date NOT NULL,
@@ -252,9 +253,9 @@ CREATE TABLE `run_dates` (
 -- Dumping data for table `run_dates`
 --
 
-INSERT INTO `run_dates` (`movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES
-(2, 4, '2018-03-01', '2018-03-03'),
-(3, 2, '2018-03-16', '2018-03-22');
+INSERT INTO `run_dates` (`id`, `movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES
+(1, 3, 2, '2018-03-01', '2018-03-16'),
+(2, 2, 4, '2018-03-16', '2018-03-22');
 
 -- --------------------------------------------------------
 
@@ -264,20 +265,19 @@ INSERT INTO `run_dates` (`movie_id`, `theatre_complex_id`, `run_start_date`, `ru
 
 CREATE TABLE `show_times` (
   `id` int(10) UNSIGNED NOT NULL,
-  `movie_id` int(10) UNSIGNED NOT NULL,
   `theatre_id` int(10) UNSIGNED NOT NULL,
-  `theatre_complex_id` int(10) UNSIGNED NOT NULL,
   `showing_start_time` datetime NOT NULL,
-  `num_seats_avail` int(10) UNSIGNED NOT NULL
+  `num_seats_avail` int(10) UNSIGNED NOT NULL,
+  `run_date_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `show_times`
 --
 
-INSERT INTO `show_times` (`id`, `movie_id`, `theatre_id`, `theatre_complex_id`, `showing_start_time`, `num_seats_avail`) VALUES
-(20, 2, 90, 2, '2018-03-01 19:30:00', 10),
-(23, 3, 55, 1, '2018-03-16 07:30:00', 50);
+INSERT INTO `show_times` (`id`, `theatre_id`, `showing_start_time`, `num_seats_avail`, `run_date_id`) VALUES
+(1, 55, '2018-03-07 19:30:00', 10, 1),
+(2, 90, '2018-03-17 13:30:00', 50, 2);
 
 -- --------------------------------------------------------
 
@@ -469,7 +469,8 @@ ALTER TABLE `roles`
 -- Indexes for table `run_dates`
 --
 ALTER TABLE `run_dates`
-  ADD PRIMARY KEY (`movie_id`,`theatre_complex_id`),
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `run_dates_movie_id_theatre_complex_id_unique` (`movie_id`,`theatre_complex_id`),
   ADD KEY `run_dates_theatre_complex_id_foreign` (`theatre_complex_id`);
 
 --
@@ -477,9 +478,8 @@ ALTER TABLE `run_dates`
 --
 ALTER TABLE `show_times`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `showing_id` (`movie_id`,`theatre_id`,`theatre_complex_id`,`showing_start_time`),
-  ADD KEY `show_times_theatre_id_foreign` (`theatre_id`),
-  ADD KEY `show_times_theatre_complex_id_foreign` (`theatre_complex_id`);
+  ADD UNIQUE KEY `showing_id` (`theatre_id`,`showing_start_time`,`run_date_id`),
+  ADD KEY `show_times_run_date_id_foreign` (`run_date_id`);
 
 --
 -- Indexes for table `suppliers`
@@ -555,10 +555,16 @@ ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `run_dates`
+--
+ALTER TABLE `run_dates`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `show_times`
 --
 ALTER TABLE `show_times`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
@@ -599,16 +605,16 @@ ALTER TABLE `actors_movies`
 -- Constraints for table `movies`
 --
 ALTER TABLE `movies`
-  ADD CONSTRAINT `movies_director_id_foreign` FOREIGN KEY (`director_id`) REFERENCES `directors` (`id`),
-  ADD CONSTRAINT `movies_prod_comp_id_foreign` FOREIGN KEY (`prod_comp_id`) REFERENCES `production_companies` (`id`),
-  ADD CONSTRAINT `movies_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`);
+  ADD CONSTRAINT `movies_director_id_foreign` FOREIGN KEY (`director_id`) REFERENCES `directors` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `movies_prod_comp_id_foreign` FOREIGN KEY (`prod_comp_id`) REFERENCES `production_companies` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `movies_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `reservations`
 --
 ALTER TABLE `reservations`
-  ADD CONSTRAINT `reservations_showing_id_foreign` FOREIGN KEY (`showing_id`) REFERENCES `show_times` (`id`),
-  ADD CONSTRAINT `reservations_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `reservations_showing_id_foreign` FOREIGN KEY (`showing_id`) REFERENCES `show_times` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `reservations_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `reviews`
@@ -628,8 +634,7 @@ ALTER TABLE `run_dates`
 -- Constraints for table `show_times`
 --
 ALTER TABLE `show_times`
-  ADD CONSTRAINT `show_times_movie_id_foreign` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `show_times_theatre_complex_id_foreign` FOREIGN KEY (`theatre_complex_id`) REFERENCES `theatre_complexes` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `show_times_run_date_id_foreign` FOREIGN KEY (`run_date_id`) REFERENCES `run_dates` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `show_times_theatre_id_foreign` FOREIGN KEY (`theatre_id`) REFERENCES `theatres` (`id`) ON DELETE CASCADE;
 
 --
