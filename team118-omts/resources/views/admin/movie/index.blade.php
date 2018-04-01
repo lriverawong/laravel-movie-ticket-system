@@ -6,7 +6,7 @@
         @if (count($movies))
             <h1 class="title is-3">Movies</h1>
         @endif
-        <a class="btn btn-primary float-right" href="{{route('movies.create')}}">Creat a new movie</a>
+        <a class="btn btn-primary float-right" href="{{route('admin.movies.create')}}">Creat a new movie</a>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -31,7 +31,7 @@
                             <a href="{{ URL::to('movies/' . $movie->id . '/edit') }}">
                             <button type="button" class="btn btn-warning">Edit</button>
                             </a>&nbsp;
-                            <form action="{{url('movies', [$movie->id])}}" method="POST">
+                            <form action="{{url('admin/movies', [$movie->id])}}" method="POST">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-danger" value="Delete"/>

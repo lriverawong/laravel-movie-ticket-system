@@ -11,11 +11,16 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
+    // public methods
+    public function playing() {
 
+    }
+
+    // Admin methods
     public function index()
     {   
         // if we have any projects we render them
-        return view('movie.index', [
+        return view('admin.movie.index', [
             'movies' => Movie::all()
         ]);
     }
@@ -25,7 +30,7 @@ class MovieController extends Controller
     public function create()
     {   
         // if we have any projects we render them
-        return view('movie.create', [
+        return view('admin.movie.create', [
             'movies' => Movie::all(),
             'directors' => Director::all(),
             'production_companies' => ProductionCompany::all(),
@@ -34,7 +39,7 @@ class MovieController extends Controller
     }
 
     public function edit($id) {
-        return view('movie.edit', [
+        return view('admin.movie.edit', [
             'movie' => Movie::findOrFail($id),
             'directors' => Director::all(),
             'production_companies' => ProductionCompany::all(),
@@ -45,7 +50,7 @@ class MovieController extends Controller
     public function destroy($id) {
         $movie = Movie::findOrFail($id);
         $movie->delete();
-        return redirect('movies');
+        return redirect('admin.movies');
     }
 
     public function update(Request $request, $id) {
@@ -58,7 +63,7 @@ class MovieController extends Controller
         $movie->prod_comp_id=$request->get('prod_comp_id');
         $movie->supplier_id=$request->get('supplier_id');
         $movie->save();
-        return redirect('movies');
+        return redirect('admin.movies');
     }
 
     /**
@@ -88,7 +93,7 @@ class MovieController extends Controller
             'supplier_id' => request('supplier_id'),
         ]); 
 
-        return redirect('movies');
+        return redirect('admin.movies');
         //return ['message' => 'Movie Created!'];
     }
 }

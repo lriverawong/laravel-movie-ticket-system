@@ -58,7 +58,7 @@ Route::resource('theatres', 'TheatreController')->middleware('is_admin');
 
 Route::resource('production_companies', 'ProductionCompanyController')->middleware('is_admin');
 
-Route::resource('movies', 'MovieController')->middleware('is_admin');
+// Route::resource('movies', 'MovieController')->middleware('is_admin');
 
 Route::resource('run_dates', 'RunDateController')->middleware('is_admin');
 
