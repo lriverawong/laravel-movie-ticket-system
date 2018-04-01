@@ -13,7 +13,9 @@ class MovieController extends Controller
 {
     // public methods
     public function playing() {
-
+        return view('movies.playing', [
+            'movies' => Movie::all()
+        ]);
     }
 
     // Admin methods

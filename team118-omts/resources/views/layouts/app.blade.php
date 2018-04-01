@@ -18,9 +18,15 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    OMTS-118
-                </a>
+                @if (auth()->user()->isAdmin()) 
+                    <a class="navbar-brand" href="{{ route('admin-home') }}">
+                        OMTS-118
+                    </a>
+                @else
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        OMTS-118
+                    </a>
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
