@@ -30,8 +30,9 @@ class LoginController extends Controller
     {
         if (auth()->user()->isAdmin()) {
             return route('admin-home');
+        } else {
+            return route('home');
         }
-        return '/home';
     }
     
 
