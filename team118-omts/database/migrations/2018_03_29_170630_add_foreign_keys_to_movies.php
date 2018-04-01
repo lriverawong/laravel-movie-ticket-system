@@ -14,9 +14,9 @@ class AddForeignKeysToMovies extends Migration
     public function up()
     {
         Schema::table('movies', function (Blueprint $table) {
-            $table->foreign('director_id')->references('id')->on('directors');
-            $table->foreign('prod_comp_id')->references('id')->on('production_companies');
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
+            $table->foreign('director_id')->references('id')->on('directors')->onDelete('set null');
+            $table->foreign('prod_comp_id')->references('id')->on('production_companies')->onDelete('set null');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('set null');
         });
     }
 
