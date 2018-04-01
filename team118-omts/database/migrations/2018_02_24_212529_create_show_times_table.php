@@ -15,16 +15,17 @@ class CreateShowTimesTable extends Migration
     {
         Schema::create('show_times', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('movie_id')->unsigned();
-            $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
             $table->integer('theatre_id')->unsigned();
             $table->foreign('theatre_id')->references('id')->on('theatres')->onDelete('cascade');
-            $table->integer('theatre_complex_id')->unsigned();
-            $table->foreign('theatre_complex_id')->references('id')->on('theatre_complexes')->onDelete('cascade');
             $table->dateTime('showing_start_time');
-            $table->unique(['movie_id', 'theatre_id', 'theatre_complex_id', 'showing_start_time'], 'showing_id');
             $table->unsignedInteger('num_seats_avail');
-            // $table->timestamps();
+            $table->integer('run_date_id')->unsigned();
+            $table->foreign('run_date_id')->references('id')->on('run_dates')->onDelete('cascade');
+            $table->unique(['theatre_id', 'showing_start_time', 'run_date_id'], 'showing_id');
+            // $table->integer('movie_id')->unsigned();
+            // $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
+            // $table->integer('theatre_complex_id')->unsigned();
+            // $table->foreign('theatre_complex_id')->references('id')->on('theatre_complexes')->onDelete('cascade');
         });
     }
 
