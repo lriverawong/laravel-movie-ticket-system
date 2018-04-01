@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('admin.admin-layout')
 
-@section('content')
+@section('admin-content')
 <div class="container">
         <div id="theatre-complex-form" class="container">
             <form method="POST" action="{{URL('admin/theatre_complexes', [$theatre_complex->id])}}">

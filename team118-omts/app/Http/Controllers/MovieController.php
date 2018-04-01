@@ -6,6 +6,10 @@ use App\Models\Movie;
 use App\Models\Director;
 use App\Models\ProductionCompany;
 use App\Models\Supplier;
+use App\Models\RunDate;
+use Carbon\Carbon;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 
@@ -13,9 +17,12 @@ class MovieController extends Controller
 {
     // public methods
     public function playing() {
-        return view('movies.playing', [
-            'movies' => Movie::all()
-        ]);
+        $current_time = Carbon::now();
+        $movies = DB::table('movies')
+            ->join('run_dates', 'movies.id', '=', 'run_dates.movie_id')
+            ->whereDate('run_start_date', '<', $current_time)
+            ->whereDate('run_end_date', '>=', $current_time)->distinct()->get();
+        return view('movies.playing', compact('current_time', 'movies'));
     }
 
     // Admin methods

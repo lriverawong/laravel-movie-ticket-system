@@ -36,6 +36,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li><a class="nav-link" href="/showtimes">Showtimes</a></li>
                         <li><a class="nav-link" href="/chat">Chat</a></li>
+                        <li><a class="nav-link" href="{{route('movies_playing')}}">Movies Playing</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
