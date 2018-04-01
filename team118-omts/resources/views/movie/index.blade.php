@@ -6,6 +6,7 @@
         @if (count($movies))
             <h1 class="title is-3">Movies</h1>
         @endif
+        <a class="btn btn-primary float-right" href="{{route('movies.create')}}">Creat a new movie</a>
         <table class="table">
             <thead class="thead-dark">
                 <tr>

@@ -6,6 +6,7 @@
         @if (count($production_companies))
             <h1 class="title is-3">Theatre Complex</h1>
         @endif
+        <a class="btn btn-primary float-right" href="{{route('production_companies.create')}}">Creat a new production company</a>
         <table class="table">
             <thead class="thead-dark">
                 <tr>

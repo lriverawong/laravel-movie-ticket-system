@@ -60,6 +60,8 @@ Route::resource('production_companies', 'ProductionCompanyController')->middlewa
 
 Route::resource('movies', 'MovieController')->middleware('is_admin');
 
+Route::resource('run_dates', 'RunDateController')->middleware('is_admin');
+
 Route::resource('users', 'UserController')->only([
     'index', 'show', 'edit', 'update', 'destroy'
     ]);

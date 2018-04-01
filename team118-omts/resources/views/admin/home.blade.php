@@ -16,5 +16,7 @@
     <a class="btn btn-primary" href="/movies">Movie</a>
 
     <a class="btn btn-primary" href="/admin/users">Users</a>
+
+    <a class="btn btn-primary" href="/run_dates">Run Times</a>
     
 @endsection
