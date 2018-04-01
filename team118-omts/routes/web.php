@@ -40,6 +40,8 @@ Route::resource('users', 'UserController')->only([
 
 Route::get('/movies_playing', 'MovieController@playing')->name('movies_playing');
 
+Route::get('/theatre_complexes', 'TheatreComplexController@public_index')->name('theatre_complexes');
+
 // =================== ADMIN ROUTES ====================================================
 
 Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], function () {
