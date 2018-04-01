@@ -11,14 +11,14 @@
 |
 */
 
+// =================== PUBLIC ROUTES ====================================================
+
 Route::get('/', function () {
     return view('layouts.app');
 });
 
 Auth::routes();
 
-# for rendering the base dashboard after login
-// Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'UserController@index')->name('home');
 
 Route::get('/showtimes', function() {
@@ -29,42 +29,15 @@ Route::get('/chat', function() {
     return view('chat');
 });
 
-// Route::get('theatre_complexes/create', 'TheatreComplexController@create');
-// Route::post('theatre_complexes', 'TheatreComplexController@store');
-
-// Route::get('theatres/create', 'TheatreController@create');
-// Route::post('theatres', 'TheatreController@store');
-
-// Route::get('directors/create', 'DirectorController@create');
-// Route::post('directors', 'DirectorController@store');
-
-// Route::get('suppliers/create', 'SupplierController@create');
-// Route::post('suppliers', 'SupplierController@store');
-
-// Route::get('movies/create', 'MovieController@create');
-// Route::post('movies', 'MovieController@store');
-
-// Route::get('production_companies/create', 'ProductionCompanyController@create')->middleware('is_admin');
-// Route::post('production_companies', 'ProductionCompanyController@store');
-
-
-//Route::resource('directors', 'DirectorController')->middleware('is_admin');
-
-//Route::resource('suppliers', 'SupplierController')->middleware('is_admin');
-
-//Route::resource('theatre_complexes', 'TheatreComplexController')->middleware('is_admin');
-
-//Route::resource('theatres', 'TheatreController')->middleware('is_admin');
-
-//Route::resource('production_companies', 'ProductionCompanyController')->middleware('is_admin');
-
-// Route::resource('movies', 'MovieController')->middleware('is_admin');
-
 Route::resource('run_dates', 'RunDateController')->middleware('is_admin');
 
 Route::resource('users', 'UserController')->only([
     'index', 'show', 'edit', 'update', 'destroy'
-    ]);
+]);
+
+Route::get('/movies_playing', 'MovieController@playing')->name('movies_playing');
+
+// =================== ADMIN ROUTES ====================================================
 
 Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@home')->middleware('is_admin')->name('admin-home');
@@ -151,5 +124,50 @@ Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], functi
             'destroy' => 'admin.production_companies.destroy'
         ]
     ]);
+    Route::resource('movies', 'MovieController', [
+        'only' => [
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ],
+        'names' => [
+            'index' => 'admin.movies',
+            'show' => 'admin.movies.show',
+            'create' => 'admin.movies.create',
+            'store' => 'admin.movies.store',
+            'edit' => 'admin.movies.edit',
+            'update' => 'admin.movies.update',
+            'destroy' => 'admin.movies.destroy'
+        ]
+    ]);
 
 });
+
+// Route::get('theatre_complexes/create', 'TheatreComplexController@create');
+// Route::post('theatre_complexes', 'TheatreComplexController@store');
+
+// Route::get('theatres/create', 'TheatreController@create');
+// Route::post('theatres', 'TheatreController@store');
+
+// Route::get('directors/create', 'DirectorController@create');
+// Route::post('directors', 'DirectorController@store');
+
+// Route::get('suppliers/create', 'SupplierController@create');
+// Route::post('suppliers', 'SupplierController@store');
+
+// Route::get('movies/create', 'MovieController@create');
+// Route::post('movies', 'MovieController@store');
+
+// Route::get('production_companies/create', 'ProductionCompanyController@create')->middleware('is_admin');
+// Route::post('production_companies', 'ProductionCompanyController@store');
+
+
+//Route::resource('directors', 'DirectorController')->middleware('is_admin');
+
+//Route::resource('suppliers', 'SupplierController')->middleware('is_admin');
+
+//Route::resource('theatre_complexes', 'TheatreComplexController')->middleware('is_admin');
+
+//Route::resource('theatres', 'TheatreController')->middleware('is_admin');
+
+//Route::resource('production_companies', 'ProductionCompanyController')->middleware('is_admin');
+
+// Route::resource('movies', 'MovieController')->middleware('is_admin');
