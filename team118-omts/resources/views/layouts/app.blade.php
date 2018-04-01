@@ -18,7 +18,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                @if (auth()->user()->isAdmin()) 
+                @guest
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        OMTS-118
+                    </a>
+                @elseif (auth()->user()->isAdmin()) 
                     <a class="navbar-brand" href="{{ route('admin-home') }}">
                         OMTS-118
                     </a>

@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="container">
-        <h1>Inside index page of Movies</h1>
+        <h2 class="text-center">Currently Playing Movies</h2>
+            <h3>It is currently: {{$current_time}}</h3>
         @if (count($movies))
-            <h1 class="title is-3">Movies</h1>
+            {{-- <h1 class="title is-3">Movies</h1> --}}
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -28,8 +29,7 @@
                 <hr>
             </table>
         @endif
-        <h2 class="text-center">Currently Playing Movies</h2>
-        <p>It is currently: {{$current_time}}</p>
+        
         
 
     </div>
