@@ -19,9 +19,9 @@ class CreateMoviesTable extends Migration
             $table->integer('running_time');
             $table->integer('rating');
             $table->text('plot_synopsis');
-            $table->integer('director_id')->unsigned();
-            $table->integer('prod_comp_id')->unsigned();
-            $table->integer('supplier_id')->unsigned();
+            $table->integer('director_id')->unsigned()->nullable();
+            $table->integer('prod_comp_id')->unsigned()->nullable();
+            $table->integer('supplier_id')->unsigned()->nullable();
         });
     }
 
