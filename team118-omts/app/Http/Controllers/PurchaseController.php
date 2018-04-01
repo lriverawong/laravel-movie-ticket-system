@@ -38,6 +38,10 @@ class PurchaseController extends Controller
         return redirect('purchases');
     }
 
+    public function rentals() {
+        
+    }
+
     /**
      * Store a new project in the database.
      */

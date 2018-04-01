@@ -34,11 +34,15 @@ Route::resource('run_dates', 'RunDateController')->middleware('is_admin');
 Route::resource('purchases', 'PurchaseController');
 
 
+
 Route::resource('users', 'UserController')->only([
     'index', 'show', 'edit', 'update', 'destroy'
 ]);
 
 Route::get('/movies_playing', 'MovieController@playing')->name('movies_playing');
+
+Route::get('/rentals', 'PurchaseController@rentals')->name('rentals');
+
 
 Route::get('/theatre_complexes', 'TheatreComplexController@public_index')->name('theatre_complexes');
 
