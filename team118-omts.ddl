@@ -249,8 +249,8 @@ INSERT INTO `show_times` (`id`, `theatre_id`, `showing_start_time`, `num_seats_a
 
 -- Reservations
 INSERT INTO `reservations` (`id`, `user_id`, `showing_id`, `number_of_tickets`) VALUES 
-('30', '1', '23', '3'),
-('99', '1', '20', '6');
+('30', '1', '1', '3'),
+('99', '1', '2', '6');
 
 -- Reviews
 INSERT INTO `reviews` (`user_id`, `movie_id`, `review`, `created_at`, `updated_at`) VALUES
