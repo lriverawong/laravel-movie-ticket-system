@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('admin.admin-layout')
 
-@section('content')
+@section('admin-content')
     <div class="container">
         <h1>Inside index page of directors</h1>
         @if (count($directors))

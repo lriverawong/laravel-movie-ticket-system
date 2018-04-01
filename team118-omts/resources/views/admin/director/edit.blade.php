@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('admin.admin-layout')
 
-@section('content')
+@section('admin-content')
 <div class="container">
         <div id="director-form" class="container">
             <form method="POST" action="{{URL('/admin/directors', [$director->id])}}">
