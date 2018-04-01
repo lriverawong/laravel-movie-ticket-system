@@ -20,6 +20,8 @@
         <a class="btn btn-primary" href="/admin/users">Users</a>
         
         <a class="btn btn-primary" href="/run_dates">Run Times</a>
+
+        <a class="btn btn-primary" href="/admin/show_times">Show Times</a>
     </div>
     
 @endsection

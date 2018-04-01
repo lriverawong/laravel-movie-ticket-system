@@ -141,6 +141,20 @@ Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], functi
             'destroy' => 'admin.movies.destroy'
         ]
     ]);
+    Route::resource('show_times', 'ShowTimeController', [
+        'only' => [
+            'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
+        ],
+        'names' => [
+            'index' => 'admin.show_times',
+            'show' => 'admin.show_times.show',
+            'create' => 'admin.show_times.create',
+            'store' => 'admin.show_times.store',
+            'edit' => 'admin.show_times.edit',
+            'update' => 'admin.show_times.update',
+            'destroy' => 'admin.show_times.destroy'
+        ]
+    ]);
 
 });
 
