@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\TheatreComplex;
+use App\Models\ShowTime;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TheatreComplexController extends Controller
@@ -11,6 +14,25 @@ class TheatreComplexController extends Controller
         return view('theatre_complex.public_index', [
             'theatre_complexes' => TheatreComplex::all()
         ]);
+    }
+
+    /**
+     * ADD THE MIGRATION FOR ADDING THE RUN ID TO THE SHOW TIME TABLE
+     */
+
+
+    public function public_show($id) {
+        // $theatre_complex = TheatreComplex::findOrFail($id);
+        // $current_time = Carbon::now();
+        // // the movie ids that are active now
+        // $movie_ids = DB::table('movies')
+        //     ->join('run_dates', 'movies.id', '=', 'run_dates.movie_id')
+        //     ->whereDate('run_start_date', '<', $current_time)
+        //     ->whereDate('run_end_date', '>=', $current_time)->select('movie_id')->distinct()->get();
+        // $show_times = DB::table('show_times')->
+        // return view('theatre_complex.public_show', [
+            
+        // ]);
     }
     
     
