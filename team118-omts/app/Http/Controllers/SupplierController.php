@@ -11,7 +11,7 @@ class SupplierController extends Controller
 
     public function index()
     {   
-        return view('supplier.index', [
+        return view('admin.supplier.index', [
             'suppliers' => Supplier::all()
         ]);
     }
@@ -23,13 +23,13 @@ class SupplierController extends Controller
     public function create()
     {   
         // if we have any projects we render them
-        return view('supplier.create', [
+        return view('admin.supplier.create', [
            // 'suppliers' => Supplier::all(),
         ]);
     }
 
     public function edit($id) {
-        return view('supplier.edit', [
+        return view('admin.supplier.edit', [
             'supplier' => Supplier::findOrFail($id),
         ]);
     }
@@ -37,7 +37,7 @@ class SupplierController extends Controller
     public function destroy($id) {
         $supplier = Supplier::findOrFail($id);
         $supplier->delete();
-        return redirect('suppliers');
+        return redirect('/admin/suppliers');
     }
 
     public function update(Request $request, $id) {
@@ -54,7 +54,7 @@ class SupplierController extends Controller
         $supplier->country=$request->get('country');
         $supplier->postal_code=$request->get('postal_code');
         $supplier->save();
-        return redirect('suppliers');
+        return redirect('/admin/suppliers');
     }
 
     /**
@@ -92,7 +92,7 @@ class SupplierController extends Controller
             'postal_code' => request('postal_code'),
         ]); 
 
-        return redirect('suppliers');
+        return redirect('/admin/suppliers');
         //return ['message' => 'Supplier Created!'];
     }
 }

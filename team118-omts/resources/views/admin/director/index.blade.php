@@ -6,6 +6,7 @@
         @if (count($directors))
             <h1 class="title is-3">Director</h1>
         @endif
+        <a class="btn btn-primary float-right" href="{{route('admin.directors.create')}}">Creat a new director</a>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -21,10 +22,10 @@
                     <td>{{$director->last_name}}</td>
                     <td>
                         <div class="btn btn-group" role="group" aria-label="Basic example">
-                            <a href="{{ URL::to('directors/' . $director->id . '/edit') }}">
+                            <a href="{{ URL::to('admin/directors/' . $director->id . '/edit') }}">
                             <button type="button" class="btn btn-warning">Edit</button>
                             </a>&nbsp;
-                            <form action="{{url('directors', [$director->id])}}" method="POST">
+                            <form action="{{url('admin/directors', [$director->id])}}" method="POST">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-danger" value="Delete"/>

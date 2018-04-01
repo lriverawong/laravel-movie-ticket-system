@@ -9,7 +9,7 @@ class DirectorController extends Controller
 {
 
     public function index() {
-        return view('director.index', [
+        return view('admin.director.index', [
             'directors' => Director::all()
         ]);
     }
@@ -21,13 +21,13 @@ class DirectorController extends Controller
 
     public function create()
     {   
-        return view('director.create', [
+        return view('admin.director.create', [
             // 'directors' => Director::all()
         ]);
     }
 
     public function edit($id) {
-        return view('director.edit', [
+        return view('admin.director.edit', [
             'director' => Director::findOrFail($id),
         ]);
     }
@@ -35,7 +35,7 @@ class DirectorController extends Controller
     public function destroy($id) {
         $director = Director::findOrFail($id);
         $director->delete();
-        return redirect('directors');
+        return redirect('/admin/directors');
     }
 
     public function update(Request $request, $id) {
@@ -43,7 +43,7 @@ class DirectorController extends Controller
         $director->first_name=$request->get('first_name');
         $director->last_name=$request->get('last_name');
         $director->save();
-        return redirect('directors');
+        return redirect('/admin/directors');
     }
 
     /**
@@ -63,6 +63,6 @@ class DirectorController extends Controller
             'last_name' => request('last_name'),
         ]); 
 
-        return redirect('directors');
+        return redirect('/admin/directors');
     }
 }

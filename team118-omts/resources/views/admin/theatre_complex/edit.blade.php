@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
         <div id="theatre-complex-form" class="container">
-            <form method="POST" action="{{URL('theatre_complexes', [$theatre_complex->id])}}">
+            <form method="POST" action="{{URL('admin/theatre_complexes', [$theatre_complex->id])}}">
             <input type="hidden" name="_method" value="PATCH">
             @csrf
                 <div class="row">
