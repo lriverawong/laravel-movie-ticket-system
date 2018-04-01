@@ -31,6 +31,9 @@ Route::get('/chat', function() {
 
 Route::resource('run_dates', 'RunDateController')->middleware('is_admin');
 
+Route::resource('purchases', 'PurchaseController');
+
+
 Route::resource('users', 'UserController')->only([
     'index', 'show', 'edit', 'update', 'destroy'
 ]);
