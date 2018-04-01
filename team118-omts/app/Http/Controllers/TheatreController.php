@@ -14,7 +14,7 @@ class TheatreController extends Controller
     public function index()
     {   
         // if we have any projects we render them
-        return view('theatre.index', [
+        return view('admin.theatre.index', [
             'theatres' => Theatre::all()
         ]);
     }
@@ -25,7 +25,7 @@ class TheatreController extends Controller
     public function create()
     {   
         // if we have any projects we render them
-        return view('theatre.create', [
+        return view('admin.theatre.create', [
             //'theatre' => Theatre::all(),
             // 'theatre_complexes' => TheatreComplex::all()->pluck('name', 'id')
             'theatre_complexes' => TheatreComplex::all()
@@ -33,7 +33,7 @@ class TheatreController extends Controller
     }
 
     public function edit($id) {
-        return view('theatre.edit', [
+        return view('admin.theatre.edit', [
             'theatre' => Theatre::findOrFail($id),
         ]);
     }
@@ -41,7 +41,7 @@ class TheatreController extends Controller
     public function destroy($id) {
         $theatre = Theatre::findOrFail($id);
         $theatre->delete();
-        return redirect('theatres');
+        return redirect('/admin/theatres');
     }
     
     public function update(Request $request, $id) {
@@ -51,7 +51,7 @@ class TheatreController extends Controller
         $theatre->screen_size=$request->get('screen_size');
         $theatre->theatre_complex_id=$request->get('theatre_complex_id');
         $theatre->save();
-        return redirect('theatres');
+        return redirect('/admin/theatres');
     }
 
     /**
@@ -75,7 +75,7 @@ class TheatreController extends Controller
             'theatre_complex_id' => request('theatre_complex_id'),
         ]); 
 
-        return redirect('theatres');
+        return redirect('/admin/theatres');
         //return ['message' => 'Theatre Created!'];
     }
 }

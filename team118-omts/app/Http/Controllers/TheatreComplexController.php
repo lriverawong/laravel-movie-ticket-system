@@ -11,7 +11,7 @@ class TheatreComplexController extends Controller
     public function index()
     {   
         // if we have any projects we render them
-        return view('theatre_complex.index', [
+        return view('admin.theatre_complex.index', [
             'theatre_complexes' => TheatreComplex::all()
         ]);
     }
@@ -24,13 +24,13 @@ class TheatreComplexController extends Controller
     public function create()
     {   
         // if we have any projects we render them
-        return view('theatre_complex.create', [
+        return view('admin.theatre_complex.create', [
             //'theatre_complexes' => TheatreComplex::all()
         ]);
     }
 
     public function edit($id) {
-        return view('theatre_complex.edit', [
+        return view('admin.theatre_complex.edit', [
             'theatre_complex' => TheatreComplex::findOrFail($id),
         ]);
     }
@@ -38,7 +38,7 @@ class TheatreComplexController extends Controller
     public function destroy($id) {
         $theatre_complex = TheatreComplex::findOrFail($id);
         $theatre_complex->delete();
-        return redirect('theatre_complexes');
+        return redirect('/admin/theatre_complexes');
     }
 
     public function update(Request $request, $id) {
@@ -52,7 +52,7 @@ class TheatreComplexController extends Controller
         $theatre_complex->country=$request->get('country');
         $theatre_complex->postal_code=$request->get('postal_code');
         $theatre_complex->save();
-        return redirect('theatre_complexes');
+        return redirect('/admin/theatre_complexes');
     }
 
     /**
@@ -84,7 +84,7 @@ class TheatreComplexController extends Controller
             'postal_code' => request('postal_code'),
         ]); 
 
-        return redirect('theatre_complexes');
+        return redirect('/admin/theatre_complexes');
         //return ['message' => 'Theatre Complex Created!'];
     }
 }

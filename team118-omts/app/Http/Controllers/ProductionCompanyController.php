@@ -11,7 +11,7 @@ class ProductionCompanyController extends Controller
     public function index()
     {   
         // if we have any projects we render them
-        return view('production_company.index', [
+        return view('admin.production_company.index', [
             'production_companies' => ProductionCompany::all()
         ]);
     }
@@ -22,13 +22,13 @@ class ProductionCompanyController extends Controller
     public function create()
     {   
         // if we have any projects we render them
-        return view('production_company.create', [
+        return view('admin.production_company.create', [
             //'production_companies' => ProductionCompany::all()
         ]);
     }
 
     public function edit($id) {
-        return view('production_company.edit', [
+        return view('admin.production_company.edit', [
             'production_company' => ProductionCompany::findOrFail($id),
         ]);
     }
@@ -36,14 +36,14 @@ class ProductionCompanyController extends Controller
     public function destroy($id) {
         $production_company = ProductionCompany::findOrFail($id);
         $production_company->delete();
-        return redirect('production_companies');
+        return redirect('/admin/production_companies');
     }
 
     public function update(Request $request, $id) {
         $production_company = ProductionCompany::findOrFail($id);
         $production_company->name=$request->get('name');
         $production_company->save();
-        return redirect('production_companies');
+        return redirect('/admin/production_companies');
     }
 
 
@@ -63,7 +63,7 @@ class ProductionCompanyController extends Controller
             'name' => request('name'),
         ]); 
 
-        return redirect('production_companies');
+        return redirect('/admin/production_companies');
         //return ['message' => 'Production Company is Created!'];
     }
 }

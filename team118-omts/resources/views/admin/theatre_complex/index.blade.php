@@ -6,7 +6,7 @@
         @if (count($theatre_complexes))
             <h1 class="title is-3">Theatre Complex</h1>
         @endif
-        <a class="btn btn-primary float-right" href="{{route('theatre_complexes.create')}}">Creat a new complex</a>
+        <a class="btn btn-primary float-right" href="{{route('admin.theatre_complexes.create')}}">Creat a new complex</a>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -28,10 +28,10 @@
                     <td>{{$theatre_complex->country}}</td>
                     <td>
                         <div class="btn btn-group" role="group" aria-label="Basic example">
-                            <a href="{{ URL::to('theatre_complexes/' . $theatre_complex->id . '/edit') }}">
+                            <a href="{{ URL::to('admin/theatre_complexes/' . $theatre_complex->id . '/edit') }}">
                             <button type="button" class="btn btn-warning">Edit</button>
                             </a>&nbsp;
-                            <form action="{{url('theatre_complexes', [$theatre_complex->id])}}" method="POST">
+                            <form action="{{url('admin/theatre_complexes', [$theatre_complex->id])}}" method="POST">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-danger" value="Delete"/>

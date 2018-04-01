@@ -6,7 +6,7 @@
         @if (count($suppliers))
             <h1 class="title is-3">Supplier</h1>
         @endif
-        <a class="btn btn-primary float-right" href="{{route('suppliers.create')}}">Creat a new supplier</a>
+        <a class="btn btn-primary float-right" href="{{route('admin.suppliers.create')}}">Creat a new supplier</a>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -26,10 +26,10 @@
                     <td>{{$supplier->contact_last_name}}</td>
                     <td>
                         <div class="btn btn-group" role="group" aria-label="Basic example">
-                            <a href="{{ URL::to('suppliers/' . $supplier->id . '/edit') }}">
+                            <a href="{{ URL::to('admin/suppliers/' . $supplier->id . '/edit') }}">
                             <button type="button" class="btn btn-warning">Edit</button>
                             </a>&nbsp;
-                            <form action="{{url('suppliers', [$supplier->id])}}" method="POST">
+                            <form action="{{url('admin/suppliers', [$supplier->id])}}" method="POST">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="btn btn-danger" value="Delete"/>

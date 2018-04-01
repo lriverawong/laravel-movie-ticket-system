@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="container">
-            <form method="POST" action="{{URL('theatres')}}">
+            <form method="POST" action="{{URL('admin/theatres')}}">
                 @csrf
                 <div class="form-group">
                     <label for="theatre_num" class="label">Theatre Number:</label>
