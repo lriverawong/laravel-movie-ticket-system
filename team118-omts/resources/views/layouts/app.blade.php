@@ -27,7 +27,7 @@
                         OMTS-118
                     </a>
                 @else
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/home') }}">
                         OMTS-118
                     </a>
                 @endif
@@ -41,6 +41,7 @@
                         <li><a class="nav-link" href="/showtimes">Showtimes</a></li>
                         <li><a class="nav-link" href="/chat">Chat</a></li>
                         <li><a class="nav-link" href="{{route('movies_playing')}}">Movies Playing</a></li>
+                        <li><a class="nav-link" href="{{route('theatre_complexes')}}">Theatre Complexes</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

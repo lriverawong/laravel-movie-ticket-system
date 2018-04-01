@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 
 class TheatreComplexController extends Controller
 {
-
+    public function public_index() {
+        return view('theatre_complex.public_index', [
+            'theatre_complexes' => TheatreComplex::all()
+        ]);
+    }
+    
+    
     public function index()
     {   
-        // if we have any projects we render them
         return view('admin.theatre_complex.index', [
             'theatre_complexes' => TheatreComplex::all()
         ]);
@@ -19,8 +24,6 @@ class TheatreComplexController extends Controller
     /**
      * Show the page to create a new project.
      */
-
-
     public function create()
     {   
         // if we have any projects we render them

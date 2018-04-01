@@ -12,10 +12,6 @@ use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
-    // public methods
-    public function playing() {
-
-    }
 
     // Admin methods
     public function index()
@@ -33,9 +29,6 @@ class PurchaseController extends Controller
         // if we have any projects we render them
         return view('purchase.create', [
             'movies' => Movie::all(),
-            'directors' => Director::all(),
-            'production_companies' => ProductionCompany::all(),
-            'suppliers' => Supplier::all(),
         ]);
     }
 
