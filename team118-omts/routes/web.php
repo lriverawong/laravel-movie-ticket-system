@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], functi
             'destroy' => 'admin.users.destroy'
         ]
     ]);
+    Route::get('users/{user_id}/purchase_history', 'UsersManagementController@purchase_history')->name('admin.users.purchase_history');
     Route::resource('directors', 'DirectorController', [
         'only' => [
             'index', 'show', 'create', 'store', 'edit', 'update', 'destroy'
