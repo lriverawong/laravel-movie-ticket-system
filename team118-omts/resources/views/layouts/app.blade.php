@@ -38,7 +38,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li><a class="nav-link" href="/showtimes">Showtimes</a></li>
+                        {{-- <li><a class="nav-link" href="/showtimes">Showtimes</a></li> --}}
                         <li><a class="nav-link" href="{{route('movies_playing')}}">Movies Playing</a></li>
                         <li><a class="nav-link" href="{{route('theatre_complexes')}}">Theatre Complexes</a></li>
                         {{--  <li><a class="nav-link" href="{{route('reviews')}}">Post a Review</a></li>  --}}

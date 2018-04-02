@@ -27,7 +27,7 @@ class PurchaseController extends Controller
             ->join('show_times', 'reservations.showing_id', '=', 'show_times.id')
             ->join('run_dates', 'run_date_id', '=', 'run_dates.id')
             ->join('movies', 'movie_id', '=', 'movies.id')
-            ->where('user_id', '=', 1)
+            ->where('user_id', '=', auth()->user()->id)
             ->select('reservations.id as reservation_id', 'user_id', 'reservations.number_of_tickets', 'show_times.showing_start_time', 'show_times.run_date_id', 'run_dates.movie_id', 'title as movie_title')
             ->whereDate('show_times.showing_start_time', '>', $current_time)
             ->get();
@@ -53,12 +53,6 @@ class PurchaseController extends Controller
 
     public function rentals() {
         $current_time = Carbon::now();
-        // $reservations = DB::table('reservations')
-        // ->where('user_id', '=', auth()->user()->id)
-        // ->join('show_times', 'reservations.showing_id', '=', 'show_times.id')
-        // ->join('run_dates', 'run_date_id', '=', 'run_dates.id')
-        // ->join('movies', 'movie_id', '=', 'movies.id')
-        // ->whereDate('showing_start_time', '<', $current_time)->get();
         $reservations = DB::table('reservations')
             ->join('show_times', 'reservations.showing_id', '=', 'show_times.id')
             ->join('run_dates', 'run_date_id', '=', 'run_dates.id')
