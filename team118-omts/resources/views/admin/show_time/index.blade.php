@@ -4,7 +4,8 @@
     <div class="container">
         <h1 class="title text-left">Show Time</h1>
         @if (count($show_times))
-            <a class="btn btn-primary float-right" href="{{route('admin.show_times.create')}}">Create a new Show Time</a>
+            {{-- <a class="btn btn-primary float-right" href="{{route('admin.show_times.create')}}">Create a new Show Time</a> --}}
+            <a class="btn btn-primary float-right" href="{{route('admin.show_times')}}">Create a new Show Time</a>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>

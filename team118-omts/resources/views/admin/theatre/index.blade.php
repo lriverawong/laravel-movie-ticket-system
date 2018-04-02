@@ -2,7 +2,6 @@
 
 @section('admin-content')
     <div class="container">
-        <h1>Inside index page of theatre</h1>
         @if (count($theatres))
             <h1 class="title is-3">Theatre</h1>
         @endif

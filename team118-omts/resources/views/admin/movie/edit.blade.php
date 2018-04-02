@@ -6,9 +6,7 @@
             <form method="POST" action="{{URL('admin/movies', [$movie->id])}}">
             <input type="hidden" name="_method" value="PATCH">
             @csrf
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="form-group col-md-4">
+                <div class="form-group">
                     <label for="title" class="label">Movie Title:</label>
                     
                     <input type="text" id="title" name="title" class="form-control" value="{{$movie->title}}"> 
