@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
-// use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 
 class UsersManagementController extends Controller
@@ -167,5 +168,25 @@ class UsersManagementController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect('/admin')->with('success','User has been  deleted');
+    }
+
+    /**
+     * See user purchase history
+     */
+    public function purchase_history($user_id){
+        $current_time = Carbon::now();
+        $past_purchases = DB::table('reservations')
+            ->where('user_id', '=', $user_id)
+            ->join('show_times', 'reservations.showing_id', '=', 'show_times.id')
+            ->join('run_dates', 'run_date_id', '=', 'run_dates.id')
+            ->join('movies', 'movie_id', '=', 'movies.id')
+            ->whereDate('showing_start_time', '<', $current_time)->get();
+        $held_tickets = DB::table('reservations')
+            ->where('user_id', '=', $user_id)
+            ->join('show_times', 'reservations.showing_id', '=', 'show_times.id')
+            ->join('run_dates', 'run_date_id', '=', 'run_dates.id')
+            ->join('movies', 'movie_id', '=', 'movies.id')
+            ->whereDate('showing_start_time', '>=', $current_time)->get();
+        return view('admin.users.purchase_history', compact('current_time', 'past_purchases', 'held_tickets'));
     }
 }

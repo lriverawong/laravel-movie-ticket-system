@@ -21,7 +21,7 @@
                 <th>Phone Number</th>
                 <th>Created At</th>
                 <th>Updated At</th>
-                <th colspan="2" class="text-center">Action</th>
+                <th colspan="3" class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +44,7 @@
                             <button class="btn btn-danger" onclick="return confirm('Are you sure?')" type="submit">Delete</button>
                             </form>
                         </td>
+                        <td><a href="{{route('admin.users.purchase_history', $user->id, '/purchase_histroy')}}" class="btn btn-info">Purchase History</a></td>
                     </tr>
                 @endforeach
             </tbody>
