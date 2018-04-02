@@ -23,9 +23,9 @@
 
         <a class="btn btn-primary" href="/admin/show_times">Show Times</a>
 
-        <a class="btn btn-primary" href="/popular_movie">Most Popular Movie</a>
+        <a class="btn btn-primary" href="{{route('admin.movie_stats')}}">Most Popular Movie</a>
 
-        <a class="btn btn-primary" href="/popular_complex">Most Popular Complex</a>
+        <a class="btn btn-primary" href="{{route('admin.complex_stats')}}">Most Popular Complex</a>
     </div>
     
 @endsection

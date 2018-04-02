@@ -16,14 +16,13 @@ class TheatreComplexController extends Controller
         ]);
     }
 
-    /**
-     * ADD THE MIGRATION FOR ADDING THE RUN ID TO THE SHOW TIME TABLE
-     */
-
-
     public function public_show($id) {
         $current_time = Carbon::now();
-        $show_times = DB::table('show_times')->join('run_dates', 'show_times.run_date_id', '=', 'run_dates.id')->where('theatre_complex_id', '=', $id)->whereDate('showing_start_time', '>', $current_time)->orderBy('movie_id')->get();
+        $show_times = DB::table('show_times')
+            ->join('run_dates', 'show_times.run_date_id', '=', 'run_dates.id')
+            ->where('theatre_complex_id', '=', $id)
+            ->whereDate('showing_start_time', '>', $current_time)
+            ->orderBy('movie_id')->get();
         return view('theatre_complex.public_show', compact('current_time', 'show_times'));
     }
     
