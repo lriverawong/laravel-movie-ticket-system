@@ -12,4 +12,4 @@
         <a class="btn btn-primary justify-content-center" href="/reviews">Post a Review</a>
     </div>
 </div>
-@endsection
+@endsection 
