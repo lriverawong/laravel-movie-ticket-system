@@ -86,3 +86,9 @@ INSERT INTO `run_dates` (`id`, `movie_id`, `theatre_complex_id`, `run_start_date
 INSERT INTO `run_dates` (`id`, `movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES (NULL, '4', '6', '2018-03-28', '2018-04-20');
 
 INSERT INTO `show_times` (`id`, `theatre_id`, `showing_start_time`, `num_seats_avail`, `run_date_id`) VALUES (NULL, '95', '2018-04-04 00:00:00', '55', '4');
+
+///////
+
+
+
+
