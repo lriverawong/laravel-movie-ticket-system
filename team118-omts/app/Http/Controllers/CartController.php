@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\Cart;
 
 class CartController extends Controller
 {
@@ -34,7 +37,17 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $prev_complex = $request->theatre_complex_id;
+        $cart_item = Cart::forcecreate([
+            'user_id'             => $request->input('user_id'),
+            'showing_id'       => $request->input('showing_id'),
+            'run_date_id'       => $request->input('run_date_id'),
+            'number_of_tickets'        => $request->input('number_of_tickets')
+        ]);
+
+        $cart_item->save();
+
+        return redirect("/theatre_complexes/$prev_complex")->with('success', 'Successfully added to cart!');
     }
 
     /**
@@ -45,7 +58,13 @@ class CartController extends Controller
      */
     public function show($id)
     {
-        //
+        $show_times = DB::table('carts as temp')
+            ->where('temp.user_id', '=', $id)
+            ->join("show_times", "temp.id", "=", "show_times.id")
+            ->select('*', 'temp.id as cart_id')
+            ->join("run_dates", "temp.run_date_id", '=', 'run_dates.id')
+            ->get();
+        return view('cart.show', compact('show_times'));
     }
 
     /**

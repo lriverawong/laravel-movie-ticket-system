@@ -2,9 +2,8 @@
 
 @section('content')
     <div class="container">
-        <h2 class="text-center">Current Showing at this Theatre Complex</h2>
+        <h2 class="text-center">Your Shopping Cart</h2>
         @include('shared.flash-success')
-        <a class="btn btn-primary float-right" href="{{route("cart.show", auth()->user()->id)}}">Go to cart</a>
         <table class="table">
             <thead>
                 <tr>
@@ -20,11 +19,12 @@
             <tbody>
                 @foreach ($show_times as $show_time)
                     <tr class="single-buy">
-                        <form method="POST" action="{{ route('cart.store') }}">
+                        <form method="POST" action="{{ route('purchases.store') }}">
                         @csrf
                             <div class="invisible">
                                 <input type="hidden" id="user_id" name="user_id" class="form-control" value="{{auth()->user()->id}}" readonly> 
-                                <input type="hidden" id="showing_id" name="showing_id" class="form-control" value="{{$show_time->id}}" readonly> 
+                                <input type="hidden" id="showing_id" name="showing_id" class="form-control" value="{{$show_time->showing_id}}" readonly> 
+                                <input type="hidden" id="cart_id" name="cart_id" class="form-control" value="{{$show_time->cart_id}}" readonly> 
                             </div>
 
                             <td class="form-group">
@@ -62,21 +62,16 @@
                                     <p class="text-center">{{$show_time->num_seats_avail}}</p>
                                     <span class="form-text has-danger"></span>
                                 </td>
-
                             <td class="form-group">
                                 {{-- <label for="showing_start_time" class="label">Showing Start Time:</label> --}}
-                                <input type="number" min="0" max="{{$show_time->num_seats_avail}}" id="number_of_tickets" name="number_of_tickets" class="form-control" value="{{old('number_of_tickets')}}">
+                                <input type="hidden" id="number_of_tickets" name="number_of_tickets" class="form-control" value="{{$show_time->number_of_tickets}}">
+                                <p class="text-center">{{$show_time->number_of_tickets}}</p>
                                 <span class="form-text has-danger"></span>
                             </td>
-
-                            <div class="invisible">
-                                {{-- <label for="showing_start_time" class="label">Showing Start Time:</label> --}}
-                                <input type="hidden" min="0" max="{{$show_time->run_date_id}}" id="run_date_id" name="run_date_id" class="form-control" value="{{$show_time->run_date_id}}">
-                                <span class="form-text has-danger"></span>
-                            </div>
+                            
         
                             <td class="form-group col-md-4" style="margin-top:60px">
-                                <button type="submit" class="btn btn-success" style="margin-left:38px">Add to Shopping Cart</button>
+                                <button type="submit" class="btn btn-success" style="margin-left:38px">Confirm Purchase</button>
                             </td>
                         </form>
                     </tr>

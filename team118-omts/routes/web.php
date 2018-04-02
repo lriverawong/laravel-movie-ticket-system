@@ -45,6 +45,24 @@ Route::get('/rentals', 'PurchaseController@rentals')->name('rentals');
 
 
 Route::get('/theatre_complexes', 'TheatreComplexController@public_index')->name('theatre_complexes');
+Route::get('/theatre_complexes/{theatre_complexes}', 'TheatreComplexController@public_show')->name('theatre_complexes.show');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('cart', 'CartController', [
+        'only' => [
+            'index', 'create', 'show', 'store', 'edit', 'update', 'destroy'
+        ],
+        'names' => [
+            'index' => 'cart',
+            'create' => 'cart.create',
+            'show' => 'cart.show',
+            'store' => 'cart.store',
+            'edit' => 'cart.edit',
+            'update' => 'cart.update',
+            'destroy' => 'cart.destroy'
+        ]
+    ]);
+});
 
 // =================== ADMIN ROUTES ====================================================
 
