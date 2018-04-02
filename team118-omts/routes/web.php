@@ -13,9 +13,11 @@
 
 // =================== PUBLIC ROUTES ====================================================
 
-Route::get('/', function () {
-    return view('layouts.app');
-});
+// Route::get('/', function () {
+//     return view('layouts.app');
+// });
+
+Route::get('/', 'PublicController@public_home')->name('public_home');
 
 Auth::routes();
 
@@ -25,15 +27,9 @@ Route::get('/showtimes', function() {
     return view('showtimes');
 });
 
-
-
-
-
 Route::resource('run_dates', 'RunDateController')->middleware('is_admin');
 
 Route::resource('purchases', 'PurchaseController');
-
-
 
 Route::resource('users', 'UserController')->only([
     'index', 'show', 'edit', 'update', 'destroy'
