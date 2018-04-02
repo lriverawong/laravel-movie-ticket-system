@@ -2,21 +2,14 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        INSIDE HOME.BLADE.PHP - THE USER HOME SCREEN
+    <h1 class="row justify-content-center">
+        Welcome to the user home page!
+    </h1>
+    <div class="container text-center user-home-page">
+        <a class="btn btn-primary justify-content-center" href="/theatre_complexes">Purchases Tickets</a>
+        <a class="btn btn-primary justify-content-center" href="/purchases">View Purchases</a>
+        <a class="btn btn-primary justify-content-center" href="/rentals">View Past Rentals</a>
+        <a class="btn btn-primary justify-content-center" href="/reviews">Post a Review</a>
     </div>
-    <div>
-        {{url('users/home', [auth()->user()->id])}}
-    </div>
-    <form action="{{url('users', [auth()->user()->id])}}" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="submit" class="btn btn-danger" value="Delete"/>
-        <a class="btn btn-primary" href="/theatre_complexes">Purchases Tickets</a>
-        <a class="btn btn-primary" href="/purchases">View Purchases</a>
-        <a class="btn btn-primary" href="/rentals">View Past Rentals</a>
-        <a class="btn btn-primary" href="/reviews">Post a Review</a>
-
-    </form>
 </div>
 @endsection
