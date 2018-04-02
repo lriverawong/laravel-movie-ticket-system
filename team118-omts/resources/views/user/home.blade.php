@@ -15,7 +15,7 @@
         <a class="btn btn-primary" href="/purchases/create">Purchases Tickets</a>
         <a class="btn btn-primary" href="/purchases">View Purchases</a>
         <a class="btn btn-primary" href="/rentals">View Past Rentals</a>
-        <a class="btn btn-primary" href="/#">Post a Review</a>
+        <a class="btn btn-primary" href="/reviews">Post a Review</a>
 
     </form>
 </div>

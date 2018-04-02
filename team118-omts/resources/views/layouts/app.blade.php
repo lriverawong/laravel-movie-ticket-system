@@ -42,6 +42,8 @@
                         <li><a class="nav-link" href="/chat">Chat</a></li>
                         <li><a class="nav-link" href="{{route('movies_playing')}}">Movies Playing</a></li>
                         <li><a class="nav-link" href="{{route('theatre_complexes')}}">Theatre Complexes</a></li>
+                        {{--  <li><a class="nav-link" href="{{route('reviews')}}">Post a Review</a></li>  --}}
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->

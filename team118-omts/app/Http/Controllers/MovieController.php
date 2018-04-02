@@ -7,6 +7,7 @@ use App\Models\Director;
 use App\Models\ProductionCompany;
 use App\Models\Supplier;
 use App\Models\RunDate;
+use App\Models\Review;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\DB;
@@ -23,6 +24,30 @@ class MovieController extends Controller
             ->whereDate('run_start_date', '<', $current_time)
             ->whereDate('run_end_date', '>=', $current_time)->distinct()->get();
         return view('movies.playing', compact('current_time', 'movies'));
+    }
+
+    public function reviews() {
+        return view('movies.reviews', [
+            'movies' => Movie::all()
+        ]);
+    }
+    //Post request
+    public function write_review(Request $request) {
+        $movie_id = $request->movie_id;
+        Review::forceCreate([
+            'user_id' => request('user_id'),
+            'movie_id' => request('movie_id'),
+            'review' => request('review'),
+        ]); 
+
+        return redirect("movies/$movie_id");
+    }
+
+    public function public_show($id)
+    {
+        $reviews = DB::table('reviews')->get();
+        $movie = Movie::findOrFail($id);
+        return view('movies.show', compact('reviews', 'movie'));
     }
 
     // Admin methods

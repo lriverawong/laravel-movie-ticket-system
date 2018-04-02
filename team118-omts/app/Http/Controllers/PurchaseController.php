@@ -8,6 +8,8 @@ use App\Models\ProductionCompany;
 use App\Models\Supplier;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class PurchaseController extends Controller
@@ -39,7 +41,14 @@ class PurchaseController extends Controller
     }
 
     public function rentals() {
-        
+        $current_time = Carbon::now();
+        $reservations = DB::table('reservations')
+        ->where('user_id', '=', auth()->user()->id)
+        ->join('show_times', 'reservations.showing_id', '=', 'show_times.id')
+        ->join('run_dates', 'run_date_id', '=', 'run_dates.id')
+        ->join('movies', 'movie_id', '=', 'movies.id')
+        ->whereDate('showing_start_time', '<', $current_time)->get();
+        return view('purchase.rentals', compact('current_time', 'reservations'));
     }
 
     /**

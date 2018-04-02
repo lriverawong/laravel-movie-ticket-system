@@ -29,6 +29,14 @@ Route::get('/chat', function() {
     return view('chat');
 });
 
+Route::get('/popular_movie', function() {
+    return view('admin/popular_movie');
+});
+
+Route::get('/popular_complex', function() {
+    return view('admin/popular_complex');
+});
+
 Route::resource('run_dates', 'RunDateController')->middleware('is_admin');
 
 Route::resource('purchases', 'PurchaseController');
@@ -42,6 +50,12 @@ Route::resource('users', 'UserController')->only([
 Route::get('/movies_playing', 'MovieController@playing')->name('movies_playing');
 
 Route::get('/rentals', 'PurchaseController@rentals')->name('rentals');
+
+Route::get('/reviews', 'MovieController@reviews')->name('reviews');
+
+Route::get('/movies/{movie}', 'MovieController@public_show')->name('movie.public_show');
+Route::post('/movies/write_review', 'MovieController@write_review')->name('movie.write_review');
+
 
 
 Route::get('/theatre_complexes', 'TheatreComplexController@public_index')->name('theatre_complexes');
