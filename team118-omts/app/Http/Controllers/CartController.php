@@ -38,6 +38,13 @@ class CartController extends Controller
     public function store(Request $request)
     {
         $prev_complex = $request->theatre_complex_id;
+        // if fails a 422 response code will be returned
+        $this->validate(request(), [
+            "user_id" => 'required', 
+            "showing_id" => 'required',
+            "run_date_id" => 'required',
+            "number_of_tickets" => "required|between:0,$request->num_seats_avail",
+        ]); 
         $cart_item = Cart::forcecreate([
             'user_id'             => $request->input('user_id'),
             'showing_id'       => $request->input('showing_id'),

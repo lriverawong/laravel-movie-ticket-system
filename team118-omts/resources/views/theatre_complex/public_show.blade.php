@@ -58,7 +58,7 @@
 
                             <td class="form-group">
                                     {{-- <label for="showing_start_time" class="label">Showing Start Time:</label> --}}
-                                    {{-- <input type="hidden" id="num_seats_avail" name="num_seats_avail" class="form-control" value="{{$show_time->num_seats_avail}}" readonly> --}}
+                                    <input type="hidden" id="num_seats_avail" name="num_seats_avail" class="form-control" value="{{$show_time->num_seats_avail}}" readonly>
                                     <p class="text-center">{{$show_time->num_seats_avail}}</p>
                                     <span class="form-text has-danger"></span>
                                 </td>
