@@ -98,7 +98,7 @@ class MovieController extends Controller
     public function destroy($id) {
         $movie = Movie::findOrFail($id);
         $movie->delete();
-        return redirect('admin.movies');
+        return redirect('admin/movies');
     }
 
     public function update(Request $request, $id) {
@@ -111,7 +111,7 @@ class MovieController extends Controller
         $movie->prod_comp_id=$request->get('prod_comp_id');
         $movie->supplier_id=$request->get('supplier_id');
         $movie->save();
-        return redirect('admin.movies');
+        return redirect('admin/movies');
     }
 
     /**
@@ -141,7 +141,6 @@ class MovieController extends Controller
             'supplier_id' => request('supplier_id'),
         ]); 
 
-        return redirect('admin.movies');
-        //return ['message' => 'Movie Created!'];
+        return redirect('admin/movies');
     }
 }
