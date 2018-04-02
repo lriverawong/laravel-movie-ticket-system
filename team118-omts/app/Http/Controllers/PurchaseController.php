@@ -70,11 +70,13 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {   
         $cart_id = $request->cart_id;
+        $showing_id = $request->showing_id;
+        $num_seats_avail = (int)$request->num_seats_avail;
         // if fails a 422 response code will be returned
         $this->validate(request(), [
             "user_id" => 'required', 
             "showing_id" => 'required',
-            "number_of_tickets" => 'required',
+            "number_of_tickets" => "required|between:0,$num_seats_avail",
         ]); 
         
         // otherwise we will create the object and save it to the database
@@ -83,9 +85,11 @@ class PurchaseController extends Controller
             'showing_id' => request('showing_id'),
             'number_of_tickets' => request('number_of_tickets'),
         ]); 
-
+        
+        DB::table('show_times')->where('show_times.id', '=', $showing_id)->decrement('num_seats_avail', $request->number_of_tickets);
         $cart_item = Cart::findorFail($cart_id);
         $cart_item->delete();
+        
 
         return redirect('purchases');
     }
