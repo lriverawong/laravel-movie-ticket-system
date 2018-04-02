@@ -53,7 +53,9 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'phone_num' => 'required',
-            'apt_num' => 'required',
+            'credit_card_num' => 'required',
+            'credit_card_exp' => 'required',
+            'apt_num' => '',
             'street_num' => 'required',
             'street_name' => 'required',
             'city' => 'required',
@@ -71,6 +73,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if (empty($data['apt_num'])) {
+            $data['apt_num'] = '';
+        }
+
         return User::create([
             'role' => User::DEFAULT_TYPE,
             'first_name' => $data['first_name'],
@@ -78,6 +84,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'phone_num' => $data['phone_num'],
+            'credit_card_num' => $data['credit_card_num'],
+            'credit_card_exp' => $data['credit_card_exp'],
             'apt_num' => $data['apt_num'],
             'street_num' => $data['street_num'],
             'street_name' => $data['street_name'],

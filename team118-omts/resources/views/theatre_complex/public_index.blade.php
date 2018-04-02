@@ -2,9 +2,8 @@
 
 @section('content')
     <div class="container">
-        <h1>Inside index page of theatre_complexes</h1>
         @if (count($theatre_complexes))
-            <h1 class="title is-3">Theatre Complex</h1>
+            <h1 class="title text-center">Theatre Complexes</h1>
         @endif
         <table class="table">
             <thead class="thead-dark">

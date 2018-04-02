@@ -2,9 +2,8 @@
 
 @section('admin-content')
     <div class="container">
-        <h1>Inside index page of theatre_complexes</h1>
         @if (count($theatre_complexes))
-            <h1 class="title is-3">Theatre Complex</h1>
+            <h1 class="title is-3">Theatre Complexes</h1>
         @endif
         <a class="btn btn-primary float-right" href="{{route('admin.theatre_complexes.create')}}">Creat a new complex</a>
         <table class="table">

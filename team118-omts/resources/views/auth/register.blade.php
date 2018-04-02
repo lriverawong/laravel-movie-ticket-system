@@ -90,10 +90,38 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="credit_card_num" class="col-md-4 col-form-label text-md-right">Credit Card Number</label>
+
+                            <div class="col-md-6">
+                                <input id="credit_card_num" type="text" class="form-control{{ $errors->has('credit_card_num') ? ' is-invalid' : '' }}" name="credit_card_num" value="{{ old('credit_card_num') }}" required autofocus>
+
+                                @if ($errors->has('credit_card_num'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('credit_card_num') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="credit_card_exp" class="col-md-4 col-form-label text-md-right">Credit Card Expiry</label>
+
+                            <div class="col-md-6">
+                                <input id="credit_card_exp" type="text" class="form-control{{ $errors->has('credit_card_exp') ? ' is-invalid' : '' }}" name="credit_card_exp" value="{{ old('credit_card_exp') }}" required autofocus>
+
+                                @if ($errors->has('credit_card_exp'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('credit_card_exp') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="apt_num" class="col-md-4 col-form-label text-md-right">Apartment Number</label>
 
                             <div class="col-md-6">
-                                <input id="apt_num" type="text" class="form-control{{ $errors->has('apt_num') ? ' is-invalid' : '' }}" name="apt_num" value="{{ old('apt_num') }}" required autofocus>
+                                <input id="apt_num" type="text" class="form-control{{ $errors->has('apt_num') ? ' is-invalid' : '' }}" name="apt_num" value="{{ old('apt_num') }}" autofocus>
 
                                 @if ($errors->has('apt_num'))
                                     <span class="invalid-feedback">

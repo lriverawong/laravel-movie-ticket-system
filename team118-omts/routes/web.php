@@ -25,9 +25,7 @@ Route::get('/showtimes', function() {
     return view('showtimes');
 });
 
-Route::get('/chat', function() {
-    return view('chat');
-});
+
 
 
 
@@ -50,12 +48,10 @@ Route::get('/reviews', 'MovieController@reviews')->name('reviews');
 Route::get('/movies/{movie}', 'MovieController@public_show')->name('movie.public_show');
 Route::post('/movies/write_review', 'MovieController@write_review')->name('movie.write_review');
 
-
-
 Route::get('/theatre_complexes', 'TheatreComplexController@public_index')->name('theatre_complexes');
-Route::get('/theatre_complexes/{theatre_complexes}', 'TheatreComplexController@public_show')->name('theatre_complexes.show');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('profile_edit/{id}', 'UserController@edit')->name('users.edit_profile');
     Route::resource('cart', 'CartController', [
         'only' => [
             'index', 'create', 'show', 'store', 'edit', 'update', 'destroy'
@@ -70,6 +66,7 @@ Route::group(['middleware' => ['auth']], function () {
             'destroy' => 'cart.destroy'
         ]
     ]);
+    Route::get('/theatre_complexes/{theatre_complexes}', 'TheatreComplexController@public_show')->name('theatre_complexes.show');    
 });
 
 // =================== ADMIN ROUTES ====================================================
@@ -225,3 +222,7 @@ Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], functi
 //Route::resource('production_companies', 'ProductionCompanyController')->middleware('is_admin');
 
 // Route::resource('movies', 'MovieController')->middleware('is_admin');
+
+// Route::get('/chat', function() {
+//     return view('chat');
+// });
