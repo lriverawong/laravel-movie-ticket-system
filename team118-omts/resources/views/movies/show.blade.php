@@ -7,13 +7,13 @@
         </div>
         <div class="jumbotron text-center">
             <p>
-                <strong>Movie Title</strong> {{ $movie->title }}<br>
+                <strong>Movie Title</strong> {{ $movie->movie_title }}<br>
                 <strong>Running Time</strong> {{ $movie->running_time }}<br>
                 <strong>Rating</strong> {{ $movie->rating }}<br>
                 <strong>Plot Synopsis</strong> {{ $movie->plot_synopsis }}<br>
                 <strong>Director Name</strong> {{ $movie->director_first_name }} {{ $movie->director_last_name }}<br>
                 <strong>Production Company</strong> {{ $movie->prod_comp_name }}<br>
-                <strong>Supplier</strong> {{ $movie_supplier->supplier_name }}<br>
+                <strong>Supplier</strong> {{ $movie->supplier_name }}<br>
             </p>
         </div>
         <div class="container reviews">
@@ -56,7 +56,7 @@
                     <div class="invisible">
                         <label for="movie_id" class="label">Movie Id:</label>
                         
-                        <input type="text" id="movie_id" name="movie_id" class="form-control" value="{{$movie->id}}" readonly>
+                        <input type="text" id="movie_id" name="movie_id" class="form-control" value="{{$movie->movie_id}}" readonly>
     
                         <span class="form-text has-danger"></span>
                     </div>
