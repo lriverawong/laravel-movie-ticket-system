@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="contact_last_name" class="label">Supplier Contact Name:</label>
+                    <label for="contact_last_name" class="label">Supplier Contact Last Name:</label>
                             
                     <input type="text" id="contact_last_name" name="contact_last_name" class="form-control">
         
