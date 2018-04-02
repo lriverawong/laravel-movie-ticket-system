@@ -50,3 +50,39 @@ INSERT INTO `run_dates` (`id`, `movie_id`, `theatre_complex_id`, `run_start_date
 // Show Times
 INSERT INTO `show_times` (`id`, `theatre_id`, `showing_start_time`, `num_seats_avail`, `run_date_id`) VALUES (NULL, '95', '2018-04-04 00:00:00', '55', '4');
 INSERT INTO `show_times` (`id`, `theatre_id`, `showing_start_time`, `num_seats_avail`, `run_date_id`) VALUES (NULL, '97', '2018-03-26 00:00:00', '32', '11');
+
+////
+
+
+INSERT INTO `theatre_complexes` (`id`, `name`, `phone_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) VALUES (NULL, 'testScreens', '98778966', '159', 'Pinegrove', 'Vernon', 'BC', 'Canada', 'V3B9C2');
+
+INSERT INTO `theatres` (`id`, `theatre_num`, `max_num_seats`, `screen_size`, `theatre_complex_id`) VALUES (NULL, '3A', '400', '500', '5');
+
+INSERT INTO `theatres` (`id`, `theatre_num`, `max_num_seats`, `screen_size`, `theatre_complex_id`) VALUES (NULL, '3B', '3', '4', '5');
+
+
+INSERT INTO `theatre_complexes` (`id`, `name`, `phone_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) VALUES (NULL, 'PentictonScreens', '65465465', '982', 'Blank', 'Street', 'AB', 'Canada', 'B8Y3D');
+
+INSERT INTO `theatres` (`id`, `theatre_num`, `max_num_seats`, `screen_size`, `theatre_complex_id`) VALUES (NULL, '4A', '90', '88', '6');
+
+INSERT INTO `theatres` (`id`, `theatre_num`, `max_num_seats`, `screen_size`, `theatre_complex_id`) VALUES (NULL, '4B', '799', '800', '6');
+
+
+INSERT INTO `suppliers` (`id`, `name`, `phone_num`, `contact_first_name`, `contact_last_name`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) VALUES (NULL, 'QSupplier', '89867655', 'Quentin', 'Jones', '', '23', 'Big srt', 'Edmonton', 'AB', 'Canada', 'K9K4S');
+
+
+INSERT INTO `production_companies` (`id`, `name`) VALUES (NULL, 'TMG');
+
+INSERT INTO `directors` (`id`, `first_name`, `last_name`) VALUES (NULL, 'Tony', 'Stark');
+
+INSERT INTO `movies` (`id`, `title`, `running_time`, `rating`, `plot_synopsis`, `director_id`, `prod_comp_id`, `supplier_id`) VALUES (NULL, 'Ready player one', '120', 'R', 'You are in a video game! WOW!', '8', '2', '61');
+INSERT INTO `movies` (`id`, `title`, `running_time`, `rating`, `plot_synopsis`, `director_id`, `prod_comp_id`, `supplier_id`) VALUES (NULL, 'Black Panther', '180', 'PG', 'Black panther is a super hero movie', '7', '1', '60');
+
+
+INSERT INTO `run_dates` (`id`, `movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES (NULL, '6', '6', '2018-03-02', '2018-04-18');
+
+INSERT INTO `run_dates` (`id`, `movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES (NULL, '4', '4', '2018-03-19', '2018-04-19');
+
+INSERT INTO `run_dates` (`id`, `movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES (NULL, '4', '6', '2018-03-28', '2018-04-20');
+
+INSERT INTO `show_times` (`id`, `theatre_id`, `showing_start_time`, `num_seats_avail`, `run_date_id`) VALUES (NULL, '95', '2018-04-04 00:00:00', '55', '4');
