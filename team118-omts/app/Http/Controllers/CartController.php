@@ -60,7 +60,7 @@ class CartController extends Controller
     {
         $show_times = DB::table('carts as temp')
             ->where('temp.user_id', '=', $id)
-            ->join("show_times", "temp.id", "=", "show_times.id")
+            ->join("show_times", "temp.showing_id", "=", "show_times.id")
             ->select('*', 'temp.id as cart_id')
             ->join("run_dates", "temp.run_date_id", '=', 'run_dates.id')
             ->get();

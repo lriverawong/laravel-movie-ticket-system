@@ -29,13 +29,7 @@ Route::get('/chat', function() {
     return view('chat');
 });
 
-Route::get('/popular_movie', function() {
-    return view('admin/popular_movie');
-});
 
-Route::get('/popular_complex', function() {
-    return view('admin/popular_complex');
-});
 
 Route::resource('run_dates', 'RunDateController')->middleware('is_admin');
 
@@ -194,6 +188,10 @@ Route::group(['middleware' => ['auth', 'is_admin'], 'prefix' => 'admin'], functi
             'destroy' => 'admin.show_times.destroy'
         ]
     ]);
+
+    Route::get('movie_stats', 'PurchaseController@movie_stats')->name('admin.movie_stats');
+    
+    Route::get('complex_stats', 'PurchaseController@complex_stats')->name('admin.complex_stats');
 
 });
 
