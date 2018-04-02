@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Apr 01, 2018 at 05:20 PM
+-- Generation Time: Apr 02, 2018 at 02:57 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.1.9
 
@@ -66,6 +66,22 @@ INSERT INTO `actors_movies` (`actor_id`, `movie_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `carts`
+--
+
+CREATE TABLE `carts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `showing_id` int(10) UNSIGNED NOT NULL,
+  `run_date_id` int(10) UNSIGNED NOT NULL,
+  `number_of_tickets` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `directors`
 --
 
@@ -115,7 +131,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2018_02_24_212529_create_show_times_table', 1),
 (14, '2018_02_24_225510_create_reservations_table', 1),
 (15, '2018_02_24_230741_create_reviews_table', 1),
-(16, '2018_03_29_170630_add_foreign_keys_to_movies', 1);
+(16, '2018_03_29_170630_add_foreign_keys_to_movies', 1),
+(17, '2018_04_01_155604_create_carts_table', 1);
 
 -- --------------------------------------------------------
 
@@ -192,7 +209,12 @@ CREATE TABLE `reservations` (
 
 INSERT INTO `reservations` (`id`, `user_id`, `showing_id`, `number_of_tickets`) VALUES
 (30, 1, 1, 3),
-(99, 1, 2, 6);
+(99, 1, 2, 6),
+(100, 4, 5, 2),
+(103, 3, 4, 3),
+(104, 3, 5, 1),
+(105, 3, 4, 1),
+(106, 3, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -255,7 +277,10 @@ CREATE TABLE `run_dates` (
 
 INSERT INTO `run_dates` (`id`, `movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) VALUES
 (1, 3, 2, '2018-03-01', '2018-03-16'),
-(2, 2, 4, '2018-03-16', '2018-03-22');
+(2, 2, 4, '2018-03-16', '2018-03-22'),
+(3, 2, 2, '2018-03-31', '2018-04-14'),
+(4, 3, 3, '2018-04-14', '2018-04-21'),
+(5, 1, 3, '2018-04-07', '2018-04-15');
 
 -- --------------------------------------------------------
 
@@ -277,7 +302,10 @@ CREATE TABLE `show_times` (
 
 INSERT INTO `show_times` (`id`, `theatre_id`, `showing_start_time`, `num_seats_avail`, `run_date_id`) VALUES
 (1, 55, '2018-03-07 19:30:00', 10, 1),
-(2, 90, '2018-03-17 13:30:00', 50, 2);
+(2, 90, '2018-03-17 13:30:00', 50, 2),
+(3, 55, '2018-04-01 15:00:00', 20, 3),
+(4, 90, '2018-04-14 13:00:00', 60, 4),
+(5, 90, '2018-04-08 19:00:00', 3, 5);
 
 -- --------------------------------------------------------
 
@@ -392,7 +420,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `role_id`, `first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 1, 'John', 'Smith', 'johnsmith@gmail.com', '12345678', '5555555555', '1234567890123456', '0421', '43', '644', 'Johnson St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S1', NULL, '2018-03-03 05:23:18', '2018-03-03 17:41:50'),
-(2, 2, 'Jack', 'Jones', 'jackjonesh@gmail.com', '12345678', '5555551234', '9999999999999999', '0522', '', '633', 'Princess St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S2', NULL, '2018-03-04 05:23:18', '2018-03-04 17:41:50');
+(2, 2, 'Jack', 'Jones', 'jackjonesh@gmail.com', '12345678', '5555551234', '9999999999999999', '0522', '', '633', 'Princess St.', 'Kingston', 'Ontario', 'Canada', 'K7K4S2', NULL, '2018-03-04 05:23:18', '2018-03-04 17:41:50'),
+(3, 1, '2TwH7lh4rF', 'ASd8rtViK5', 'tester1@gmail.com', '$2y$10$08LRMRtb1Pyk2kUIqeBsY.dmCLtNt/HlxO5Vt8D.y65.4yVcyslTa', 'p2DnVZqQN4', 'ZGkwWYlpGV', '5HAnMCPbwj', '1G2y6zURHq', '2tYtzG1itZ', '6Hujq7KvEb', 'nenR8pPeCt', 'y1faytCqZh', 'n5nROimAwS', 'kVNw9QawUD', NULL, '2018-04-01 19:26:21', '2018-04-01 19:26:21'),
+(4, 2, 'ooSTGPtofk', 'ykYp07WwqG', 'tester2@gmail.com', '$2y$10$NlWtt9B1gx2R442WqrxME.9ZOCPvlaq2QLpcMrUhp/jbDHPft6fPm', '6WMQlAw9kH', '3FVYgM7h1h', '7paVOMDR6t', 'wwCxPZ5Xt3', 'rxTardw5tm', 'RpuKI0ngCu', 'UgTgBfVMFe', 'lwO8mhLLoy', 'U2JMaGWpbp', 'kBxSh9n7u9', 'AfALq42VG1ZP8s84umw9H1BxO7dw4xy4h7yzNVx5mGa8PKd56CLdib7J0bHt', '2018-04-01 19:26:21', '2018-04-01 19:26:21');
 
 --
 -- Indexes for dumped tables
@@ -410,6 +440,15 @@ ALTER TABLE `actors`
 ALTER TABLE `actors_movies`
   ADD PRIMARY KEY (`actor_id`,`movie_id`),
   ADD KEY `actors_movies_movie_id_foreign` (`movie_id`);
+
+--
+-- Indexes for table `carts`
+--
+ALTER TABLE `carts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `carts_user_id_foreign` (`user_id`),
+  ADD KEY `carts_showing_id_foreign` (`showing_id`),
+  ADD KEY `carts_run_date_id_foreign` (`run_date_id`);
 
 --
 -- Indexes for table `directors`
@@ -519,6 +558,12 @@ ALTER TABLE `actors`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `carts`
+--
+ALTER TABLE `carts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `directors`
 --
 ALTER TABLE `directors`
@@ -528,7 +573,7 @@ ALTER TABLE `directors`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `movies`
@@ -546,7 +591,7 @@ ALTER TABLE `production_companies`
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -558,13 +603,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `run_dates`
 --
 ALTER TABLE `run_dates`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `show_times`
 --
 ALTER TABLE `show_times`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
@@ -588,7 +633,7 @@ ALTER TABLE `theatre_complexes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -600,6 +645,14 @@ ALTER TABLE `users`
 ALTER TABLE `actors_movies`
   ADD CONSTRAINT `actors_movies_actor_id_foreign` FOREIGN KEY (`actor_id`) REFERENCES `actors` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `actors_movies_movie_id_foreign` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `carts`
+--
+ALTER TABLE `carts`
+  ADD CONSTRAINT `carts_run_date_id_foreign` FOREIGN KEY (`run_date_id`) REFERENCES `run_dates` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `carts_showing_id_foreign` FOREIGN KEY (`showing_id`) REFERENCES `show_times` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `carts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `movies`

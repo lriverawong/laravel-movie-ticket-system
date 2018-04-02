@@ -169,21 +169,24 @@ CREATE TABLE `reviews` (
 -- Insert database values; migrations and sample data.
 -- ===
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(31, '2014_10_12_000000_create_users_table', 1),
-(32, '2014_10_12_100000_create_password_resets_table', 1),
-(33, '2018_02_24_031625_create_production_companies_table', 1),
-(34, '2018_02_24_031627_create_movies_table', 1),
-(35, '2018_02_24_031628_create_directors_table', 1),
-(36, '2018_02_24_183737_create_actors_table', 1),
-(37, '2018_02_24_183738_create_actors_movies_table', 1),
-(38, '2018_02_24_184631_create_suppliers_table', 1),
-(39, '2018_02_24_202726_create_theatre_complexes_table', 1),
-(40, '2018_02_24_204701_create_theatres_table', 1),
-(41, '2018_02_24_212421_create_run_dates_table', 1),
-(42, '2018_02_24_212529_create_show_times_table', 1),
-(43, '2018_02_24_225510_create_reservations_table', 1),
-(44, '2018_02_24_230741_create_reviews_table', 1),
-(45, '2018_03_29_170630_add_foreign_keys_to_movies', 1);
+(1, '2014_10_11_000000_create_roles_table', 1),
+(2, '2014_10_12_000000_create_users_table', 1),
+(3, '2014_10_12_100000_create_password_resets_table', 1),
+(4, '2018_02_24_031625_create_production_companies_table', 1),
+(5, '2018_02_24_031627_create_movies_table', 1),
+(6, '2018_02_24_031628_create_directors_table', 1),
+(7, '2018_02_24_183737_create_actors_table', 1),
+(8, '2018_02_24_183738_create_actors_movies_table', 1),
+(9, '2018_02_24_184631_create_suppliers_table', 1),
+(10, '2018_02_24_202726_create_theatre_complexes_table', 1),
+(11, '2018_02_24_204701_create_theatres_table', 1),
+(12, '2018_02_24_212421_create_run_dates_table', 1),
+(13, '2018_02_24_212529_create_show_times_table', 1),
+(14, '2018_02_24_225510_create_reservations_table', 1),
+(15, '2018_02_24_230741_create_reviews_table', 1),
+(16, '2018_03_29_170630_add_foreign_keys_to_movies', 1),
+(17, '2018_04_01_155604_create_carts_table', 1);
+
 
 -- Roles
 INSERT INTO `roles` (`id`, `title`) VALUES ('1', 'admin'), ('2', 'user');
