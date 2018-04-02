@@ -7,6 +7,7 @@ use App\Models\Director;
 use App\Models\ProductionCompany;
 use App\Models\Supplier;
 use App\Models\Purchase;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -54,11 +55,11 @@ class PurchaseController extends Controller
     /**
      * Store a new project in the database.
      */
-    public function store()
-    {
+    public function store(Request $request)
+    {   
+        $cart_id = $request->cart_id;
         // if fails a 422 response code will be returned
         $this->validate(request(), [
-            "id" => 'required',
             "user_id" => 'required', 
             "showing_id" => 'required',
             "number_of_tickets" => 'required',
@@ -66,11 +67,13 @@ class PurchaseController extends Controller
         
         // otherwise we will create the object and save it to the database
         Purchase::forceCreate([
-            'id' => request('id'),
             'user_id' => request('user_id'),
             'showing_id' => request('showing_id'),
             'number_of_tickets' => request('number_of_tickets'),
         ]); 
+
+        $cart_item = Cart::findorFail($cart_id);
+        $cart_item->delete();
 
         return redirect('purchases');
         //return ['message' => 'Movie Created!'];

@@ -22,17 +22,9 @@ class TheatreComplexController extends Controller
 
 
     public function public_show($id) {
-        // $theatre_complex = TheatreComplex::findOrFail($id);
-        // $current_time = Carbon::now();
-        // // the movie ids that are active now
-        // $movie_ids = DB::table('movies')
-        //     ->join('run_dates', 'movies.id', '=', 'run_dates.movie_id')
-        //     ->whereDate('run_start_date', '<', $current_time)
-        //     ->whereDate('run_end_date', '>=', $current_time)->select('movie_id')->distinct()->get();
-        // $show_times = DB::table('show_times')->
-        // return view('theatre_complex.public_show', [
-            
-        // ]);
+        $current_time = Carbon::now();
+        $show_times = DB::table('show_times')->join('run_dates', 'show_times.run_date_id', '=', 'run_dates.id')->where('theatre_complex_id', '=', $id)->whereDate('showing_start_time', '>', $current_time)->orderBy('movie_id')->get();
+        return view('theatre_complex.public_show', compact('current_time', 'show_times'));
     }
     
     
