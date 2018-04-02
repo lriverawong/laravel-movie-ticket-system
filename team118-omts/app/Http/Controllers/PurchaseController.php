@@ -19,10 +19,20 @@ class PurchaseController extends Controller
     // Admin methods
     public function index()
     {   
+        // $purchases = DB::select(
+        //     'SELECT reservations.id as reservation_id, user_id, reservations.number_of_tickets, show_times.showing_start_time, show_times.run_date_id, run_dates.movie_id, title as movie_title  from reservations inner join show_times on reservations.showing_id = show_times.id inner join run_dates on run_date_id = run_dates.id inner join movies on movie_id = movies.id where user_id = ?'
+        // , [auth()->user()->id]);
+        $current_time = Carbon::now();
+        $purchases = DB::table('reservations')
+            ->join('show_times', 'reservations.showing_id', '=', 'show_times.id')
+            ->join('run_dates', 'run_date_id', '=', 'run_dates.id')
+            ->join('movies', 'movie_id', '=', 'movies.id')
+            ->where('user_id', '=', 1)
+            ->select('reservations.id as reservation_id', 'user_id', 'reservations.number_of_tickets', 'show_times.showing_start_time', 'show_times.run_date_id', 'run_dates.movie_id', 'title as movie_title')
+            ->whereDate('show_times.showing_start_time', '>', $current_time)
+            ->get();
         // if we have any projects we render them
-        return view('purchase.index', [
-            'purchases' => Purchase::all()->where('user_id', '=', auth()->user()->id)
-        ]);
+        return view('purchase.index', ['purchases' => $purchases]);
     }
     /**
      * Show the page to create a new project.
@@ -43,12 +53,20 @@ class PurchaseController extends Controller
 
     public function rentals() {
         $current_time = Carbon::now();
+        // $reservations = DB::table('reservations')
+        // ->where('user_id', '=', auth()->user()->id)
+        // ->join('show_times', 'reservations.showing_id', '=', 'show_times.id')
+        // ->join('run_dates', 'run_date_id', '=', 'run_dates.id')
+        // ->join('movies', 'movie_id', '=', 'movies.id')
+        // ->whereDate('showing_start_time', '<', $current_time)->get();
         $reservations = DB::table('reservations')
-        ->where('user_id', '=', auth()->user()->id)
-        ->join('show_times', 'reservations.showing_id', '=', 'show_times.id')
-        ->join('run_dates', 'run_date_id', '=', 'run_dates.id')
-        ->join('movies', 'movie_id', '=', 'movies.id')
-        ->whereDate('showing_start_time', '<', $current_time)->get();
+            ->join('show_times', 'reservations.showing_id', '=', 'show_times.id')
+            ->join('run_dates', 'run_date_id', '=', 'run_dates.id')
+            ->join('movies', 'movie_id', '=', 'movies.id')
+            ->where('user_id', '=', 1)
+            ->select('reservations.id as reservation_id', 'user_id', 'reservations.number_of_tickets', 'show_times.showing_start_time', 'show_times.run_date_id', 'run_dates.movie_id', 'title as movie_title')
+            ->whereDate('show_times.showing_start_time', '<', $current_time)
+            ->get();
         return view('purchase.rentals', compact('current_time', 'reservations'));
     }
 

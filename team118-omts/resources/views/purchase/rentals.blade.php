@@ -9,21 +9,17 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Movie Title</th>
-                        <th scope="col">Movie User Id</th>
-                        <th scope="col">Movie Showing Id</th>
-                        <th scope="col">Movie Theatre Id</th>
-                        <th scope="col">Movie Showing Start Time</th>
+                        <th scope="col" class="text-center">Movie Title</th>
+                        <th scope="col" class="text-center">Movie Showing Start Time</th>
+                        <th scope="col" class="text-center">Number of Tickets Bought</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($reservations as $reservation)
                     <tr>
-                        <th scope="row">{{$reservation->title}}</th>
-                        <td>{{$reservation->user_id}}</td>
-                        <td>{{$reservation->showing_id}}</td>
-                        <td>{{$reservation->theatre_id}}</td>
-                        <td>{{$reservation->showing_start_time}}</td>
+                        <th scope="row" class="text-center">{{$reservation->movie_title}}</th>
+                        <th class="text-center">{{$reservation->showing_start_time}}</th>
+                        <th class="text-center">{{$reservation->number_of_tickets}}</th>
                     </tr>
                     @endforeach
                 <hr>

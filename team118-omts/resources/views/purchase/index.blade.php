@@ -9,7 +9,8 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col" class="text-center">Showing Id</th>
+                        <th scope="col" class="text-center">Movie Title</th>
+                        <th scope="col" class="text-center">Showing Start Time</th>
                         <th scope="col" class="text-center">Number of Tickets</th>
                         <th scope="col" class="text-center">Action</th>
                     </tr>
@@ -17,11 +18,12 @@
                 <tbody>
                     @foreach ($purchases as $purchase)
                     <tr>
-                        <th scope="row" class="text-center">{{$purchase->showing_id}}</th>
+                        <th scope="row" class="text-center">{{$purchase->movie_title}}</th>
+                        <th class="text-center">{{$purchase->showing_start_time}}</th>
                         <td class="text-center">{{$purchase->number_of_tickets}}</td>
                         <td class="text-center">
                             <div class="btn btn-group" role="group" aria-label="Basic example">
-                                <form action="{{url('purchases', [$purchase->id])}}" method="POST">
+                                <form action="{{url('purchases', [$purchase->reservation_id])}}" method="POST">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="submit" class="btn btn-danger" value="Delete"/>
