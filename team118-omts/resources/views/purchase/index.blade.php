@@ -6,7 +6,7 @@
         @if (count($purchases))
             <h1 class="title is-3">Purchases</h1>
         @endif
-        <a class="btn btn-primary float-right" href="{{route('purchases.create')}}">Purchase tickets!</a>
+        <a class="btn btn-primary float-right" href="{{route('theatre_complexes')}}">Purchase tickets!</a>
         <table class="table">
             <thead class="thead-dark">
                 <tr>

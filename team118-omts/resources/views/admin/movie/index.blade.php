@@ -28,7 +28,7 @@
                     <td>{{$movie->prod_comp_id}}</td>
                     <td>
                         <div class="btn btn-group" role="group" aria-label="Basic example">
-                            <a href="{{ URL::to('movies/' . $movie->id . '/edit') }}">
+                            <a href="{{ URL::to('admin/movies/' . $movie->id . '/edit') }}">
                             <button type="button" class="btn btn-warning">Edit</button>
                             </a>&nbsp;
                             <form action="{{url('admin/movies', [$movie->id])}}" method="POST">

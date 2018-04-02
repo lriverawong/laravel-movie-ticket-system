@@ -12,7 +12,7 @@
         <input type="hidden" name="_method" value="DELETE">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <input type="submit" class="btn btn-danger" value="Delete"/>
-        <a class="btn btn-primary" href="/purchases/create">Purchases Tickets</a>
+        <a class="btn btn-primary" href="/theatre_complexes">Purchases Tickets</a>
         <a class="btn btn-primary" href="/purchases">View Purchases</a>
         <a class="btn btn-primary" href="/rentals">View Past Rentals</a>
         <a class="btn btn-primary" href="/reviews">Post a Review</a>
