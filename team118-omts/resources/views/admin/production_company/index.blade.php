@@ -2,9 +2,8 @@
 
 @section('admin-content')
     <div class="container">
-        <h1>Inside index page of production_companies</h1>
         @if (count($production_companies))
-            <h1 class="title is-3">Theatre Complex</h1>
+            <h1 class="title is-3">Production Companies</h1>
         @endif
         <a class="btn btn-primary float-right" href="{{route('admin.production_companies.create')}}">Creat a new production company</a>
         <table class="table">

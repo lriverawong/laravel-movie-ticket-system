@@ -3,7 +3,7 @@
 @section('admin-content')
 <div class="container">
         <div class="container">
-            <form method="POST" action="{{URL('admin/movies')}}">
+            <form method="POST" action="{{URL('/admin/movies')}}">
             @csrf
                 <div class="row">
                     <div class="col-md-4"></div>
