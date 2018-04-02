@@ -11,22 +11,38 @@
                 <strong>Running Time</strong> {{ $movie->running_time }}<br>
                 <strong>Rating</strong> {{ $movie->rating }}<br>
                 <strong>Plot Synopsis</strong> {{ $movie->plot_synopsis }}<br>
-                <strong>Director Name</strong> {{ $movie->director_id }}<br>
-                <strong>Production Company</strong> {{ $movie->prod_comp_id }}<br>
-                <strong>Supplier</strong> {{ $movie->supplier_id }}<br>
+                <strong>Director Name</strong> {{ $movie->director_first_name }} {{ $movie->director_last_name }}<br>
+                <strong>Production Company</strong> {{ $movie->prod_comp_name }}<br>
+                <strong>Supplier</strong> {{ $movie_supplier->supplier_name }}<br>
             </p>
         </div>
         <div class="container reviews">
             @foreach($reviews as $review)
-                <div class="card" style="">
-                    <p>{{$review->review}}</p>
+                <div class="single-review">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$review->first_name}} {{$review->last_name}}</h5>
+                            <div class="card-text" style="">
+                                <p>{{$review->review}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="badge badge-success">
+                        Created at: {{$review->created_at}}
+                    </span>
+                    <span class="badge badge-primary">
+                        Updated at: {{$review->updated_at}}
+                    </span>
                 </div>
-                <span class="badge badge-primary">
-                    {{$review->user_id}}
-                </span>
             @endforeach
         </div>
-        <div class="container">
+
+        @guest
+            <div class="make-review">
+                <h2>Sign in to leave a review!</h2>
+            </div>
+        @else
+            <div class="container make-review">
                 <form method="POST" action="{{route('movie.write_review')}}">
                 @csrf
                     <div class="invisible">
@@ -60,5 +76,6 @@
                     </div>
                 </form>
             </div>
+        @endguest
     </div>
 @endsection

@@ -14280,11 +14280,6 @@ module.exports = __webpack_require__(61);
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -14332,356 +14327,314 @@ var chat_app = new Vue({
     }
 });
 
-// =========================================================
-
-var Errors = function () {
-    /**
-     * Create a new Errors instance.
-     */
-    function Errors() {
-        _classCallCheck(this, Errors);
-
-        this.errors = {};
-    }
-
-    /**
-     * Determine if an errors exists for the given field.
-     *
-     * @param {string} field
-     */
+// // =========================================================
+// class Errors {
+//     /**
+//      * Create a new Errors instance.
+//      */
+//     constructor() {
+//         this.errors = {};
+//     }
 
 
-    _createClass(Errors, [{
-        key: 'has',
-        value: function has(field) {
-            return this.errors.hasOwnProperty(field);
-        }
-
-        /**
-         * Determine if we have any errors.
-         */
-
-    }, {
-        key: 'any',
-        value: function any() {
-            return Object.keys(this.errors).length > 0;
-        }
-
-        /**
-         * Retrieve the error message for a field.
-         *
-         * @param {string} field
-         */
-
-    }, {
-        key: 'get',
-        value: function get(field) {
-            if (this.errors[field]) {
-                return this.errors[field][0];
-            }
-        }
-
-        /**
-         * Record the new errors.
-         *
-         * @param {object} errors
-         */
-
-    }, {
-        key: 'record',
-        value: function record(errors) {
-            this.errors = errors;
-        }
-
-        /**
-         * Clear one or all error fields.
-         *
-         * @param {string|null} field
-         */
-
-    }, {
-        key: 'clear',
-        value: function clear(field) {
-            if (field) {
-                delete this.errors[field];
-
-                return;
-            }
-
-            this.errors = {};
-        }
-    }]);
-
-    return Errors;
-}();
-
-var Form = function () {
-    /**
-     * Create a new Form instance.
-     *
-     * @param {object} data
-     */
-    function Form(data) {
-        _classCallCheck(this, Form);
-
-        this.originalData = data;
-
-        for (var field in data) {
-            this[field] = data[field];
-        }
-
-        this.errors = new Errors();
-    }
-
-    /**
-     * Fetch all relevant data for the form.
-     */
+//     /**
+//      * Determine if an errors exists for the given field.
+//      *
+//      * @param {string} field
+//      */
+//     has(field) {
+//         return this.errors.hasOwnProperty(field);
+//     }
 
 
-    _createClass(Form, [{
-        key: 'data',
-        value: function data() {
-            var data = {};
+//     /**
+//      * Determine if we have any errors.
+//      */
+//     any() {
+//         return Object.keys(this.errors).length > 0;
+//     }
 
-            for (var property in this.originalData) {
-                data[property] = this[property];
-            }
-            console.log(data);
-            for (i in data) {
-                console.log(_typeof(data[i]));
-            }
-            return data;
-        }
 
-        /**
-         * Reset the form fields.
-         */
+//     /**
+//      * Retrieve the error message for a field.
+//      *
+//      * @param {string} field
+//      */
+//     get(field) {
+//         if (this.errors[field]) {
+//             return this.errors[field][0];
+//         }
+//     }
 
-    }, {
-        key: 'reset',
-        value: function reset() {
-            for (var field in this.originalData) {
-                this[field] = '';
-            }
 
-            this.errors.clear();
-        }
+//     /**
+//      * Record the new errors.
+//      *
+//      * @param {object} errors
+//      */
+//     record(errors) {
+//         this.errors = errors;
+//     }
 
-        /**
-         * Send a POST request to the given URL.
-         * .
-         * @param {string} url
-         */
 
-    }, {
-        key: 'post',
-        value: function post(url) {
-            return this.submit('post', url);
-        }
+//     /**
+//      * Clear one or all error fields.
+//      *
+//      * @param {string|null} field
+//      */
+//     clear(field) {
+//         if (field) {
+//             delete this.errors[field];
 
-        /**
-         * Send a PUT request to the given URL.
-         * .
-         * @param {string} url
-         */
+//             return;
+//         }
 
-    }, {
-        key: 'put',
-        value: function put(url) {
-            return this.submit('put', url);
-        }
+//         this.errors = {};
+//     }
+// }
 
-        /**
-         * Send a PATCH request to the given URL.
-         * .
-         * @param {string} url
-         */
+// class Form {
+//     /**
+//      * Create a new Form instance.
+//      *
+//      * @param {object} data
+//      */
+//     constructor(data) {
+//         this.originalData = data;
 
-    }, {
-        key: 'patch',
-        value: function patch(url) {
-            return this.submit('patch', url);
-        }
+//         for (let field in data) {
+//             this[field] = data[field];
+//         }
 
-        /**
-         * Send a DELETE request to the given URL.
-         * .
-         * @param {string} url
-         */
+//         this.errors = new Errors();
+//     }
 
-    }, {
-        key: 'delete',
-        value: function _delete(url) {
-            return this.submit('delete', url);
-        }
+//     /**
+//      * Fetch all relevant data for the form.
+//      */
+//     data() {
+//         let data = {};
 
-        /**
-         * Submit the form.
-         *
-         * @param {string} requestType
-         * @param {string} url
-         */
+//         for (let property in this.originalData) {
+//             data[property] = this[property];
+//         }
+//         console.log(data);
+//         for(i in data) {
+//             console.log(typeof(data[i]))
+//         }
+//         return data;
+//     }
 
-    }, {
-        key: 'submit',
-        value: function submit(requestType, url) {
-            var _this = this;
 
-            return new Promise(function (resolve, reject) {
-                axios[requestType](url, _this.data()).then(function (response) {
-                    _this.onSuccess(response.data);
+//     /**
+//      * Reset the form fields.
+//      */
+//     reset() {
+//         for (let field in this.originalData) {
+//             this[field] = '';
+//         }
 
-                    resolve(response.data);
-                }).catch(function (error) {
-                    _this.onFail(error.response.data);
+//         this.errors.clear();
+//     }
 
-                    reject(error.response.data);
-                });
-            });
-        }
 
-        /**
-         * Handle a successful form submission.
-         *
-         * @param {object} data
-         */
+//     /**
+//      * Send a POST request to the given URL.
+//      * .
+//      * @param {string} url
+//      */
+//     post(url) {
+//         return this.submit('post', url);
+//     }
 
-    }, {
-        key: 'onSuccess',
-        value: function onSuccess(data) {
-            alert(data.message); // temporary
 
-            this.reset();
-        }
+//     /**
+//      * Send a PUT request to the given URL.
+//      * .
+//      * @param {string} url
+//      */
+//     put(url) {
+//         return this.submit('put', url);
+//     }
 
-        /**
-         * Handle a failed form submission.
-         *
-         * @param {object} errors
-         */
 
-    }, {
-        key: 'onFail',
-        value: function onFail(errors) {
-            this.errors.record(errors);
-        }
-    }]);
+//     /**
+//      * Send a PATCH request to the given URL.
+//      * .
+//      * @param {string} url
+//      */
+//     patch(url) {
+//         return this.submit('patch', url);
+//     }
 
-    return Form;
-}();
 
-var theatre_complex_app = new Vue({
-    el: '#theatre-complex-form',
-    data: {
-        form: new Form({
-            name: '',
-            phone_num: '',
-            street_num: '',
-            street_name: '',
-            city: '',
-            province: '',
-            country: '',
-            postal_code: ''
-        })
-    },
-    methods: {
-        onSubmit: function onSubmit() {
-            this.form.post('/theatre_complexes').then(function (response) {
-                return alert('Wahoo!');
-            });
-        }
-    }
-});
+//     /**
+//      * Send a DELETE request to the given URL.
+//      * .
+//      * @param {string} url
+//      */
+//     delete(url) {
+//         return this.submit('delete', url);
+//     }
 
-var theatre_app = new Vue({
-    el: '#theatre-form',
-    data: {
-        form: new Form({
-            theatre_num: '',
-            max_num_seats: 0,
-            screen_size: 0,
-            theatre_complex_id: ''
-        })
-    },
-    methods: {
-        onSubmit: function onSubmit() {
-            this.form.post('/theatres');
-        }
-    }
-});
 
-var director_app = new Vue({
-    el: '#director-form',
-    data: {
-        form: new Form({
-            first_name: '',
-            last_name: ''
-        })
-    },
-    methods: {
-        onSubmit: function onSubmit() {
-            this.form.post('/directors');
-        }
-    }
-});
+//     /**
+//      * Submit the form.
+//      *
+//      * @param {string} requestType
+//      * @param {string} url
+//      */
+//     submit(requestType, url) {
+//         return new Promise((resolve, reject) => {
+//             axios[requestType](url, this.data())
+//                 .then(response => {
+//                     this.onSuccess(response.data);
 
-var supplier_form_app = new Vue({
-    el: '#supplier-form',
-    data: {
-        form: new Form({
-            name: '',
-            phone_num: '',
-            contact_first_name: '',
-            contact_last_name: '',
-            apt_num: '',
-            street_num: '',
-            street_name: '',
-            city: '',
-            province: '',
-            country: '',
-            postal_code: ''
-        })
-    },
-    methods: {
-        onSubmit: function onSubmit() {
-            this.form.post('/suppliers');
-        }
-    }
-});
+//                     resolve(response.data);
+//                 })
+//                 .catch(error => {
+//                     this.onFail(error.response.data);
 
-var production_company_app = new Vue({
-    el: '#production-company-form',
-    data: {
-        form: new Form({
-            name: ''
-        })
-    },
-    methods: {
-        onSubmit: function onSubmit() {
-            this.form.post('/production_companies');
-        }
-    }
-});
+//                     reject(error.response.data);
+//                 });
+//         });
+//     }
 
-var movie_form_app = new Vue({
-    el: '#movie-form',
-    data: {
-        form: new Form({
-            title: '',
-            running_time: 0,
-            rating: 0,
-            plot_synopsis: '',
-            director_id: 0,
-            prod_comp_id: 0,
-            supplier_id: 0
-        })
-    },
-    methods: {
-        onSubmit: function onSubmit() {
-            this.form.post('/movies');
-        }
-    }
-});
+
+//     /**
+//      * Handle a successful form submission.
+//      *
+//      * @param {object} data
+//      */
+//     onSuccess(data) {
+//         alert(data.message); // temporary
+
+//         this.reset();
+//     }
+
+
+//     /**
+//      * Handle a failed form submission.
+//      *
+//      * @param {object} errors
+//      */
+//     onFail(errors) {
+//         this.errors.record(errors);
+//     }
+// }
+
+// const theatre_complex_app = new Vue({
+//     el: '#theatre-complex-form',
+//     data: {
+//         form: new Form({
+//             name: '',
+//             phone_num: '',
+//             street_num: '',
+//             street_name: '',
+//             city: '',
+//             province: '',
+//             country: '',
+//             postal_code: ''
+//         })
+//     },
+//     methods: {
+//         onSubmit() {
+//             this.form.post('/theatre_complexes')
+//                 .then(response => alert('Wahoo!'));
+//         }
+//     }
+// });
+
+// const theatre_app = new Vue({
+//     el: '#theatre-form',
+//     data: {
+//         form: new Form({
+//             theatre_num: '',
+//             max_num_seats: 0,
+//             screen_size: 0,
+//             theatre_complex_id: ''
+//         })
+//     },
+//     methods: {
+//         onSubmit() {
+//             this.form.post('/theatres')
+//         }
+//     }
+// });
+
+
+// const director_app = new Vue({
+//     el: '#director-form',
+//     data: {
+//         form: new Form({
+//             first_name: '',
+//             last_name: ''
+//         })
+//     },
+//     methods: {
+//         onSubmit() {
+//             this.form.post('/directors')
+//         }
+//     }
+// });
+
+// const supplier_form_app = new Vue({
+//     el: '#supplier-form',
+//     data: {
+//         form: new Form({
+//             name: '',
+//             phone_num: '',
+//             contact_first_name: '',
+//             contact_last_name: '',
+//             apt_num: '',
+//             street_num: '',
+//             street_name: '',
+//             city: '',
+//             province: '',
+//             country: '',
+//             postal_code: ''
+//         })
+//     },
+//     methods: {
+//         onSubmit() {
+//             this.form.post('/suppliers')
+//         }
+//     }
+// });
+
+// const production_company_app = new Vue({
+//     el: '#production-company-form',
+//     data: {
+//         form: new Form({
+//             name: ''
+//         })
+//     },
+//     methods: {
+//         onSubmit() {
+//             this.form.post('/production_companies')
+//         }
+//     }
+// });
+
+// const movie_form_app = new Vue({
+//     el: '#movie-form',
+//     data: {
+//         form: new Form({
+//             title: '',
+//             running_time: 0,
+//             rating: 0,
+//             plot_synopsis: '',
+//             director_id: 0,
+//             prod_comp_id: 0,
+//             supplier_id: 0,
+//         })
+//     },
+//     methods: {
+//         onSubmit() {
+//             this.form.post('/movies')
+//         }
+//     }
+// });
 
 /***/ }),
 /* 16 */

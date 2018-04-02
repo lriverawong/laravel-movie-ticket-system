@@ -45,9 +45,23 @@ class MovieController extends Controller
 
     public function public_show($id)
     {
-        $reviews = DB::table('reviews')->get();
-        $movie = Movie::findOrFail($id);
-        return view('movies.show', compact('reviews', 'movie'));
+        $reviews = DB::table('reviews')->join('users', 'reviews.user_id', '=', 'users.id')->get();
+        
+        $movie = DB::table('movies as temp')
+            ->where('temp.id', '=', $id)
+            ->join('directors', 'temp.director_id', '=', 'directors.id')
+            ->select('*', 'temp.id as movie_id')
+            ->join('production_companies', 'temp.prod_comp_id', '=', 'production_companies.id' )
+            ->select('name as prod_comp_name', 'title', 'running_time', 'rating', 'plot_synopsis', 'director_id', 'prod_comp_id', 'supplier_id', 'first_name as director_first_name', 'last_name as director_last_name')
+            ->get()->first();
+        $movie_supplier = DB::table('movies as temp')
+            ->where('temp.id', '=', $id)
+            ->select('*', 'temp.id as movie_id')
+            ->join('suppliers', 'temp.supplier_id', '=', 'suppliers.id' )
+            ->select('name as supplier_name', 'title', 'running_time', 'rating', 'plot_synopsis', 'supplier_id')
+            ->get()->first();
+
+        return view('movies.show', compact('reviews', 'movie', 'movie_supplier'));
     }
 
     // Admin methods

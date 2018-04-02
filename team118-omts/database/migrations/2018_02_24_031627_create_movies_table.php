@@ -17,7 +17,7 @@ class CreateMoviesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('running_time');
-            $table->integer('rating');
+            $table->string('rating');
             $table->text('plot_synopsis');
             $table->integer('director_id')->unsigned()->nullable();
             $table->integer('prod_comp_id')->unsigned()->nullable();
