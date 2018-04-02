@@ -14,6 +14,7 @@
                 <strong>Director Name</strong> {{ $movie->director_first_name }} {{ $movie->director_last_name }}<br>
                 <strong>Production Company</strong> {{ $movie->prod_comp_name }}<br>
                 <strong>Supplier</strong> {{ $movie->supplier_name }}<br>
+                <strong>Actors: Will Smith, Jack Black</strong>
             </p>
         </div>
         <div class="container reviews">

@@ -19,10 +19,12 @@ class MovieController extends Controller
     // public methods
     public function playing() {
         $current_time = Carbon::now();
-        $movies = DB::table('movies')
-            ->join('run_dates', 'movies.id', '=', 'run_dates.movie_id')
-            ->whereDate('run_start_date', '<', $current_time)
-            ->whereDate('run_end_date', '>=', $current_time)->distinct()->get();
+        // $movies = DB::table('movies')
+        //     ->join('run_dates', 'movies.id', '=', 'run_dates.movie_id')
+        //     ->whereDate('run_start_date', '<', $current_time)
+        //     ->whereDate('run_end_date', '>=', $current_time)->distinct()->get();
+        // $movies = DB::table('movies')->join('run_dates', 'movies.id', '=', 'run_dates.movie_id')->whereDate('run_start_date', '<', $current_time)->whereDate('run_end_date', '>=', $current_time)->distinct()->get();    
+        $movies = DB::table('movies')->join('run_dates', 'movies.id', '=', 'run_dates.movie_id')->whereDate('run_start_date', '<', $current_time)->whereDate('run_end_date', '>=', $current_time)->select('movies.id as id', 'movies.running_time as running_time', 'movies.rating as rating', 'movies.plot_synopsis as plot_synopsis', 'movies.director_id', 'movies.prod_comp_id', 'movies.supplier_id', 'run_dates.theatre_complex_id', 'movies.title as title')->get();
         return view('movies.playing', compact('current_time', 'movies'));
     }
 
