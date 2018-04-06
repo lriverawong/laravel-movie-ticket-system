@@ -98,3 +98,9 @@ INSERT INTO `reservations` (`id`, `user_id`, `showing_id`, `number_of_tickets`) 
 INSERT INTO `reviews` (`user_id`, `movie_id`, `review`, `created_at`, `updated_at`) VALUES
 ('1', '3', 'sad movie...', '2018-03-17 00:00:00', '2018-03-18 00:00:00'),
 ('1', '1', 'bang bang bang pow', '2018-03-02 00:00:00', '2018-03-02 00:00:00');
+
+
+-------------------------------
+
+-- Roles
+INSERT INTO `roles` (`id`, `title`) VALUES ('1', 'admin'), ('2', 'user');
