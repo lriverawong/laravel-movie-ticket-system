@@ -40,8 +40,8 @@ class ShowTimeController extends Controller
     }
 
     public function destroy($id) {
-        $run_date = ShowTime::findOrFail($id);
-        $run_date->delete();
+        $showing = ShowTime::findOrFail($id);
+        $showing->delete();
         return redirect('/admin/show_times');
     }
 

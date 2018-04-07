@@ -115,33 +115,57 @@ select theatre_complex_id, name, sum(number_of_tickets) as sum_num_tickets from 
 -- ## RunDate Controller ################################
 -- index ----------------------------------------
 select * from `run_dates`
+
 -- edit -----------------------------------------
 select * from `run_dates` where `run_dates`.`id` = $id
+
 -- destroy --------------------------------------
 delete from `run_dates` where `id` = $id
+
 -- update ---------------------------------------
-update `run_dates` set `movie_id` = $movie_id, `theatre_complex_id` = $theatre_complex_id, `run_start_date` = $run_start_date, `run_end_date` = $run_end_date where id=$id
+update `run_dates` set `movie_id` = $movie_id, `theatre_complex_id` = $theatre_complex_id, `run_start_date` = $run_start_date, `run_end_date` = $run_end_date where `id` = $id
+
 -- store ----------------------------------------
 insert into `run_dates` (`movie_id`, `theatre_complex_id`, `run_start_date`, `run_end_date`) values ($movie_id, $theatre_complex_id, $run_start_date, $run_end_date)
 
 -- ## ShowTime Controller ################################
 -- index ----------------------------------------
--- create ---------------------------------------
+select `movies`.`title` as `movie_title`, `theatre_complexes`.`name` as `theatre_complex_name`, `show_times`.`num_seats_avail`, `show_times`.`showing_start_time`, `show_times`.`id` as `show_time_id`, `theatres`.`theatre_num` from `show_times` inner join `run_dates` on `show_times`.`run_date_id` = `run_dates`.`id` inner join `movies` on `run_dates`.`movie_id` = `movies`.`id` inner join `theatre_complexes` on `run_dates`.`theatre_complex_id` = `theatre_complexes`.`id` inner join `theatres` on `show_times`.`theatre_id` = `theatres`.`id`
+
 -- edit -----------------------------------------
+-- show_time
+select `movies`.`title` as `movie_title`, `theatre_complexes`.`name` as `theatre_complex_name`, `show_times`.`num_seats_avail`, `show_times`.`showing_start_time`, `show_times`.`id` as `show_time_id`, `show_times`.`theatre_id`, `show_times`.`run_date_id` from `show_times` inner join `run_dates` on `show_times`.`run_date_id` = `run_dates`.`id` inner join `movies` on `run_dates`.`movie_id` = `movies`.`id` inner join `theatre_complexes` on `run_dates`.`theatre_complex_id` = `theatre_complexes`.`id` inner join `theatres` on `show_times`.`theatre_id` = `theatres`.`id` where `show_times`.`id` = $id
+-- theatres
+select * from `show_times` inner join `run_dates` on `show_times`.`run_date_id` = `run_dates`.`id` inner join `theatres` on `run_dates`.`theatre_complex_id` = `theatres`.`theatre_complex_id` where `show_times`.`id` = $id
+
 -- destroy --------------------------------------
+delete from `show_times` where `id` = $id
+
 -- update ---------------------------------------
+update `show_times` set `theatre_id` = $theatre_id, `showing_start_time` = $showing_start_time, `num_seats_available` = $num_seats_available, `run_date_id` = $run_date_id where `id` = $id
+
 -- store ----------------------------------------
+insert into `show_times` (`theatre_id`, `showing_start_time`, `num_seats_avail`, `run_date_id`) values ($theatre_id, $showing_start_time, $num_seats_avail, $run_date_id)
 
 -- ## Supplier Controller ################################
 -- index ----------------------------------------
--- create ---------------------------------------
+select * from `suppliers`
+
 -- edit -----------------------------------------
+select * from `suppliers` where `suppliers`.`id` = $id
+
 -- destroy --------------------------------------
+delete from `suppliers` where `id` = $id
+
 -- update ---------------------------------------
+update `suppliers` set `name` = $name, `phone_num` = $phone_num, `contact_first_name` = $contact_first_name, `contact_last_name` = $contact_last_name, `apt_num` = $apt_num, `street_num` = $street_num, `street_name` = $street_name, `city` = $city, `province` = $province, `country` = $country, `postal_code` = $postal_code, where `id` = $id
+
 -- store ----------------------------------------
+insert into `suppliers` (`name`, `phone_num`, `contact_first_name`, `contact_last_name`,`apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) values ($name, $phone_num, $contact_first_name, $contact_last_name, $apt_num, $street_num, $street_name, $city, $province, $country, $postal_code)
 
 -- ## Theatre Controller ################################
 -- public_index ----------------------------------------
+
 -- public_show ---------------------------------------
 -- index ----------------------------------------
 -- create ---------------------------------------

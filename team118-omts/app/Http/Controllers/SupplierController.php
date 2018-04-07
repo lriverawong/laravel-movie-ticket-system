@@ -23,9 +23,7 @@ class SupplierController extends Controller
     public function create()
     {   
         // if we have any projects we render them
-        return view('admin.supplier.create', [
-           // 'suppliers' => Supplier::all(),
-        ]);
+        return view('admin.supplier.create', []);
     }
 
     public function edit($id) {
