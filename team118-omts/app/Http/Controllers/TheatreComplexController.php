@@ -40,9 +40,7 @@ class TheatreComplexController extends Controller
     public function create()
     {   
         // if we have any projects we render them
-        return view('admin.theatre_complex.create', [
-            //'theatre_complexes' => TheatreComplex::all()
-        ]);
+        return view('admin.theatre_complex.create', []);
     }
 
     public function edit($id) {

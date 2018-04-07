@@ -66,6 +66,7 @@ class UserController extends Controller
         $user->first_name=$request->get('first_name');
         $user->last_name=$request->get('last_name');
         $user->email=$request->get('email');
+        $user->phone_num=$request->get('phone_num');
         $user->credit_card_num=$request->get('credit_card_num');
         $user->credit_card_exp=$request->get('credit_card_exp');
         if (empty($data['apt_num'])) {

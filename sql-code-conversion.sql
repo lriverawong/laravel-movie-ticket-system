@@ -165,37 +165,89 @@ insert into `suppliers` (`name`, `phone_num`, `contact_first_name`, `contact_las
 
 -- ## Theatre Controller ################################
 -- public_index ----------------------------------------
+select * from `theatre_complexes`
 
 -- public_show ---------------------------------------
+select * from `show_times` inner join `run_dates` on `show_times`.`run_date_id` = `run_dates`.`id` where `theatre_complex_id` = $id and date(`showing_start_time`) > $showing_start_time order by `movie_id` asc
+
 -- index ----------------------------------------
--- create ---------------------------------------
+select * from `theatre_complexes`
+
 -- edit -----------------------------------------
+select * from `theatre_complexes` where `theatre_complexes`.`id` = $id
+
 -- destroy --------------------------------------
+delete from `theatre_complexes` where `id` = $id
+
 -- update ---------------------------------------
+update `theatre_complexes` set `name` = $name, `phone_num` = $phone_num, `street_num` = $street_num, `street_name` = $street_name, `city` = $city, `province` = $province, `country` = $country, `postal_code` = $postal_code, where `id` = $id
+
 -- store ----------------------------------------
+insert into `theatre_complexes` (`name`, `phone_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) values ($name, $phone_num, $street_num, $street_name, $city, $province, $country, $postal_code)
 
 -- ## TheatreComplex Controller ################################
 -- index ----------------------------------------
+select * from `theatres`
+
 -- create ---------------------------------------
+select * from `theatre_complexes`
+
 -- edit -----------------------------------------
+select * from `theatres` where `theatres`.`id` = $id
+
 -- destroy --------------------------------------
+delete from `theatres` where `id` = $id
+
 -- update ---------------------------------------
+update `theatres` set `theatre_num` = $theatre_num, `max_num_seats` = $max_num_seats, `screen_size` = $screen_size, `theatre_complex_id` = $theatre_complex_id where `id` = $id
+
 -- store ----------------------------------------
+insert into `theatres` (`theatre_num`, `max_num_seats`, `screen_size`, `theatre_complex_id`) values ($theatre_num, $max_num_seats, $screen_size, $theatre_complex_id)
 
 -- ## User Controller ################################
--- index ----------------------------------------
 -- show ----------------------------------------
+select * from `users` where `users`.`id` = $id
+
 -- edit -----------------------------------------
+select * from `users` where `users`.`id` = $id
+
 -- update ---------------------------------------
+update `users` set `first_name` = $first_name, `last_name` = $last_name, `email` = $email, `phone_num` = $phone_num, `credit_card_num` = $credit_card_num, `credit_card_exp` = $credit_card_exp, `apt_num` = $apt_num, `street_num` = $street_num, `street_name` = $street_name, `city` = $city, `province` = $province, `country` = $country, `postal_code` = $postal_code, where `id` = $id
+
 -- destroy --------------------------------------
--- create ---------------------------------------
--- store ----------------------------------------
+delete from `users` where `id` = $id
+
+-- ## Registration (User) Controller ################################
+-- create/store ---------------------------------------
+insert into `users` (`first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) values ($first_name, $last_name, $email, $password, $phone_num, $credit_card_num, $credit_card_exp, $apt_num, $street_num, $street_name, $city, $province, $country, $postal_code)
 
 -- ## UserManagement Controller ################################
 -- index ----------------------------------------
+select * from `users`
+
 -- create ---------------------------------------
+select * from `roles`
+
 -- store ----------------------------------------
+insert into `users` (`first_name`, `last_name`, `email`, `password`, `phone_num`, `credit_card_num`, `credit_card_exp`, `apt_num`, `street_num`, `street_name`, `city`, `province`, `country`, `postal_code`) values ($first_name, $last_name, $email, $password, $phone_num, $credit_card_num, $credit_card_exp, $apt_num, $street_num, $street_name, $city, $province, $country, $postal_code)
+
 -- edit -----------------------------------------
+-- find user to edit
+select * from `users` where `users`.`id` = $id
+-- get all roles
+select * from `roles`
+
 -- update ---------------------------------------
+-- find user to update
+select * from `users` where `users`.`id` = $id
+-- update the user
+update `users` set `first_name` = $first_name, `last_name` = $last_name, `email` = $email, `phone_num` = $phone_num, `credit_card_num` = $credit_card_num, `credit_card_exp` = $credit_card_exp, `apt_num` = $apt_num, `street_num` = $street_num, `street_name` = $street_name, `city` = $city, `province` = $province, `country` = $country, `postal_code` = $postal_code, where `id` = $id
+
 -- destroy --------------------------------------
+delete from `users` where `id` = $id
+
 -- purchase_history ----------------------------------------
+-- past purchases of specified user
+select * from `reservations` inner join `show_times` on `reservations`.`showing_id` = `show_times`.`id` inner join `run_dates` on `run_date_id` = `run_dates`.`id` inner join `movies` on `movie_id` = `movies`.`id` where `user_id` = $user_id and date(`showing_start_time`) < $current_time
+-- held tickets of specified user
+select * from `reservations` inner join `show_times` on `reservations`.`showing_id` = `show_times`.`id` inner join `run_dates` on `run_date_id` = `run_dates`.`id` inner join `movies` on `movie_id` = `movies`.`id` where `user_id` = $user_id and date(`showing_start_time`) >= $current_time

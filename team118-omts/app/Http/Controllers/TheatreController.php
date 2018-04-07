@@ -26,8 +26,6 @@ class TheatreController extends Controller
     {   
         // if we have any projects we render them
         return view('admin.theatre.create', [
-            //'theatre' => Theatre::all(),
-            // 'theatre_complexes' => TheatreComplex::all()->pluck('name', 'id')
             'theatre_complexes' => TheatreComplex::all()
         ]);
     }
