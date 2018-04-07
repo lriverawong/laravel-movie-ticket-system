@@ -1,3 +1,16 @@
+-- ## Actor Controller  ###############################
+------ index ---------------------------------------
+select * from `actors`
+
+------ show ---------------------------------------
+select * from `actors` where `actors`.`id` = $id
+
+------ delete ---------------------------------------
+delete from `actors` where `id` = $id
+
+----- store ---------------------------------------
+insert into `directors` (`first_name`, `last_name`) values ($first_name, $last_name)
+
 -- ## Cart Controller ###############################
 ------ store ---------------------------------------
 insert into `carts` (`user_id`, `showing_id`, `run_date_id`, `number_of_tickets`, `updated_at`, `created_at`) values ($user_id, $showing_id, $run_date_id, $number_of_tickets, $updated_at, $created_at)
