@@ -9,7 +9,10 @@ select * from `actors` where `actors`.`id` = $id
 delete from `actors` where `id` = $id
 
 ----- store ---------------------------------------
-insert into `directors` (`first_name`, `last_name`) values ($first_name, $last_name)
+insert into `actors` (`first_name`, `last_name`) values ($first_name, $last_name)
+
+----- actor-movies ---------------------------------------
+insert into `actors_movies` (`actor_id`, `movie_id`) values ($actor_id, $movie_id)
 
 -- ## Cart Controller ###############################
 ------ store ---------------------------------------
@@ -54,6 +57,8 @@ select * from `movies`
 ----- create ---------------------------------------
 -- movies
 select * from `movies`
+-- actors
+select * from `actors`
 -- directors
 select * from `directors`
 -- production_companies
@@ -64,6 +69,8 @@ select * from `suppliers`
 ----- edit ---------------------------------------
 -- movies
 select * from `movies` where `movies`.`id` = $id
+-- actors
+select * from `actors`
 -- directors
 select * from `directors`
 -- production_companies
@@ -75,7 +82,10 @@ select * from `suppliers`
 delete from `movies` where `id` = $id
 
 ----- update ---------------------------------------
+-- get specified movie
 update `movies` set `title` = $title, `running_time` = $running_time, `rating` = $rating, `plot_synopsis` = $plot_synopsis, `director_id` = $director_id, `prod_comp_id` = $prod_comp_id, `supplier_id` = $supplier_id where id=$movie_id
+-- get a single actor info
+select * from `actors` where `actors`.`id` = $id
 
 ----- store ---------------------------------------
 insert into `movies` (`title`, `running_time`, `rating`, `plot_synopsis`, `director_id`, `prod_comp_id`, `supplier_id`) values ($title, $running_time, $rating, $plot_synopsis, $director_id, $prod_comp_id, $supplier_id)
